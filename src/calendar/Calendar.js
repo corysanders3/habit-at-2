@@ -12,6 +12,11 @@ function Calendar() {
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             initialView={"dayGridMonth"}
             height={"120%"}
+            headerToolbar={{
+                start: "today prev,next",
+                center: "title",
+                end: "dayGridMonth,timeGridWeek,timeGridDay"
+            }}
             />
         </section>
     )
