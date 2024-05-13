@@ -9,9 +9,9 @@ function Calendar() {
     return (
         <section className='calendar-page'>
             <Fullcalendar 
-            className="calendar"
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             initialView={"dayGridMonth"}
+            height={"120%"}
             />
         </section>
     )
