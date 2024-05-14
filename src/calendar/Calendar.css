@@ -1,0 +1,14 @@
+.calendar-page {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.fc {
+    width: 90%;
+    padding-top: 10%;
+}
+

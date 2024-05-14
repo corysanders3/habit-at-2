@@ -1,6 +1,5 @@
 import './App.css';
 import Garden from '../garden/Garden';
-import Calendar from '../calendar/Calendar';
 
 function App() {
   return (
