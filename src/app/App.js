@@ -7,7 +7,7 @@ import AllFlowers from '../flowers/AllFlowers';
 
 function App() {
   return (
-    <div style={{ width: '100%', height: '100%', position: 'fixed', top: 0, left: 0 }}>
+    <div style={{ width: '100%', height: '100%'}}>
     
       <Canvas>
         <ambientLight intensity={2} />
