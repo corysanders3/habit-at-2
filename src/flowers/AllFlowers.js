@@ -1,7 +1,8 @@
 import './AllFlowers.css';
 import habits from '../mockData/userHabits';
 import { Flower } from '../flower/Flower';
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+import { Canvas } from '@react-three/fiber';
 
 function AllFlowers() {
     const [flowers, setFlowers] = useState()
@@ -20,9 +21,9 @@ function AllFlowers() {
     }
 
     return (
-       <group>
+        <React.Fragment>
             {flowers}
-       </group>
+        </React.Fragment>
     )
 }
 

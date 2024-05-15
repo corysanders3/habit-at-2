@@ -5,7 +5,7 @@ import { useGLTF } from '@react-three/drei'
 import { useSpring, animated, config } from '@react-spring/three'
 
 
-function Flower(props, { flower }) {
+function Flower(props) {
     const { nodes, materials } = useGLTF('/flowers/Habitat.gltf')
     const [type, setType] = useState()
     const [active, setActive] = useState(false)
@@ -13,16 +13,14 @@ function Flower(props, { flower }) {
         scale: active ? 1.5 : 1,
         config: config.wobbly
     })
-    console.log('flower', flower)
-    console.log('props', props)
+
     useEffect(() => {
         findFlower()
-    }, [flower])
+    }, [props.flower])
     
     const findFlower = () => {
         const flowerType = flowerData.find(type => {
-            console.log('type', flower)
-            return type.id === flower
+            return type.id === props.flower
         })
         setType(flowerType)
     }
@@ -34,7 +32,7 @@ function Flower(props, { flower }) {
     }
     return (
         <group {...props} dispose={null}>
-            <group position={[1.25, -1, 1]} scale={10}>
+            <group position={[1.25, -1, 1]} scale={1}>
                 <animated.mesh
                     scale={scale}
                     onClick={() => setActive(!active)}
