@@ -1,0 +1,25 @@
+.habit-section {
+    position: absolute;
+    top: 20%;
+    left: 40%;
+    z-index: 1;
+    border: 2px solid black;
+    padding: 40px 50px;
+    background-color: rgba(240, 240, 240, 0.85);
+    font-weight: 500;
+    width: 200px;
+}
+
+.habit-form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.form-header {
+    margin-top: 0;
+}
+
+.days {
+    margin-bottom: 5px;
+}
