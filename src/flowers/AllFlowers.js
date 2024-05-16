@@ -12,9 +12,9 @@ function AllFlowers() {
     }, [])
 
     const makeFlower = () => {
-        const allFlowers = habits.map((habit) => {
+        const allFlowers = habits.map((habit, index) => {
             return (
-                <Flower key={habit.id} flower={habit.attributes.plant_id} />
+                <Flower key={habit.id} flower={habit.attributes.plant_id} index={index}/>
             )
         })
         setFlowers(allFlowers)
