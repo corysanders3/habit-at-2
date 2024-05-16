@@ -9,6 +9,7 @@ function Flower(props) {
     const { nodes, materials } = useGLTF('/flowers/Habitat.gltf')
     const [type, setType] = useState()
     const [active, setActive] = useState(false)
+    const [flowerScale, setScale] = useState()
     const [position, setPosition] = useState([])
 
     const { scale } = useSpring({
@@ -31,7 +32,11 @@ function Flower(props) {
     const findPosition = () => {
         let x = -4
         x += (props.index * 2)
-        setPosition([x, -0.5, 1])
+        setPosition([x, -0.75, 1])
+    }
+
+    const findScale = () => {
+    //   const growth = <Grow />
     }
 
     if (!type) {
@@ -41,7 +46,7 @@ function Flower(props) {
     }
     return (
         <group {...props} dispose={null}>
-            <group position={position} scale={1}>
+            <group position={position} scale={type.scale}>
                 <animated.mesh
                     scale={scale}
                     onClick={() => setActive(!active)}

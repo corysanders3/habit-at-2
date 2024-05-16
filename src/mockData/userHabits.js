@@ -40,6 +40,34 @@ const habits = [
             end_datetime: "2024-05-30 6:30:00",
             status: "in_progress"
         }
+    },
+    {
+        id: 3,
+        type: "habit",
+        attributes: {
+            user_id: 1,
+            plant_id: 4,
+            name: "Meditate",
+            description: "Spend 10 minutes meditating right after waking up",
+            frequency: "daily",
+            start_datetime: "2024-05-1 6:30:00",
+            end_datetime: "2024-05-30 6:30:00",
+            status: "in_progress"
+        }
+    },
+    {
+        id: 3,
+        type: "habit",
+        attributes: {
+            user_id: 1,
+            plant_id: 3,
+            name: "Meditate",
+            description: "Spend 10 minutes meditating right after waking up",
+            frequency: "daily",
+            start_datetime: "2024-05-1 6:30:00",
+            end_datetime: "2024-05-30 6:30:00",
+            status: "in_progress"
+        }
     }
 ]
 
