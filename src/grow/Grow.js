@@ -32,9 +32,9 @@ function calculateProgress(progress, todayDate, startDate) {
     })
 
     if (completedDates.length < 10) {
-        return (completedDates.length / 10 * 5)
+        return (completedDates.length / 10 * 4)
     } else {
-        return 5
+        return 4
     }
 }
 
