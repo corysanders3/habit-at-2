@@ -12,7 +12,12 @@ function Nav() {
     e.preventDefault()
     if(!isActive) {
       setIsActive(true)
-    }
+    } 
+  }
+
+  function closeForm(e) {
+    e.preventDefault()
+    setIsActive(false)
   }
 
   return (
@@ -36,7 +41,7 @@ function Nav() {
           </Link>
           <button className='form-btn' onClick={e => loadForm(e)}>New Habit</button>
       </nav>
-      <Form isActive={isActive}/>
+      <Form isActive={isActive} closeForm={closeForm}/>
     </>
   )
 }
