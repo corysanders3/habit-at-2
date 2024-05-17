@@ -14,7 +14,7 @@ const progress = [
         {
             id: 3,
             habit_id: 3,
-            status: "skipped",
+            status: "completed",
             datetime: "2024-05-12 6:30:00"
         },
         {
@@ -26,7 +26,7 @@ const progress = [
         {
             id: 5,
             habit_id: 3,
-            status: "incomplete",
+            status: "skipped",
             datetime: "2024-05-14 6:30:00"
         },
         {

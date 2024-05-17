@@ -12,14 +12,12 @@ import { useSpring, animated, config } from '@react-spring/three'
 function Flower(props) {
     const { nodes, materials } = useGLTF('/flowers/Habitat.gltf')
     const [type, setType] = useState()
-    const [active, setActive] = useState(false)
-    const [flowerScale, setScale] = useState()
+    const [flowerScale, setScale] = useState(null)
     const [position, setPosition] = useState([])
-    // const [progressLog, setProgressLog] = useState()
-    const [error, setError] = useState()
+    const [error, setError] = useState('')
 
     const { scale } = useSpring({
-        scale: active ? flowerScale : 1,
+        scale: flowerScale,
         config: config.wobbly
     })
 
@@ -28,10 +26,6 @@ function Flower(props) {
         findPosition()
         getParameters(props.userId, props.habitId)
     }, [props.flower])
-
-    // useEffect(() => {
-    //     scaleFlower()
-    // }, [progressLog])
 
     // ****** GET request for flower styles
     // const findFlower = async () => {
@@ -87,7 +81,6 @@ function Flower(props) {
             <group position={position} scale={type.scale}>
                 <animated.mesh
                     scale={scale}
-                    onClick={() => setActive(!active)}
                     castShadow
                     receiveShadow
                     geometry={nodes[type.style + '_1'].geometry}

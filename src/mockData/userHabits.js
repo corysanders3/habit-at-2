@@ -32,7 +32,7 @@ const habits = [
         type: "habit",
         attributes: {
             user_id: 1,
-            plant_id: 4,
+            plant_id: 3,
             name: "Meditate",
             description: "Spend 10 minutes meditating right after waking up",
             frequency: "daily",

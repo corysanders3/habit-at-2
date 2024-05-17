@@ -15,7 +15,7 @@ const flowerData = [
         seed: "Seed.008",
         petal: "Petal.008",
         leaf: "Leaf.010",
-        scale: 0.4
+        scale: 1
     },
     {
         id: 3,
