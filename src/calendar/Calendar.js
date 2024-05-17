@@ -11,7 +11,7 @@ function Calendar() {
             <Fullcalendar 
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             initialView={"dayGridMonth"}
-            height={"120%"}
+            height={"90%"}
             headerToolbar={{
                 start: "today prev,next",
                 center: "title",

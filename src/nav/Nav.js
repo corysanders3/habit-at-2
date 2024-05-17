@@ -31,6 +31,9 @@ export default function Nav() {
                   >
                     Calendar
                   </NavLink>
+                  <button className="inline-flex items-center border-b-2 border-green-500 px-1 pt-1 text-sm font-medium text-gray-900">
+                    Add Habit
+                  </button>
                 </div>
               </div>
               <div className="-mr-2 flex items-center sm:hidden">
@@ -61,6 +64,11 @@ export default function Nav() {
               >
                 Calendar
               </NavLink>
+              <button
+              className="block border-l-4 border-green-500 bg-green-50 py-2 pl-3 pr-4 text-base font-medium text-green-700"
+              >
+                Add Habit
+              </button>
             </div>
           </Disclosure.Panel>
         </>
