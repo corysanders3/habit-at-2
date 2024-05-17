@@ -11,13 +11,19 @@ export default function Nav() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex h-16 justify-between">
               <div className="flex">
-                <div className="flex flex-shrink-0 items-center">
-                  <img
-                    className="h-8 w-auto"
-                    src={FlowerIcon}
-                    alt="Habit-at Logo"
-                  />
-                </div>
+                <NavLink
+                  to="/"
+                  className="flex"
+                >
+                  <div className="flex flex-shrink-0 items-center">
+                    <h1 className="inline-flex items-center px-1 pt-1 text-lg font-medium text-green-600">Habit-at</h1>
+                    <img
+                      className="h-8 w-auto"
+                      src={FlowerIcon}
+                      alt="Habit-at Logo"
+                    />
+                  </div>
+                </NavLink>
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                   <NavLink
                     to="/"
