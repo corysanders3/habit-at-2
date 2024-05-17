@@ -71,3 +71,8 @@
     background-color: white;
     cursor: pointer;
 }
+
+.error {
+    margin-bottom: 0;
+    color: red;
+}

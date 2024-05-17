@@ -6,15 +6,40 @@ function Form({ isActive, closeForm }) {
     const [descriptionInput, setDescriptionInput] = useState('')
     const [frequency, setFrequency] = useState('')
     const [days, setDays] = useState({ 'monday': false, 'tuesday': false, 'wednesday': false, 'thursday': false, 'friday': false, 'saturday': false, 'sunday': false })
+    const [initialDays, setInitialDays] = useState({ 'monday': false, 'tuesday': false, 'wednesday': false, 'thursday': false, 'friday': false, 'saturday': false, 'sunday': false })
     const [startInput, setStartInput] = useState('')
     const [endInput, setEndInput] = useState('')
+    const [formError, setFormError] = useState('')
 
     console.log(days)
 
     function checkForm(e) {
         e.preventDefault()
+        setFormError('')
 
+        if(nameInput.trim().length < 1 || descriptionInput.trim().length < 1 || !frequency || !startInput || !endInput) {
+            setFormError('Please fill out all fields.')
+        } else if(frequency === 'weekly' && JSON.stringify(days) === JSON.stringify(initialDays)){
+            setFormError('Please fill out all fields.')
+        } else {
+            postHabit()
+            closeForm(e)
+        }
+    }
 
+    function postHabit() {
+        let postData = {}
+        
+        clearForm()
+    }
+
+    function clearForm() {
+        setNameInput('')
+        setDescriptionInput('')
+        setFrequency('')
+        setDays({ 'monday': false, 'tuesday': false, 'wednesday': false, 'thursday': false, 'friday': false, 'saturday': false, 'sunday': false })
+        setStartInput('')
+        setEndInput('')
     }
 
     function updateDays(e) {
@@ -29,6 +54,13 @@ function Form({ isActive, closeForm }) {
         }
     }
 
+    function closeSteps(e) {
+        e.preventDefault()
+        setFormError('')
+        closeForm(e)
+        clearForm()
+    }
+
     return (
         <>
             {isActive && 
@@ -37,8 +69,6 @@ function Form({ isActive, closeForm }) {
                     <form className='habit-form'>
                         <label htmlFor='name'>Habit Name:</label>
                         <input 
-                            minLength={2}
-                            required
                             name='name'
                             id='name'
                             type='text'
@@ -84,7 +114,7 @@ function Form({ isActive, closeForm }) {
                             />
                             <label htmlFor='monthly'>Monthly</label>
                         </div>
-                        { (frequency === 'daily' || frequency === 'weekly') && (
+                        { frequency === 'weekly' && (
                             <>
                                 <br></br>
                                 <p className='checkbox-p'>Choose Days:</p>
@@ -180,9 +210,10 @@ function Form({ isActive, closeForm }) {
                             value={endInput}
                             onChange={e => setEndInput(e.target.value)}
                         />
+                        { formError && <h4 className='error'>{formError}</h4>}
                         <div className='button-container'>
                             <button className='submit' onClick={e => checkForm(e)}>Submit</button>
-                            <button className='close' onClick={e => closeForm(e)}>Close</button>
+                            <button className='close' onClick={e => closeSteps(e)}>Close</button>
                         </div>
                     </form>
                 </section>
