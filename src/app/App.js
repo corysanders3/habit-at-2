@@ -7,7 +7,7 @@ import { Canvas } from '@react-three/fiber';
 
 function App() {
   return (
-    <div style={{ width: '100%', height: '100%', position: 'fixed', top: 0, left: 0 }}>
+    <div style={{ width: '100%', height: '90%', top: 0, left: 0 }}>
       <Canvas>
         <ambientLight intensity={2} />
         <directionalLight position={[1, 1, 4]} intensity={3} />
