@@ -15,7 +15,7 @@ function Flower(props) {
     const [active, setActive] = useState(false)
     const [flowerScale, setScale] = useState()
     const [position, setPosition] = useState([])
-    const [progressLog, setProgressLog] = useState()
+    // const [progressLog, setProgressLog] = useState()
     const [error, setError] = useState()
 
     const { scale } = useSpring({
@@ -28,6 +28,10 @@ function Flower(props) {
         findPosition()
         getParameters(props.userId, props.habitId)
     }, [props.flower])
+
+    // useEffect(() => {
+    //     scaleFlower()
+    // }, [progressLog])
 
     // ****** GET request for flower styles
     // const findFlower = async () => {
@@ -59,7 +63,7 @@ function Flower(props) {
         // } catch (error) {
         //   setError(error)
         // }
-        setProgressLog(userProgress)
+        scaleFlower(userProgress)
     }
 
     const findPosition = () => {
@@ -68,8 +72,9 @@ function Flower(props) {
         setPosition([x, -0.75, 1])
     }
 
-    const scaleFlower = () => {
-        calculateGrowth(progressLog)
+    const scaleFlower = (progressLog) => {
+        const growth = calculateGrowth(progressLog, props.habit.attributes.frequency)
+        setScale(growth)
     }
 
     if (!type) {
