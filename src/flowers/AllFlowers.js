@@ -1,10 +1,9 @@
 import './AllFlowers.css';
-import habits from '../mockData/userHabits';
 import { Flower } from '../flower/Flower';
 import React, { useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 
-function AllFlowers() {
+function AllFlowers({ habits }) {
     const [flowers, setFlowers] = useState()
 
     useEffect(() => {
@@ -14,7 +13,14 @@ function AllFlowers() {
     const makeFlower = () => {
         const allFlowers = habits.map((habit, index) => {
             return (
-                <Flower key={habit.id} flower={habit.attributes.plant_id} index={index}/>
+                <Flower
+                    key={habit.id}
+                    userId={habit.attributes.user_id}
+                    flower={habit.attributes.plant_id}
+                    index={index}
+                    habitId={habit.id}
+                    habit={habit}
+                />
             )
         })
         setFlowers(allFlowers)

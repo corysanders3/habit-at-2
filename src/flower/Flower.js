@@ -1,6 +1,10 @@
 import './Flower.css'
 import flowerData from '../mockData/flowerDetails'
 import React, { useState, useEffect } from 'react'
+import { calculateGrowth } from '../grow/Grow'
+// import { getFlowers } from '../apiCalls'
+// import { getProgress } from '../apiCalls';
+import userProgress from '../mockData/userProgress'
 import { useGLTF } from '@react-three/drei'
 import { useSpring, animated, config } from '@react-spring/three'
 
@@ -11,22 +15,51 @@ function Flower(props) {
     const [active, setActive] = useState(false)
     const [flowerScale, setScale] = useState()
     const [position, setPosition] = useState([])
+    const [progressLog, setProgressLog] = useState()
+    const [error, setError] = useState()
 
     const { scale } = useSpring({
-        scale: active ? 1.5 : 1,
+        scale: active ? flowerScale : 1,
         config: config.wobbly
     })
 
     useEffect(() => {
         findFlower()
         findPosition()
+        getParameters(props.userId, props.habitId)
     }, [props.flower])
 
+    // ****** GET request for flower styles
+    // const findFlower = async () => {
+    // try {
+    //   const data = await getFlowers()
+    //   if (data) {
+    //     const flowerType = data.find(type => {
+    //         return type.id === props.flower
+    //     })
+    //     setType(flowerType)
+    //   }
+    // } catch (error) {
+    //   setError(error)
+    // }
     const findFlower = () => {
         const flowerType = flowerData.find(type => {
             return type.id === props.flower
         })
         setType(flowerType)
+    }
+
+    // **** GET request for habit progress
+    const getParameters = (userId, habitId) => {
+        // try {
+        //   const progress = await getProgress(userId, habitId)
+        //   if (progress) {
+        //     setProgressLog(progress)
+        //   }
+        // } catch (error) {
+        //   setError(error)
+        // }
+        setProgressLog(userProgress)
     }
 
     const findPosition = () => {
@@ -35,8 +68,8 @@ function Flower(props) {
         setPosition([x, -0.75, 1])
     }
 
-    const findScale = () => {
-    //   const growth = <Grow />
+    const scaleFlower = () => {
+        calculateGrowth(progressLog)
     }
 
     if (!type) {

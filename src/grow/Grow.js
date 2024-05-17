@@ -1,9 +1,12 @@
-import './Grow.css';
-import React from 'react';
 
-function Grow() {
+function calculateGrowth(progress) {
+    
 
-    return 'hi'
+
+
+return ('hi')
 }
 
-export default Grow;
+export {
+    calculateGrowth
+}

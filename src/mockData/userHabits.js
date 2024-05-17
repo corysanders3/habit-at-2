@@ -42,7 +42,7 @@ const habits = [
         }
     },
     {
-        id: 3,
+        id: 4,
         type: "habit",
         attributes: {
             user_id: 1,
@@ -56,7 +56,7 @@ const habits = [
         }
     },
     {
-        id: 3,
+        id: 5,
         type: "habit",
         attributes: {
             user_id: 1,
