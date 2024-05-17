@@ -33,13 +33,13 @@
     grid-gap: 5px;
 }
 
-#start, #end {
+#startDate, #startTime, #endDate, #endTime {
     width: 120px;
     align-self: center;
 }
 
 .button-container {
-    margin-top: 20px;
+    margin-top: 30px;
     display: flex;
     justify-content: space-evenly;
 }
@@ -75,4 +75,8 @@
 .error {
     margin-bottom: 0;
     color: red;
+}
+
+.date-container {
+    display: flex;
 }

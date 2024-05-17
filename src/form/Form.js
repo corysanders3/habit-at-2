@@ -1,45 +1,89 @@
 import './Form.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import DatePicker from 'react-datepicker';
+import { postHabit } from '../apiCalls';
+
 
 function Form({ isActive, closeForm }) {
     const [nameInput, setNameInput] = useState('')
     const [descriptionInput, setDescriptionInput] = useState('')
-    const [frequency, setFrequency] = useState('')
-    const [days, setDays] = useState({ 'monday': false, 'tuesday': false, 'wednesday': false, 'thursday': false, 'friday': false, 'saturday': false, 'sunday': false })
-    const [initialDays, setInitialDays] = useState({ 'monday': false, 'tuesday': false, 'wednesday': false, 'thursday': false, 'friday': false, 'saturday': false, 'sunday': false })
-    const [startInput, setStartInput] = useState('')
-    const [endInput, setEndInput] = useState('')
+    const [frequencyInput, setFrequencyInput] = useState('')
+    const [days, setDays] = useState({ "monday": false, "tuesday": false, "wednesday": false, "thursday": false, "friday": false, "saturday": false, "sunday": false })
+    const [initialDays, setInitialDays] = useState({ "monday": false, "tuesday": false, "wednesday": false, "thursday": false, "friday": false, "saturday": false, "sunday": false })
+    const [daysDaily, setDaysDaily] = useState({ "monday": true, "tuesday": true, "wednesday": true, "thursday": true, "friday": true, "saturday": true, "sunday": true })
+    const [startDateInput, setStartDateInput] = useState('')
+    const [startTimeInput, setStartTimeInput] = useState('')
+    const [endDateInput, setEndDateInput] = useState('')
+    const [endTimeInput, setEndTimeInput] = useState('')
     const [formError, setFormError] = useState('')
-
-    console.log(days)
 
     function checkForm(e) {
         e.preventDefault()
         setFormError('')
 
-        if(nameInput.trim().length < 1 || descriptionInput.trim().length < 1 || !frequency || !startInput || !endInput) {
+        if(nameInput.trim().length < 1 || descriptionInput.trim().length < 1 || !frequencyInput || !startDateInput || !endDateInput || !startTimeInput || !endTimeInput) {
             setFormError('Please fill out all fields.')
-        } else if(frequency === 'weekly' && JSON.stringify(days) === JSON.stringify(initialDays)){
+        } else if((frequencyInput === 'weekly' || frequencyInput === 'monthly') && JSON.stringify(days) === JSON.stringify(initialDays)){
             setFormError('Please fill out all fields.')
         } else {
-            postHabit()
-            closeForm(e)
+            prepareHabit(e)
         }
     }
 
-    function postHabit() {
-        let postData = {}
+    function prepareHabit(e) {
+        let postData;
+        if(frequencyInput === 'daily') {
+            postData = {
+                "name": `${nameInput}`,
+                "description": `${descriptionInput}`,
+                "frequency": `${frequencyInput}`,
+                "custom_frequency": {
+                    "monday": `${daysDaily.monday}`,
+                    "tuesday": `${daysDaily.tuesday}`,
+                    "wednesday": `${daysDaily.wednesday}`,
+                    "thursday": `${daysDaily.thursday}`,
+                    "friday": `${daysDaily.friday}`,
+                    "saturday": `${daysDaily.saturday}`,
+                    "sunday": `${daysDaily.sunday}`,
+                },
+                "start_datetime": `${startDateInput} ${startTimeInput}:00`,
+                "end_datetime": `${endDateInput} ${endTimeInput}:00`
+            }
+        } else {
+            postData = {
+                "name": `${nameInput}`,
+                "description": `${descriptionInput}`,
+                "frequency": `${frequencyInput}`,
+                "custom_frequency": {
+                    "monday": `${days.monday}`,
+                    "tuesday": `${days.tuesday}`,
+                    "wednesday": `${days.wednesday}`,
+                    "thursday": `${days.thursday}`,
+                    "friday": `${days.friday}`,
+                    "saturday": `${days.saturday}`,
+                    "sunday": `${days.sunday}`,
+                },
+                "start_datetime": `${startDateInput} ${startTimeInput}:00`,
+                "end_datetime": `${endDateInput} ${endTimeInput}:00`
+            }
+        }
         
-        clearForm()
+        postHabit(postData)
+            .then(data => console.log(data))
+            .catch(err => console.log(err.message))
+        // closeForm(e)
+        // clearForm()
     }
 
     function clearForm() {
         setNameInput('')
         setDescriptionInput('')
-        setFrequency('')
-        setDays({ 'monday': false, 'tuesday': false, 'wednesday': false, 'thursday': false, 'friday': false, 'saturday': false, 'sunday': false })
-        setStartInput('')
-        setEndInput('')
+        setFrequencyInput('')
+        setDays({ "monday": false, "tuesday": false, "wednesday": false, "thursday": false, "friday": false, "saturday": false, "sunday": false })
+        setStartDateInput('')
+        setStartTimeInput('')
+        setEndDateInput('')
+        setEndTimeInput('')
     }
 
     function updateDays(e) {
@@ -92,7 +136,7 @@ function Form({ isActive, closeForm }) {
                                 id='daily'
                                 type='radio'
                                 value='daily'
-                                onChange={e => setFrequency(e.target.value)}
+                                onChange={e => setFrequencyInput(e.target.value)}
                             />
                             <label htmlFor='daily'>Daily</label>
                             &nbsp;&nbsp;
@@ -101,7 +145,7 @@ function Form({ isActive, closeForm }) {
                                 id='weekly'
                                 type='radio'
                                 value='weekly'
-                                onChange={e => setFrequency(e.target.value)}
+                                onChange={e => setFrequencyInput(e.target.value)}
                             />
                             <label htmlFor='weekly'>Weekly</label>
                             &nbsp;&nbsp;
@@ -110,11 +154,11 @@ function Form({ isActive, closeForm }) {
                                 id='monthly'
                                 type='radio'
                                 value='monthly'
-                                onChange={e => setFrequency(e.target.value)}
+                                onChange={e => setFrequencyInput(e.target.value)}
                             />
                             <label htmlFor='monthly'>Monthly</label>
                         </div>
-                        { frequency === 'weekly' && (
+                        { (frequencyInput === 'weekly' || frequencyInput === 'monthly') && (
                             <>
                                 <br></br>
                                 <p className='checkbox-p'>Choose Days:</p>
@@ -193,23 +237,51 @@ function Form({ isActive, closeForm }) {
                             </>
                         )}
                         <br></br>
-                        <label htmlFor='start'>Start Date:</label>
-                        <input 
-                            name='start'
-                            id='start'
-                            type='date'
-                            value={startInput}
-                            onChange={e => setStartInput(e.target.value)}
-                        />
+                        <div className='date-container'>
+                            <div>
+                                <label htmlFor='startDate'>Start Date:</label>
+                                <input 
+                                    name='startDate'
+                                    id='startDate'
+                                    type='date'
+                                    value={startDateInput}
+                                    onChange={e => setStartDateInput(e.target.value)}
+                                />
+                            </div>
+                            <div>
+                                <label>Start Time:</label>
+                                <input 
+                                    name='startTime'
+                                    id='startTime'
+                                    type='time'
+                                    value={startTimeInput}
+                                    onChange={e => setStartTimeInput(e.target.value)}
+                                />
+                            </div>
+                        </div>
                         <br></br>
-                        <label htmlFor='end'>End Date:</label>
+                        <div className='date-container'>
+                            <div>
+                            <label htmlFor='endDate'>End Date:</label>
                         <input 
-                            name='end'
-                            id='end'
+                            name='endDate'
+                            id='endDate'
                             type='date'
-                            value={endInput}
-                            onChange={e => setEndInput(e.target.value)}
+                            value={endDateInput}
+                            onChange={e => setEndDateInput(e.target.value)}
                         />
+                            </div>
+                            <div>
+                                <label>End Time:</label>
+                                <input 
+                                    name='endTime'
+                                    id='endTime'
+                                    type='time'
+                                    value={endTimeInput}
+                                    onChange={e => setEndTimeInput(e.target.value)}
+                                />
+                            </div>
+                        </div>
                         { formError && <h4 className='error'>{formError}</h4>}
                         <div className='button-container'>
                             <button className='submit' onClick={e => checkForm(e)}>Submit</button>
