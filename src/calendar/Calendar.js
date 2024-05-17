@@ -23,6 +23,7 @@ function Calendar() {
 
   const parsedEvents = mockEvents.map((event) => {
     return {
+      id: event.id,
       title: event.attributes.name,
       startRecur: event.attributes.start_datetime.slice(0, 10),
       endRecur: event.attributes.end_datetime.slice(0, 10),
@@ -32,6 +33,14 @@ function Calendar() {
           : null,
     };
   });
+
+  const handleEventClick = (info) => {
+    console.log(
+      mockEvents.find((event) => {
+        return event.id === info.event._def.publicId;
+      })
+    );
+  };
 
   return (
     <section className="calendar-page">
@@ -45,6 +54,7 @@ function Calendar() {
           end: "dayGridMonth,timeGridWeek,timeGridDay",
         }}
         events={parsedEvents}
+        eventClick={handleEventClick}
       />
     </section>
   );
