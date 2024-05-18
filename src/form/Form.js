@@ -2,10 +2,10 @@ import './Form.css';
 import { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import { postHabit } from '../apiCalls';
-import flowerOne from '../flowers/flowerID_1.png';
-import flowerTwo from '../flowers/flowerID_2.png';
-import flowerThree from '../flowers/flowerID_3.png'
-import flowerFour from '../flowers/flowerID_4.png';
+import flowerOne from '../images/flowers/flowerID_1.png';
+import flowerTwo from '../images/flowers/flowerID_2.png';
+import flowerThree from '../images/flowers/flowerID_3.png'
+import flowerFour from '../images/flowers/flowerID_4.png';
 
 function Form({ isActive, closeForm }) {
     const [nameInput, setNameInput] = useState('')

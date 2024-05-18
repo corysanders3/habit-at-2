@@ -6,7 +6,7 @@ import { useState } from 'react';
 import Form from '../form/Form';
 
 function Nav() {
-  const [isActive, setIsActive] = useState(true);
+  const [isActive, setIsActive] = useState(false);
 
   function loadForm(e) {
     e.preventDefault()
