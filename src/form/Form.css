@@ -2,13 +2,13 @@
     position: absolute;
     top: 15%;
     left: 35%;
-    z-index: 1;
+    z-index: 2;
     border: 3px solid black;
     padding: 40px 50px;
     background-color: rgba(240, 240, 240, 0.85);
     font-weight: 500;
-    width: 300px;
-    height: 500px;
+    width: 30%;
+    height: 80%;
     border-radius: 10px;
     overflow: auto;
 }
