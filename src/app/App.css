@@ -1,3 +1,9 @@
 @import "../tailwind.css";
 
 
+.fetch-error {
+  height: fit-content;
+  z-index: 3;
+  position: absolute;
+  font-size: x-large;
+}

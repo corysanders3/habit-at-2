@@ -7,10 +7,10 @@ function Planter(props) {
     return (
         <group {...props} dispose={null}>
             <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.planter_box_02.geometry}
-            material={materials.planter_box_02}
+                castShadow
+                receiveShadow
+                geometry={nodes.planter_box_02.geometry}
+                material={materials.planter_box_02}
             />
         </group>
     )
@@ -28,12 +28,12 @@ function Dirt() {
 
     return (
         <group>
-        <Plane args={[5.9, 3.8, 32, 32]} position={[-2.9, -0.8, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-            <meshStandardMaterial {...textureStyle}/>
-        </Plane>
-        <Plane args={[5.9, 3.8, 32, 32]} position={[2.9, -0.8, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-            <meshStandardMaterial {...textureStyle}/>
-        </Plane>
+            <Plane args={[5.9, 3.8, 32, 32]} position={[-2.9, -0.8, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+                <meshStandardMaterial {...textureStyle} />
+            </Plane>
+            <Plane args={[5.9, 3.8, 32, 32]} position={[2.9, -0.8, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+                <meshStandardMaterial {...textureStyle} />
+            </Plane>
         </group>
     )
 }
@@ -43,10 +43,10 @@ function Gnome(props) {
     return (
         <group {...props} dispose={null}>
             <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.garden_gnome.geometry}
-            material={materials.garden_gnome_01}
+                castShadow
+                receiveShadow
+                geometry={nodes.garden_gnome.geometry}
+                material={materials.garden_gnome_01}
             />
         </group>
     )
@@ -59,40 +59,40 @@ function Compost(props) {
     return (
         <group ref={group} {...props} dispose={null}>
             <group name="Scene">
-            <mesh
-                name="compost_bags_floorstacked"
-                castShadow
-                receiveShadow
-                geometry={nodes.compost_bags_floorstacked.geometry}
-                material={materials.compost_bags}
-                position={[-0.396, 0.07, -0.65]}
-            />
-            <mesh
-                name="compost_bags_leaning"
-                castShadow
-                receiveShadow
-                geometry={nodes.compost_bags_leaning.geometry}
-                material={materials.compost_bags}
-                position={[0.699, 0, 0.077]}
-                rotation={[1.509, 0.142, -1.16]}
-            />
-            <mesh
-                name="compost_bags_floor"
-                castShadow
-                receiveShadow
-                geometry={nodes.compost_bags_floor.geometry}
-                material={materials.compost_bags}
-                position={[-0.396, 0, -0.65]}
-                rotation={[0.052, 0, 0]}
-            />
-            <mesh
-                name="compost_bags_standing"
-                castShadow
-                receiveShadow
-                geometry={nodes.compost_bags_standing.geometry}
-                material={materials.compost_bags}
-                position={[0.245, 0, -0.007]}
-            />
+                <mesh
+                    name="compost_bags_floorstacked"
+                    castShadow
+                    receiveShadow
+                    geometry={nodes.compost_bags_floorstacked.geometry}
+                    material={materials.compost_bags}
+                    position={[-0.396, 0.07, -0.65]}
+                />
+                <mesh
+                    name="compost_bags_leaning"
+                    castShadow
+                    receiveShadow
+                    geometry={nodes.compost_bags_leaning.geometry}
+                    material={materials.compost_bags}
+                    position={[0.699, 0, 0.077]}
+                    rotation={[1.509, 0.142, -1.16]}
+                />
+                <mesh
+                    name="compost_bags_floor"
+                    castShadow
+                    receiveShadow
+                    geometry={nodes.compost_bags_floor.geometry}
+                    material={materials.compost_bags}
+                    position={[-0.396, 0, -0.65]}
+                    rotation={[0.052, 0, 0]}
+                />
+                <mesh
+                    name="compost_bags_standing"
+                    castShadow
+                    receiveShadow
+                    geometry={nodes.compost_bags_standing.geometry}
+                    material={materials.compost_bags}
+                    position={[0.245, 0, -0.007]}
+                />
             </group>
         </group>
     )
@@ -111,22 +111,22 @@ function Ground() {
     return (
         <group>
             <Plane args={[40, 40, 64, 64]} position={[0, -5, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-                <meshStandardMaterial {...textureStyle}/>
+                <meshStandardMaterial {...textureStyle} />
             </Plane>
             <Plane args={[40, 40, 64, 64]} position={[40, -5, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-                <meshStandardMaterial {...textureStyle}/>
+                <meshStandardMaterial {...textureStyle} />
             </Plane>
             <Plane args={[40, 40, 64, 64]} position={[-40, -5, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-                <meshStandardMaterial {...textureStyle}/>
+                <meshStandardMaterial {...textureStyle} />
             </Plane>
             <Plane args={[40, 40, 64, 64]} position={[0, -5, -40, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-                <meshStandardMaterial {...textureStyle}/>
+                <meshStandardMaterial {...textureStyle} />
             </Plane>
             <Plane args={[40, 40, 64, 64]} position={[40, -5, -40, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-                <meshStandardMaterial {...textureStyle}/>
+                <meshStandardMaterial {...textureStyle} />
             </Plane>
             <Plane args={[40, 40, 64, 64]} position={[-40, -5, -40, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-                <meshStandardMaterial {...textureStyle}/>
+                <meshStandardMaterial {...textureStyle} />
             </Plane>
         </group>
     )

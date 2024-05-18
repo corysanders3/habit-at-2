@@ -1,7 +1,28 @@
+import React from 'react';
+import "./Nav.css";
+import Logo from "../assets/logo192.png";
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import Form from '../form/Form';
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavLink } from "react-router-dom";
 import FlowerIcon from "../assets/flower-icon.svg";
+
+function Nav() {
+  const [isActive, setIsActive] = useState(false);
+
+  function loadForm(e) {
+    e.preventDefault()
+    if(!isActive) {
+      setIsActive(true)
+    } 
+  }
+
+  function closeForm(e) {
+    e.preventDefault()
+    setIsActive(false)
+  }
 
 export default function Nav() {
   return (
