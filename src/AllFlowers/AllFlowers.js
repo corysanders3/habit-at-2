@@ -1,9 +1,8 @@
 import './AllFlowers.css';
 import { Flower } from '../flower/Flower';
 import React, { useState, useEffect } from 'react';
-import { Canvas } from '@react-three/fiber';
 
-function AllFlowers({ habits }) {
+function AllFlowers({ habits, setError }) {
     const [flowers, setFlowers] = useState()
 
     useEffect(() => {
@@ -20,6 +19,7 @@ function AllFlowers({ habits }) {
                     index={index}
                     habitId={habit.id}
                     habit={habit}
+                    setError={setError}
                 />
             )
         })

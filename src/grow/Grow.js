@@ -41,22 +41,3 @@ function calculateProgress(progress, todayDate, startDate) {
 export {
     calculateGrowth
 }
-
-
-// 10 completed logs will equal max growth - a scale of 5
-
-// if the habit is daily: filter for the past 10 days
-// filter again for completed days
-// divide completed days by 10
-// multiply the max scale (5) by percent completed
-// resulting number is the current flower size
-// if the habit is weekly: filter for the past 10 weeks
-// filter again for completed days
-// divide completed days by 10
-// multiply the max scale (5) by percent completed (max percent is 100%)
-// resulting number is the current flower size
-// if the habit is monthly: filter for the past 10 months
-// filter again for completed days
-// divide completed days by 10
-// multiply the max scale (5) by percent completed (max percent is 100%)
-// resulting number is the current flower size
