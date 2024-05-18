@@ -2,7 +2,10 @@ import './Form.css';
 import { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import { postHabit } from '../apiCalls';
-
+import flowerOne from '../flowers/flowerID_1.png';
+import flowerTwo from '../flowers/flowerID_2.png';
+import flowerThree from '../flowers/flowerID_3.png'
+import flowerFour from '../flowers/flowerID_4.png';
 
 function Form({ isActive, closeForm }) {
     const [nameInput, setNameInput] = useState('')
@@ -11,6 +14,7 @@ function Form({ isActive, closeForm }) {
     const [days, setDays] = useState({ "monday": false, "tuesday": false, "wednesday": false, "thursday": false, "friday": false, "saturday": false, "sunday": false })
     const [initialDays, setInitialDays] = useState({ "monday": false, "tuesday": false, "wednesday": false, "thursday": false, "friday": false, "saturday": false, "sunday": false })
     const [daysDaily, setDaysDaily] = useState({ "monday": true, "tuesday": true, "wednesday": true, "thursday": true, "friday": true, "saturday": true, "sunday": true })
+    const [flowerId, setFlowerId] = useState('')
     const [startDateInput, setStartDateInput] = useState('')
     const [startTimeInput, setStartTimeInput] = useState('')
     const [endDateInput, setEndDateInput] = useState('')
@@ -71,10 +75,10 @@ function Form({ isActive, closeForm }) {
         postHabit(postData)
             .then(data => console.log(data))
             .catch(err => console.log(err.message))
-        // closeForm(e)
-        // clearForm()
+        closeForm(e)
+        clearForm()
     }
-
+    console.log(days)
     function clearForm() {
         setNameInput('')
         setDescriptionInput('')
@@ -236,6 +240,50 @@ function Form({ isActive, closeForm }) {
                                 </div>
                             </>
                         )}
+                        <br></br>
+                        <p className='checkbox-p'>Pick Your Flower:</p>
+                        <div className='flowers-container'>
+                                <div className='single-container'>
+                                <input 
+                                    name='flower'
+                                    id='1'
+                                    type='radio'
+                                    value='1'
+                                    onChange={e => setFlowerId(e.target.value)}
+                                />
+                                <label htmlFor='1'><img src={flowerOne} className='flower-pic'/></label>
+                            </div>
+                            <div className='single-container'>
+                                <input 
+                                    name='flower'
+                                    id='2'
+                                    type='radio'
+                                    value='2'
+                                    onChange={e => setFlowerId(e.target.value)}
+                                />
+                                <label htmlFor='2'><img src={flowerTwo} className='flower-pic'/></label>
+                            </div>
+                            <div className='single-container'>
+                                <input 
+                                    name='flower'
+                                    id='3'
+                                    type='radio'
+                                    value='3'
+                                    onChange={e => setFlowerId(e.target.value)}
+                                />
+                                <label htmlFor='3'><img src={flowerThree} className='flower-pic'/></label>
+                            </div>
+                            <div className='single-container'>
+                                <input 
+                                    name='flower'
+                                    id='4'
+                                    type='radio'
+                                    value='4'
+                                    onChange={e => setFlowerId(e.target.value)}
+                                />
+                                <label htmlFor='4'><img src={flowerFour} className='flower-pic flower-four'/></label>
+                            </div>
+                        </div>
                         <br></br>
                         <div className='date-container'>
                             <div>

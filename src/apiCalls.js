@@ -1,7 +1,7 @@
 function postHabit(data) {
     return fetch('https://18f66003-e0a9-4a86-82df-017b56517af9.mock.pstmn.io/users/1/habits', {
         method: 'POST',
-        body: data,
+        body: JSON.stringify(data),
         headers: { 'Content-Type': 'application/json' }
     })
     .then(res => {
