@@ -1,3 +1,6 @@
+@import "../tailwind.css";
+
+
 .fetch-error {
   height: fit-content;
   z-index: 3;
