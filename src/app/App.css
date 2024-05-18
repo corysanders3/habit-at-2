@@ -1,16 +1,9 @@
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+@import "../tailwind.css";
+
+
+.fetch-error {
+  height: fit-content;
+  z-index: 3;
+  position: absolute;
+  font-size: x-large;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-
