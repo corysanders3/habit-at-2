@@ -1,30 +1,26 @@
-import React from 'react';
-import "./Nav.css";
-import Logo from "../assets/logo192.png";
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import Form from '../form/Form';
+import React from "react";
+import { useState } from "react";
+import Form from "../form/Form";
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavLink } from "react-router-dom";
 import FlowerIcon from "../assets/flower-icon.svg";
 
-function Nav() {
+export default function Nav() {
   const [isActive, setIsActive] = useState(false);
 
   function loadForm(e) {
-    e.preventDefault()
-    if(!isActive) {
-      setIsActive(true)
-    } 
+    e.preventDefault();
+    if (!isActive) {
+      setIsActive(true);
+    }
   }
 
   function closeForm(e) {
-    e.preventDefault()
-    setIsActive(false)
+    e.preventDefault();
+    setIsActive(false);
   }
 
-export default function Nav() {
   return (
     <Disclosure as="nav" className="bg-white shadow">
       {({ open }) => (
@@ -32,12 +28,11 @@ export default function Nav() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex h-16 justify-between">
               <div className="flex">
-                <NavLink
-                  to="/"
-                  className="flex"
-                >
+                <NavLink to="/" className="flex">
                   <div className="flex flex-shrink-0 items-center">
-                    <h1 className="inline-flex items-center px-1 pt-1 text-lg font-medium text-green-600">Habit-at</h1>
+                    <h1 className="inline-flex items-center px-1 pt-1 text-lg font-medium text-green-600">
+                      Habit-at
+                    </h1>
                     <img
                       className="h-8 w-auto"
                       src={FlowerIcon}
@@ -58,8 +53,10 @@ export default function Nav() {
                   >
                     Calendar
                   </NavLink>
-                  <button className="inline-flex items-center border-b-2 border-green-500 px-1 pt-1 text-sm font-medium text-gray-900">
-                    Add Habit
+                  <button 
+                  onClick={e => loadForm(e)}
+                  className="inline-flex items-center border-b-2 border-green-500 px-1 pt-1 text-sm font-medium text-gray-900">
+                    New Habit
                   </button>
                 </div>
               </div>
@@ -91,13 +88,14 @@ export default function Nav() {
               >
                 Calendar
               </NavLink>
-              <button
-              className="block border-l-4 border-green-500 bg-green-50 py-2 pl-3 pr-4 text-base font-medium text-green-700"
-              >
-                Add Habit
+              <button 
+              onClick={e => loadForm(e)}
+              className="block border-l-4 border-green-500 bg-green-50 py-2 pl-3 pr-4 text-base font-medium text-green-700">
+                New Habit
               </button>
             </div>
           </Disclosure.Panel>
+          <Form isActive={isActive} closeForm={closeForm}/>
         </>
       )}
     </Disclosure>
