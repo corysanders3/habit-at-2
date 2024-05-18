@@ -4,7 +4,7 @@ import DatePicker from 'react-datepicker';
 import { postHabit } from '../apiCalls';
 import flowerOne from '../images/flowers/flowerID_1.png';
 import flowerTwo from '../images/flowers/flowerID_2.png';
-import flowerThree from '../images/flowers/flowerID_3.png'
+import flowerThree from '../images/flowers/flowerID_3.png';
 import flowerFour from '../images/flowers/flowerID_4.png';
 
 function Form({ isActive, closeForm }) {
@@ -25,9 +25,9 @@ function Form({ isActive, closeForm }) {
         e.preventDefault()
         setFormError('')
 
-        if(nameInput.trim().length < 1 || descriptionInput.trim().length < 1 || !frequencyInput || !startDateInput || !endDateInput || !startTimeInput || !endTimeInput) {
+        if (nameInput.trim().length < 1 || descriptionInput.trim().length < 1 || !frequencyInput || !startDateInput || !endDateInput || !startTimeInput || !endTimeInput) {
             setFormError('Please fill out all fields.')
-        } else if((frequencyInput === 'weekly' || frequencyInput === 'monthly') && JSON.stringify(days) === JSON.stringify(initialDays)){
+        } else if ((frequencyInput === 'weekly' || frequencyInput === 'monthly') && JSON.stringify(days) === JSON.stringify(initialDays)) {
             setFormError('Please fill out all fields.')
         } else {
             prepareHabit(e)
@@ -36,7 +36,7 @@ function Form({ isActive, closeForm }) {
 
     function prepareHabit(e) {
         let postData;
-        if(frequencyInput === 'daily') {
+        if (frequencyInput === 'daily') {
             postData = {
                 "name": `${nameInput}`,
                 "description": `${descriptionInput}`,
@@ -71,7 +71,7 @@ function Form({ isActive, closeForm }) {
                 "end_datetime": `${endDateInput} ${endTimeInput}:00`
             }
         }
-        
+
         postHabit(postData)
             .then(data => console.log(data))
             .catch(err => console.log(err.message))
@@ -91,7 +91,7 @@ function Form({ isActive, closeForm }) {
     }
 
     function updateDays(e) {
-        if(!days[e.target.value]) {
+        if (!days[e.target.value]) {
             setDays(prevDays => ({
                 ...prevDays, [e.target.value]: true
             }))
@@ -111,12 +111,12 @@ function Form({ isActive, closeForm }) {
 
     return (
         <>
-            {isActive && 
+            {isActive &&
                 <section className='habit-section'>
                     <h3 className='form-header'>Create a New Habit</h3>
                     <form className='habit-form'>
                         <label htmlFor='name'>Habit Name:</label>
-                        <input 
+                        <input
                             name='name'
                             id='name'
                             type='text'
@@ -125,7 +125,7 @@ function Form({ isActive, closeForm }) {
                         />
                         <br></br>
                         <label htmlFor='description'>Habit Description:</label>
-                        <input 
+                        <input
                             name='description'
                             id='description'
                             type='text'
@@ -135,7 +135,7 @@ function Form({ isActive, closeForm }) {
                         <br></br>
                         <p className='checkbox-p'>Frequency:</p>
                         <div className='frequency-container'>
-                            <input 
+                            <input
                                 name='frequency'
                                 id='daily'
                                 type='radio'
@@ -144,7 +144,7 @@ function Form({ isActive, closeForm }) {
                             />
                             <label htmlFor='daily'>Daily</label>
                             &nbsp;&nbsp;
-                            <input 
+                            <input
                                 name='frequency'
                                 id='weekly'
                                 type='radio'
@@ -153,7 +153,7 @@ function Form({ isActive, closeForm }) {
                             />
                             <label htmlFor='weekly'>Weekly</label>
                             &nbsp;&nbsp;
-                            <input 
+                            <input
                                 name='frequency'
                                 id='monthly'
                                 type='radio'
@@ -162,13 +162,13 @@ function Form({ isActive, closeForm }) {
                             />
                             <label htmlFor='monthly'>Monthly</label>
                         </div>
-                        { (frequencyInput === 'weekly' || frequencyInput === 'monthly') && (
+                        {(frequencyInput === 'weekly' || frequencyInput === 'monthly') && (
                             <>
                                 <br></br>
                                 <p className='checkbox-p'>Choose Days:</p>
                                 <div className='days-container'>
                                     <div>
-                                        <input 
+                                        <input
                                             name='monday'
                                             id='monday'
                                             type='checkbox'
@@ -178,7 +178,7 @@ function Form({ isActive, closeForm }) {
                                         <label htmlFor='monday'>Monday</label>
                                     </div>
                                     <div>
-                                        <input 
+                                        <input
                                             name='tuesday'
                                             id='tuesday'
                                             type='checkbox'
@@ -188,7 +188,7 @@ function Form({ isActive, closeForm }) {
                                         <label htmlFor='tuesday'>Tuesday</label>
                                     </div>
                                     <div>
-                                        <input 
+                                        <input
                                             name='wednesday'
                                             id='wednesday'
                                             type='checkbox'
@@ -198,7 +198,7 @@ function Form({ isActive, closeForm }) {
                                         <label htmlFor='wednesday'>Wednesday</label>
                                     </div>
                                     <div>
-                                        <input 
+                                        <input
                                             name='thursday'
                                             id='thursday'
                                             type='checkbox'
@@ -208,7 +208,7 @@ function Form({ isActive, closeForm }) {
                                         <label htmlFor='thursday'>Thursday</label>
                                     </div>
                                     <div>
-                                        <input 
+                                        <input
                                             name='friday'
                                             id='friday'
                                             type='checkbox'
@@ -218,7 +218,7 @@ function Form({ isActive, closeForm }) {
                                         <label htmlFor='friday'>Friday</label>
                                     </div>
                                     <div>
-                                        <input 
+                                        <input
                                             name='saturday'
                                             id='saturday'
                                             type='checkbox'
@@ -228,7 +228,7 @@ function Form({ isActive, closeForm }) {
                                         <label htmlFor='saturday'>Saturday</label>
                                     </div>
                                     <div>
-                                        <input 
+                                        <input
                                             name='sunday'
                                             id='sunday'
                                             type='checkbox'
@@ -243,52 +243,52 @@ function Form({ isActive, closeForm }) {
                         <br></br>
                         <p className='checkbox-p'>Pick Your Flower:</p>
                         <div className='flowers-container'>
-                                <div className='single-container'>
-                                <input 
+                            <div className='single-container'>
+                                <input
                                     name='flower'
                                     id='1'
                                     type='radio'
                                     value='1'
                                     onChange={e => setFlowerId(e.target.value)}
                                 />
-                                <label htmlFor='1'><img src={flowerOne} className='flower-pic'/></label>
+                                <label htmlFor='1'><img src={flowerOne} className='flower-pic' /></label>
                             </div>
                             <div className='single-container'>
-                                <input 
+                                <input
                                     name='flower'
                                     id='2'
                                     type='radio'
                                     value='2'
                                     onChange={e => setFlowerId(e.target.value)}
                                 />
-                                <label htmlFor='2'><img src={flowerTwo} className='flower-pic'/></label>
+                                <label htmlFor='2'><img src={flowerTwo} className='flower-pic' /></label>
                             </div>
                             <div className='single-container'>
-                                <input 
+                                <input
                                     name='flower'
                                     id='3'
                                     type='radio'
                                     value='3'
                                     onChange={e => setFlowerId(e.target.value)}
                                 />
-                                <label htmlFor='3'><img src={flowerThree} className='flower-pic'/></label>
+                                <label htmlFor='3'><img src={flowerThree} className='flower-pic' /></label>
                             </div>
                             <div className='single-container'>
-                                <input 
+                                <input
                                     name='flower'
                                     id='4'
                                     type='radio'
                                     value='4'
                                     onChange={e => setFlowerId(e.target.value)}
                                 />
-                                <label htmlFor='4'><img src={flowerFour} className='flower-pic flower-four'/></label>
+                                <label htmlFor='4'><img src={flowerFour} className='flower-pic flower-four' /></label>
                             </div>
                         </div>
                         <br></br>
                         <div className='date-container'>
                             <div>
                                 <label htmlFor='startDate'>Start Date:</label>
-                                <input 
+                                <input
                                     name='startDate'
                                     id='startDate'
                                     type='date'
@@ -298,7 +298,7 @@ function Form({ isActive, closeForm }) {
                             </div>
                             <div>
                                 <label>Start Time:</label>
-                                <input 
+                                <input
                                     name='startTime'
                                     id='startTime'
                                     type='time'
@@ -310,18 +310,18 @@ function Form({ isActive, closeForm }) {
                         <br></br>
                         <div className='date-container'>
                             <div>
-                            <label htmlFor='endDate'>End Date:</label>
-                        <input 
-                            name='endDate'
-                            id='endDate'
-                            type='date'
-                            value={endDateInput}
-                            onChange={e => setEndDateInput(e.target.value)}
-                        />
+                                <label htmlFor='endDate'>End Date:</label>
+                                <input
+                                    name='endDate'
+                                    id='endDate'
+                                    type='date'
+                                    value={endDateInput}
+                                    onChange={e => setEndDateInput(e.target.value)}
+                                />
                             </div>
                             <div>
                                 <label>End Time:</label>
-                                <input 
+                                <input
                                     name='endTime'
                                     id='endTime'
                                     type='time'
@@ -330,7 +330,7 @@ function Form({ isActive, closeForm }) {
                                 />
                             </div>
                         </div>
-                        { formError && <h4 className='error'>{formError}</h4>}
+                        {formError && <h4 className='error'>{formError}</h4>}
                         <div className='button-container'>
                             <button className='submit' onClick={e => checkForm(e)}>Submit</button>
                             <button className='close' onClick={e => closeSteps(e)}>Close</button>
