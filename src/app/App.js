@@ -32,8 +32,7 @@ function App() {
 
   return (
     <div style={{ width: '100%', height: '90%' }}>
-      {error && <h2 className="fetch-error">{error.message}</h2>}
-      <Canvas>
+      <Canvas className='garden-scene'>
         <ambientLight intensity={2} />
         <directionalLight position={[1, 1, 4]} intensity={3} />
         <Garden habits={userHabits} setError={setError} />
@@ -49,8 +48,9 @@ function App() {
           enableZoom={true}
           enablePan={true}
           enableRotate={true}
-        />
+          />
       </Canvas>
+          {error && <h2 className="fetch-error">{error.message}</h2>}
     </div>
   );
 }
