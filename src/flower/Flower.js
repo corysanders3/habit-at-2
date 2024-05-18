@@ -64,8 +64,13 @@ function Flower(props) {
 
     const findPosition = () => {
         let x = -4
-        x += (props.index * 2)
-        setPosition([x, -0.75, 1])
+        if (props.index < 5) {
+            x += (props.index * 2)
+            setPosition([x, -0.75, 1])
+        } else if (props.index < 10) {
+            x += ((props.index - 5) * 2)
+            setPosition([x, -0.75, -1])
+        }
     }
 
     const scaleFlower = (progressLog) => {
