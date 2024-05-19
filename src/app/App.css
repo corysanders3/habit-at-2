@@ -1,9 +1,12 @@
 @import "../tailwind.css";
 
-
 .fetch-error {
-  height: fit-content;
-  z-index: 3;
   position: absolute;
-  font-size: x-large;
+  background-color: rgba(240, 248, 255, 0);
+  top: 12vh;
+  margin-left: 2em;
+  z-index: 2;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: rgb(7, 26, 172);
 }

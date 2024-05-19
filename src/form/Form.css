@@ -5,7 +5,7 @@
     z-index: 2;
     border: 3px solid black;
     padding: 40px 50px;
-    background-color: rgba(240, 240, 240, 0.85);
+    background-color: rgba(240, 240, 240, 0.944);
     font-weight: 500;
     width: 30%;
     height: 80%;
@@ -21,7 +21,10 @@
 
 .form-header {
     margin-top: 0;
+    margin-bottom: 0.5em;
     text-align: center;
+    font-size: large;
+    font-weight: bold;
 }
 
 .checkbox-p {
@@ -35,9 +38,16 @@
     grid-gap: 5px;
 }
 
-#startDate, #startTime, #endDate, #endTime {
+#startDate,
+#startTime,
+#endDate,
+#endTime {
     width: 120px;
     align-self: center;
+}
+
+input:hover {
+    cursor: pointer;
 }
 
 .button-container {
@@ -46,7 +56,8 @@
     justify-content: space-evenly;
 }
 
-.submit, .close {
+.submit,
+.close {
     padding: 10px 40px;
     font-weight: 600;
     font-size: 16px;
@@ -84,11 +95,12 @@
 }
 
 .flower-pic {
-    width: 40px;
-    border: 2px solid black;
-    border-radius: 50px;
+    width: 50px;
+    border: 1px solid black;
+    border-radius: 45px;
     padding: 8px 4px;
     margin-top: 10px;
+    background-color: white;
 }
 
 .flowers-container {
