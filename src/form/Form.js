@@ -72,7 +72,8 @@ function Form({ isActive, closeForm }) {
             }
         }
 
-        postHabit(postData)
+        // <<<>>>> will have to make userID argument dynamic, currently hardcoded as 1 <<>>>
+        postHabit(postData, 1)
             .then(data => console.log(data))
             .catch(err => console.log(err.message))
         closeForm(e)

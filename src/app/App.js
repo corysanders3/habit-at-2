@@ -17,16 +17,16 @@ function App() {
   }, [])
 
   const showUser = async (userId) => {
-    // try {
-    //   const habits = await getHabits(userId)
-    //   if (habits) {
-    //     setHabits(habits)
-    //   }
-    // } catch (error) {
-    //   setError(error)
-    // }
+    try {
+      const habits = await getHabits(userId)
+      if (habits) {
+        setHabits(habits)
+      }
+    } catch (error) {
+      setError(error)
+    }
     // **** removed this line below once fetch is implemented
-    setHabits(habits)
+    // setHabits(habits)
   }
 
 
