@@ -4,11 +4,11 @@
 Habit-at allows users to track habit progress and consistency in a visually fun way. Habits are represented as flowers that grow or shrink based on how close the user follows their goals.
 
 ## Contributors
-Front End Team
+#### Front End Team
 - [Cory Sanders](https://github.com/corysanders3)
 - [Megan Crotteau](https://github.com/crotteau)
 - [David Kwon](https://github.com/dkwon1223)
-Back End Team
+#### Back End Team
 - [Hoa Dam](https://github.com/hoadam)
 - [Matt Darlington](https://github.com/mdarl17)
 
