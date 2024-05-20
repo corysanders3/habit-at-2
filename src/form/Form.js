@@ -1,7 +1,7 @@
 import './Form.css';
 import { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
-import { postHabit } from '../apiCalls';
+import { postHabit, getHabits } from '../apiCalls';
 import flowerOne from '../images/flowers/flowerID_1.png';
 import flowerTwo from '../images/flowers/flowerID_2.png';
 import flowerThree from '../images/flowers/flowerID_3.png';
@@ -50,6 +50,7 @@ function Form({ isActive, closeForm }) {
                     "saturday": `${daysDaily.saturday}`,
                     "sunday": `${daysDaily.sunday}`,
                 },
+                "plant_id": `${flowerId}`,
                 "start_datetime": `${startDateInput} ${startTimeInput}:00`,
                 "end_datetime": `${endDateInput} ${endTimeInput}:00`
             }
@@ -67,18 +68,20 @@ function Form({ isActive, closeForm }) {
                     "saturday": `${days.saturday}`,
                     "sunday": `${days.sunday}`,
                 },
+                "plant_id": `${flowerId}`,
                 "start_datetime": `${startDateInput} ${startTimeInput}:00`,
                 "end_datetime": `${endDateInput} ${endTimeInput}:00`
             }
         }
 
-        postHabit(postData)
-            .then(data => console.log(data))
+        // <<<>>>> will have to make userID argument dynamic, currently hardcoded as 1 below<<>>>
+        postHabit(postData, 1)
+            .then(data => {console.log(data)})
             .catch(err => console.log(err.message))
         closeForm(e)
         clearForm()
     }
-    console.log(days)
+
     function clearForm() {
         setNameInput('')
         setDescriptionInput('')

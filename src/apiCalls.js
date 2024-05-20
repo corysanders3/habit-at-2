@@ -1,5 +1,5 @@
 async function getHabits(userId) {
-    const response = await fetch(`/users/${userId}/habits`)
+    const response = await fetch(`https://habitat-1873f8f155b9.herokuapp.com/api/v0/users/${userId}/habits`)
     if (!response.ok) {
         throw new Error(`An error has occurred: ${response.status}`)
     }
@@ -8,7 +8,7 @@ async function getHabits(userId) {
 }
 
 async function getFlowers() {
-    const response = await fetch(`/flowers`)
+    const response = await fetch(`https://habitat-1873f8f155b9.herokuapp.com/api/v0/plants`)
     if (!response.ok) {
         throw new Error(`An error has occurred: ${response.status}`)
     }
@@ -17,7 +17,7 @@ async function getFlowers() {
 }
 
 async function getProgress(userId, habitId) {
-    const response = await fetch(`/users/${userId}/habits/${habitId}/progresses`)
+    const response = await fetch(`https://habitat-1873f8f155b9.herokuapp.com/api/v0/users/${userId}/habits/${habitId}/progresses`)
     if (!response.ok) {
         throw new Error(`An error has occurred: ${response.status}`)
     }
@@ -25,18 +25,18 @@ async function getProgress(userId, habitId) {
     return progress
 }
 
-function postHabit(data) {
-    return fetch('https://18f66003-e0a9-4a86-82df-017b56517af9.mock.pstmn.io/users/1/habits', {
+function postHabit(data, userId) {
+    return fetch(`https://habitat-1873f8f155b9.herokuapp.com/api/v0/users/${userId}/habits`, {
         method: 'POST',
         body: JSON.stringify(data),
         headers: { 'Content-Type': 'application/json' }
     })
-        .then(res => {
-            if (!res.ok) {
-                throw new Error('Unable to create new habit at this time.')
-            }
-            return res.json()
-        })
+    .then(res => {
+        if (!res.ok) {
+            throw new Error('Unable to create new habit at this time.')
+        }
+        return res.json()
+    })
 }
 
 export {
