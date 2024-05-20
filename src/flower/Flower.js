@@ -1,5 +1,5 @@
 import './Flower.css';
-import flowerData from '../mockData/flowerDetails';
+// import flowerData from '../mockData/flowerDetails';
 import React, { useState, useEffect } from 'react';
 import { calculateGrowth } from '../grow/Grow';
 import { getFlowers } from '../apiCalls';
