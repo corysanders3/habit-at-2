@@ -1,8 +1,7 @@
 # Habit-at
-# Part 1
 
 ## About
-
+Habit-at allows users to track habit progress and consistency in a visually fun way. Habits are represented as flowers that grow or shrink based on how close the user follows their goals.
 
 ## Contributors
 Front End Team
@@ -14,6 +13,7 @@ Back End Team
 - [Matt Darlington](https://github.com/mdarl17)
 
 ## Preview
+<img width="1678" alt="Screenshot 2024-05-19 at 9 15 08 PM" src="https://github.com/Habit-at-2311/fe-habit-at/assets/149750476/baeba9df-4ea3-4c6f-924d-1ba9f6b7e536">
 
 
 ## Technologies Used
@@ -34,7 +34,8 @@ We used Cypress to implement E2E testing for this app. To run the tests:
 - `npm run cypress:open` will start Cypress and open up test window
 - click `E2E testing`
 - when finished, `ctrl + c` to stop running local server
-  
+
+# Part 1
 ## Background
  
 
