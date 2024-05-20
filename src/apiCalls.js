@@ -31,12 +31,12 @@ function postHabit(data, userId) {
         body: JSON.stringify(data),
         headers: { 'Content-Type': 'application/json' }
     })
-        .then(res => {
-            if (!res.ok) {
-                throw new Error('Unable to create new habit at this time.')
-            }
-            return res.json()
-        })
+    .then(res => {
+        if (!res.ok) {
+            throw new Error('Unable to create new habit at this time.')
+        }
+        return res.json()
+    })
 }
 
 export {

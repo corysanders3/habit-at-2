@@ -4,7 +4,7 @@ import Calendar from '../calendar/Calendar';
 import { PerspectiveCamera, OrbitControls, Sky } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { getHabits } from '../apiCalls';
-import habits from '../mockData/userHabits';
+// import habits from '../mockData/userHabits';
 import React, { useState, useEffect } from 'react'
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
     try {
       const habits = await getHabits(userId)
       if (habits) {
-        setHabits(habits)
+        setHabits(habits.data)
       }
     } catch (error) {
       setError(error)
@@ -28,8 +28,7 @@ function App() {
     // **** removed this line below once fetch is implemented
     // setHabits(habits)
   }
-
-
+  
   return (
     <div style={{ width: '100%', height: '90%' }}>
       <Canvas className='garden-scene'>
