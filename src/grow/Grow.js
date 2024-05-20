@@ -26,16 +26,19 @@ function calculateGrowth(progress, frequency) {
 
 function calculateProgress(progress, todayDate, startDate) {
     const completedDates = progress.filter((day) => {
-        return day.datetime >= startDate && day.datetime <= todayDate
+        return day.attributes.datetime >= startDate && day.attributes.datetime <= todayDate
     }).filter((log) => {
-        return log.status === 'completed'
+        return log.attributes.status === 'completed'
     })
-
-    if (completedDates.length < 10) {
+    
+    if (completedDates.length < 1) {
+        return 1
+    } else if (completedDates.length < 10) {
         return (completedDates.length / 10 * 4)
     } else {
         return 4
     }
+    
 }
 
 export {
