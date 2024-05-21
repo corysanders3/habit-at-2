@@ -12,6 +12,19 @@ jobs:
       - checkout
       - node/install-packages
       - run:
+          name: Setup Debian Repositories
+          command: |
+            echo "deb http://deb.debian.org/debian buster main" > /etc/apt/sources.list
+            echo "deb-src http://deb.debian.org/debian buster main" >> /etc/apt/sources.list
+            echo "deb http://deb.debian.org/debian-security buster/updates main" >> /etc/apt/sources.list
+            echo "deb-src http://deb.debian.org/debian-security buster/updates main" >> /etc/apt/sources.list
+            echo "deb http://deb.debian.org/debian buster-updates main" >> /etc/apt/sources.list
+            echo "deb-src http://deb.debian.org/debian buster-updates main" >> /etc/apt/sources.list
+            echo "deb http://deb.debian.org/debian buster-backports main" >> /etc/apt/sources.list
+            echo "deb-src http://deb.debian.org/debian buster-backports main" >> /etc/apt/sources.list
+            apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E88979FB9B30ACF2
+            apt-get update
+      - run:
           name: Install Cypress Dependencies
           command: |
             sudo apt-get update
