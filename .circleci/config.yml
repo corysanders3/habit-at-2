@@ -1,5 +1,3 @@
-version: 2.1
-
 orbs:
   node: circleci/node@4.1
   cypress: cypress-io/cypress@3.1.1
@@ -12,6 +10,9 @@ jobs:
       - checkout
       - node/install-packages
       - run:
+          name: Install @smartbear/visualtest-cypress
+          command: npm install @smartbear/visualtest-cypress@latest --save-dev
+      - run:
           name: Run Cypress Tests
           command: npx cypress run --headless
 
@@ -21,6 +22,9 @@ jobs:
     steps:
       - checkout
       - node/install-packages
+      - run:
+          name: Install @smartbear/visualtest-cypress
+          command: npm install @smartbear/visualtest-cypress@latest --save-dev
       - run:
           name: Deploy to Heroku
           command: |
