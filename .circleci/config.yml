@@ -12,24 +12,6 @@ jobs:
       - checkout
       - node/install-packages
       - run:
-          name: Setup Debian Repositories
-          command: |
-            echo "deb http://deb.debian.org/debian buster main" > /etc/apt/sources.list
-            echo "deb-src http://deb.debian.org/debian buster main" >> /etc/apt/sources.list
-            echo "deb http://deb.debian.org/debian-security buster/updates main" >> /etc/apt/sources.list
-            echo "deb-src http://deb.debian.org/debian-security buster/updates main" >> /etc/apt/sources.list
-            echo "deb http://deb.debian.org/debian buster-updates main" >> /etc/apt/sources.list
-            echo "deb-src http://deb.debian.org/debian buster-updates main" >> /etc/apt/sources.list
-            echo "deb http://deb.debian.org/debian buster-backports main" >> /etc/apt/sources.list
-            echo "deb-src http://deb.debian.org/debian buster-backports main" >> /etc/apt/sources.list
-            apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E88979FB9B30ACF2
-            apt-get update
-      - run:
-          name: Install Cypress Dependencies
-          command: |
-            sudo apt-get update
-            sudo apt-get install -y libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxrandr2 libgbm1 libasound2
-      - run:
           name: Run Cypress Tests
           command: npx cypress run --headless
 
