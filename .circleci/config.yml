@@ -7,23 +7,17 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cypress/base:14.17.0
+      - image: cypress/browsers:latest
     steps:
       - checkout
       - node/install-packages
-      - run:
-          name: Install sudo
-          command: apt-get update && apt-get install -y sudo
-      - run:
-          name: Install additional dependencies
-          command: sudo apt-get update && sudo apt-get install -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth xvfb
       - run:
           name: Run Cypress Tests
           command: npx cypress run --headless
 
   deploy:
     docker:
-      - image: cypress/base:14.17.0
+      - image: cypress/browsers:latest
     steps:
       - checkout
       - node/install-packages
