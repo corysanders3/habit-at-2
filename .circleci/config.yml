@@ -1,5 +1,5 @@
 version: 2.1
-# test merge
+
 orbs:
   node: circleci/node@4.1
   cypress: cypress-io/cypress@3.1.1
@@ -7,7 +7,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: circleci/node:14
+      - image: circleci/node:14.17.0-browsers
     steps:
       - checkout
       - node/install-packages
@@ -22,7 +22,7 @@ jobs:
 
   deploy:
     docker:
-      - image: circleci/node:14
+      - image: circleci/node:14.17.0-browsers
     steps:
       - checkout
       - node/install-packages
