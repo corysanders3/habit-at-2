@@ -13,7 +13,7 @@ jobs:
       - node/install-packages
       - run:
           name: Start Server
-          command: npm run start
+          command: npm start
       - run:
           name: Run Cypress Tests
           command: npx cypress run --headless
