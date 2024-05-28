@@ -12,8 +12,8 @@ jobs:
       - checkout
       - node/install-packages
       - run:
-          name: Install @smartbear/visualtest-cypress
-          command: npm install @smartbear/visualtest-cypress@latest --save-dev
+          name: Start Server
+          command: npm run start
       - run:
           name: Run Cypress Tests
           command: npx cypress run --headless
