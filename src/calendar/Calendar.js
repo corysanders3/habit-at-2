@@ -3,9 +3,30 @@ import Fullcalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import { mockEvents } from "../mockData/mockHabits";
+import { useEffect, useState } from "react";
+import { getHabits } from "../apiCalls";
 
 function Calendar() {
+  const [error, setError] = useState()
+  const [userHabits, setHabits] = useState([])
+  const [userId, setUserId] = useState(1)
+
+  
+  const showUser = async (userId) => {
+    try {
+      const habits = await getHabits(userId)
+      if (habits) {
+        setHabits(habits.data)
+      }
+    } catch (error) {
+      setError(error)
+    }
+  }
+  
+  useEffect(() => {
+    showUser(userId)
+  }, [])
+
   function convertFrequency(frequency) {
     const frequencyStatus = Object.values(frequency);
     const result = frequencyStatus.reduce((arr, status, index) => {
@@ -21,7 +42,7 @@ function Calendar() {
     return result;
   }
 
-  const parsedEvents = mockEvents.map((event) => {
+  const parsedEvents = userHabits.map((event) => {
     return {
       id: event.id,
       title: event.attributes.name,
@@ -36,7 +57,7 @@ function Calendar() {
 
   const handleEventClick = (info) => {
     console.log(
-      mockEvents.find((event) => {
+      userHabits.find((event) => {
         return event.id === info.event._def.publicId;
       })
     );
