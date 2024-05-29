@@ -12,7 +12,7 @@ jobs:
       - checkout
       - run:
           name: Add dependencies
-          command: npm i
+          command: npm ci
       - run:
           name: Start Application
           command: npm start
