@@ -38,39 +38,23 @@ function Form({ isActive, closeForm }) {
         let postData;
         if (frequencyInput === 'daily') {
             postData = {
-                "name": `${nameInput}`,
-                "description": `${descriptionInput}`,
-                "frequency": `${frequencyInput}`,
-                "custom_frequency": {
-                    "monday": `${daysDaily.monday}`,
-                    "tuesday": `${daysDaily.tuesday}`,
-                    "wednesday": `${daysDaily.wednesday}`,
-                    "thursday": `${daysDaily.thursday}`,
-                    "friday": `${daysDaily.friday}`,
-                    "saturday": `${daysDaily.saturday}`,
-                    "sunday": `${daysDaily.sunday}`,
-                },
-                "plant_id": `${flowerId}`,
-                "start_datetime": `${startDateInput} ${startTimeInput}:00`,
-                "end_datetime": `${endDateInput} ${endTimeInput}:00`
+                "name": nameInput,
+                "description": descriptionInput,
+                "frequency": frequencyInput,
+                "custom_frequency": daysDaily,
+                "plant_id": flowerId,
+                "start_datetime": startDateInput + ' ' + startTimeInput + ':00',
+                "end_datetime": endDateInput + ' ' + endTimeInput + ':00'
             }
         } else {
             postData = {
-                "name": `${nameInput}`,
-                "description": `${descriptionInput}`,
-                "frequency": `${frequencyInput}`,
-                "custom_frequency": {
-                    "monday": `${days.monday}`,
-                    "tuesday": `${days.tuesday}`,
-                    "wednesday": `${days.wednesday}`,
-                    "thursday": `${days.thursday}`,
-                    "friday": `${days.friday}`,
-                    "saturday": `${days.saturday}`,
-                    "sunday": `${days.sunday}`,
-                },
-                "plant_id": `${flowerId}`,
-                "start_datetime": `${startDateInput} ${startTimeInput}:00`,
-                "end_datetime": `${endDateInput} ${endTimeInput}:00`
+                "name": nameInput,
+                "description": descriptionInput,
+                "frequency": frequencyInput,
+                "custom_frequency": days,
+                "plant_id": flowerId,
+                "start_datetime": startDateInput + ' ' + startTimeInput + ':00',
+                "end_datetime": endDateInput + ' ' + endTimeInput + ':00'
             }
         }
 
