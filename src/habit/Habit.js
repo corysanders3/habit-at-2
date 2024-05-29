@@ -2,14 +2,15 @@ import React from "react";
 import { useState } from "react";
 
 const Habit = ({ hidden, singleHabit }) => {
+  const [disabled, setDisabled] = useState(true);
   const [form, setForm] = useState({
     name: singleHabit.attributes.name,
     plant_id: singleHabit.attributes.plant_id,
     description: singleHabit.attributes.description,
     frequency: singleHabit.attributes.frequency,
     custom_frequency: singleHabit.attributes.custom_frequency,
-    start_datetime: "2024/05/17",
-    end_datetime: new Date(singleHabit.attributes.end_datetime),
+    start_datetime: singleHabit.attributes.start_datetime.slice(0, 10),
+    end_datetime: singleHabit.attributes.end_datetime.slice(0, 10),
   });
 
   const handleChange = (e) => {
@@ -28,6 +29,10 @@ const Habit = ({ hidden, singleHabit }) => {
         [name]: value,
       }));
     }
+  };
+
+  const toggleEdit = () => {
+    setDisabled(!disabled);
   };
 
   const handleSubmit = (e) => {
@@ -52,6 +57,7 @@ const Habit = ({ hidden, singleHabit }) => {
             name="name"
             value={form.name}
             onChange={handleChange}
+            disabled={disabled}
           />
         </label>
       </div>
@@ -63,6 +69,7 @@ const Habit = ({ hidden, singleHabit }) => {
             name="plant_id"
             value={form.plant_id}
             onChange={handleChange}
+            disabled={disabled}
           />
         </label>
       </div>
@@ -73,6 +80,7 @@ const Habit = ({ hidden, singleHabit }) => {
             name="description"
             value={form.description}
             onChange={handleChange}
+            disabled={disabled}
           />
         </label>
       </div>
@@ -84,6 +92,7 @@ const Habit = ({ hidden, singleHabit }) => {
             name="frequency"
             value={form.frequency}
             onChange={handleChange}
+            disabled={disabled}
           />
         </label>
       </div>
@@ -99,6 +108,7 @@ const Habit = ({ hidden, singleHabit }) => {
                   name={day}
                   checked={form.custom_frequency[day]}
                   onChange={handleChange}
+                  disabled={disabled}
                 />
               </label>
             </div>
@@ -113,6 +123,7 @@ const Habit = ({ hidden, singleHabit }) => {
             name="startDate"
             value={form.start_datetime}
             onChange={handleChange}
+            disabled={disabled}
           />
         </label>
       </div>
@@ -124,9 +135,11 @@ const Habit = ({ hidden, singleHabit }) => {
             name="endDate"
             value={form.end_datetime}
             onChange={handleChange}
+            disabled={disabled}
           />
         </label>
       </div>
+      <button type="button" onClick={toggleEdit}>{disabled ? "Edit" : "Save"}</button>
       <button type="submit">Submit</button>
     </form>
   );
