@@ -27,9 +27,6 @@ jobs:
       - checkout
       - node/install-packages
       - run:
-          name: Install @smartbear/visualtest-cypress
-          command: npm install @smartbear/visualtest-cypress@latest --save-dev
-      - run:
           name: Deploy to Heroku
           command: |
             echo "Deploying to Heroku..."
