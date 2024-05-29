@@ -10,7 +10,12 @@ jobs:
       - image: cypress/browsers:latest
     steps:
       - checkout
-      - node/install-packages
+      -run:
+          name: Add dependencies
+          command: npm i
+      - run:
+          name: Start Application
+          command: npm start
       - run:
           name: Run Cypress Tests
           command: npx cypress run --headless
