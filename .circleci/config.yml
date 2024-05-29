@@ -10,7 +10,7 @@ jobs:
       - image: cypress/browsers:latest
     steps:
       - checkout
-      -run:
+      - run:
           name: Add dependencies
           command: npm i
       - run:
