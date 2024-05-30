@@ -2,15 +2,28 @@ import './App.css';
 import Scene from '../scene/Scene';
 import Calendar from '../calendar/Calendar';
 import Nav from '../nav/Nav';
+import Form from '../form/Form';
 import { getHabits } from '../apiCalls';
 import { Routes, Route } from 'react-router-dom';
-// import habits from '../mockData/userHabits';
 import React, { useState, useEffect } from 'react'
 
 function App() {
   const [error, setError] = useState()
   const [userHabits, setHabits] = useState([])
   const [userId, setUserId] = useState(1)
+  const [isActive, setIsActive] = useState(false);
+
+  function loadForm(e) {
+    e.preventDefault();
+    if (!isActive) {
+      setIsActive(true);
+    }
+  }
+
+  function closeForm(e) {
+    e.preventDefault();
+    setIsActive(false);
+  }
 
   useEffect(() => {
     showUser(userId)
@@ -31,12 +44,13 @@ function App() {
   
   return (
     <>
-      <Nav />
-      <Scene habits={userHabits} setError={setError} />
+      <Nav loadForm={loadForm} />
       <Routes>
+        <Route path='/' element={<Scene habits={userHabits} setError={setError} />} />
         <Route path="/calendar" element={<Calendar />} />
       </Routes>
-      {error && <h2 className="fetch-error">{error.message}</h2>}
+      { isActive && <Form isActive={isActive} closeForm={closeForm}/> }
+      { error && <h2 className="fetch-error">{error.message}</h2> }
     </>
   );
 }
