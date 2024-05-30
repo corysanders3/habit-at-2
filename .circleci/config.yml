@@ -2,7 +2,7 @@ version: 2.1
 
 orbs:
   node: circleci/node@4.1
-  cypress: cypress-io/cypress@3.1.1
+  cypress: cypress-io/cypress@3.3.1
 
 jobs:
   build: # skipping based on workflow
@@ -38,6 +38,7 @@ workflows:
   build-and-deploy:
     jobs:
       - cypress/run # "run" job comes from "cypress" orb
+          cypress-command: npx cypress run --browser chrome
           start-command: 'npm run start'
       #- build
       - deploy:
