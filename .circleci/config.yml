@@ -39,6 +39,7 @@ workflows:
     jobs:
       - cypress/run: # "run" job comes from "cypress" orb
           cypress-command: npx cypress run --browser chrome
+          install-browsers: true
           start-command: 'npm run start'
       #- build
       - deploy:
