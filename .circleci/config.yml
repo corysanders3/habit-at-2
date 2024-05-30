@@ -5,7 +5,7 @@ orbs:
   cypress: cypress-io/cypress@3.1.1
 
 jobs:
-  build:
+  build: # skipping based on workflow
     docker:
       - image: cypress/browsers:latest
     steps:
@@ -37,7 +37,9 @@ workflows:
   version: 2
   build-and-deploy:
     jobs:
-      - build
+      - cypress/run # "run" job comes from "cypress" orb
+          start-command: 'npm run start'
+      #- build
       - deploy:
           requires:
-            - build
+            - cypress/run # was build
