@@ -13,7 +13,7 @@ jobs:
       - run:
           name: Add dependencies
           command: npm ci
-      - cypress/run: 
+      - run: 
         start-command: 'npm run start'
         cypress-command: 'npx cypress run --browser chrome'
      # - run:
