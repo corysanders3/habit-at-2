@@ -169,10 +169,11 @@ const Habit = ({ hidden, setHidden, singleHabit, setSingleHabit }) => {
           {disabled ? "Edit" : "Save"}
         </button>
         <button
-          className="border-green-500 border-2 rounded-xl px-4 py-2 bg-green-500 text-white hover:bg-green-600"
+          className={disabled ? `border-slate-500 border-2 rounded-xl px-4 py-2 bg-slate-500 text-white opacity-30`:`border-green-500 border-2 rounded-xl px-4 py-2 bg-green-500 text-white hover:bg-green-600`}
           type="submit"
+          disabled={disabled}
         >
-          Submit
+          Submit Changes
         </button>
       </div>
     </form>

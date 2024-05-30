@@ -98,7 +98,7 @@ function Calendar() {
     setSingleHabit(targetHabit);
     setHidden(false);
   };
-  console.log(parsedEvents);
+
   return (
     <section className="calendar-page flex flex-col">
       <Fullcalendar
