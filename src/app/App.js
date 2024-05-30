@@ -1,16 +1,29 @@
 import './App.css';
-import Garden from '../garden/Garden';
+import Scene from '../scene/Scene';
 import Calendar from '../calendar/Calendar';
-import { PerspectiveCamera, OrbitControls, Sky } from '@react-three/drei';
-import { Canvas } from '@react-three/fiber';
+import Nav from '../nav/Nav';
+import Form from '../form/Form';
 import { getHabits } from '../apiCalls';
-// import habits from '../mockData/userHabits';
+import { Routes, Route } from 'react-router-dom';
 import React, { useState, useEffect } from 'react'
 
 function App() {
   const [error, setError] = useState()
   const [userHabits, setHabits] = useState([])
   const [userId, setUserId] = useState(1)
+  const [isActive, setIsActive] = useState(false);
+
+  function loadForm(e) {
+    e.preventDefault();
+    if (!isActive) {
+      setIsActive(true);
+    }
+  }
+
+  function closeForm(e) {
+    e.preventDefault();
+    setIsActive(false);
+  }
 
   useEffect(() => {
     showUser(userId)
@@ -30,27 +43,15 @@ function App() {
   }
   
   return (
-    <div style={{ width: '100%', height: '90%' }}>
-      <Canvas className='garden-scene'>
-        <ambientLight intensity={2} />
-        <directionalLight position={[1, 1, 4]} intensity={3} />
-        <Garden habits={userHabits} setError={setError} />
-        <Sky sunPosition={[0.6, 0.1, 0.6]} />
-        <PerspectiveCamera makeDefault position={[0, 5, 15]} />
-        <OrbitControls
-          minDistance={5}
-          maxDistance={25}
-          minPolarAngle={0.5}
-          maxPolarAngle={Math.PI / 1.9}
-          // minAzimuthAngle={-Math.PI / 4}
-          // maxAzimuthAngle={Math.PI / 4}
-          enableZoom={true}
-          enablePan={true}
-          enableRotate={true}
-          />
-      </Canvas>
-          {error && <h2 className="fetch-error">{error.message}</h2>}
-    </div>
+    <>
+      <Nav loadForm={loadForm} />
+      <Routes>
+        <Route path='/' element={<Scene habits={userHabits} setError={setError} />} />
+        <Route path="/calendar" element={<Calendar />} />
+      </Routes>
+      { isActive && <Form isActive={isActive} closeForm={closeForm}/> }
+      { error && <h2 className="fetch-error">{error.message}</h2> }
+    </>
   );
 }
 
