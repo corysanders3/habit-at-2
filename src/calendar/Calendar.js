@@ -106,7 +106,10 @@ function Calendar() {
     return (
       <div className="flex justify-between items-center cursor-pointer px-2">
         <span className="font-bold">{eventInfo.event.title}</span>
-        <input type="checkbox" className="fc-event-checkbox" onClick={(e) => e.stopPropagation()}/>
+        <input type="checkbox" className="fc-event-checkbox" onClick={(e) => {
+          console.log(eventInfo.event._def.publicId);
+          e.stopPropagation();
+          }}/>
       </div>
     );
   }
