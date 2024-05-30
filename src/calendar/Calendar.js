@@ -3,6 +3,7 @@ import Fullcalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import rrulePlugin from "@fullcalendar/rrule";
 import { useEffect, useState } from "react";
 import { getHabits } from "../apiCalls";
 import Habit from "../habit/Habit";
@@ -30,14 +31,46 @@ function Calendar() {
   }, []);
 
   function convertFrequency(frequency) {
-    const frequencyStatus = Object.values(frequency);
-    const result = frequencyStatus.reduce((arr, status, index) => {
-      if (status) {
-        if (index === 6) {
-          arr.push(0);
-        } else {
-          arr.push(index + 1);
-        }
+    const frequencyDays = Object.keys(frequency);
+    const result = frequencyDays.reduce((arr, day) => {
+      switch (day) {
+        case "monday":
+          if(frequency[day]) {
+            arr.push("mo");
+          }
+          break;
+        case "tuesday":
+          if(frequency[day]) {
+            arr.push("tu");
+          }
+          break;
+        case "wednesday":
+          if(frequency[day]) {
+            arr.push("we");
+          }
+          break;
+        case "thursday":
+          if(frequency[day]) {
+            arr.push("th");
+          }
+          break;
+        case "friday":
+          if(frequency[day]) {
+            arr.push("fr");
+          }
+          break;
+        case "saturday":
+          if(frequency[day]) {
+            arr.push("sa");
+          }
+          break;
+        case "sunday":
+          if(frequency[day]) {
+            arr.push("su");
+          }
+          break;
+        default:
+          return;
       }
       return arr;
     }, []);
@@ -48,12 +81,13 @@ function Calendar() {
     return {
       id: event.id,
       title: event.attributes.name,
-      startRecur: event.attributes.start_datetime.slice(0, 10),
-      endRecur: event.attributes.end_datetime.slice(0, 10),
-      daysOfWeek:
-        event.attributes.frequency === "weekly"
-          ? convertFrequency(event.attributes.custom_frequency)
-          : null,
+      rrule: {
+        freq: event.attributes.frequency,
+        interval: 1,
+        byweekday: event.attributes.frequency === "monthly" ?  null : convertFrequency(event.attributes.custom_frequency),
+        dtstart: event.attributes.start_datetime.slice(0,10),
+        until: event.attributes.end_datetime.slice(0, 10)
+      }
     };
   });
 
@@ -64,11 +98,11 @@ function Calendar() {
     setSingleHabit(targetHabit);
     setHidden(false);
   };
-
+  console.log(parsedEvents);
   return (
     <section className="calendar-page flex flex-col">
       <Fullcalendar
-        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, rrulePlugin]}
         initialView={"dayGridMonth"}
         height={"90%"}
         headerToolbar={{
@@ -79,7 +113,14 @@ function Calendar() {
         events={parsedEvents}
         eventClick={handleEventClick}
       />
-      {singleHabit && <Habit hidden={hidden} singleHabit={singleHabit}/>}
+      {singleHabit && (
+        <Habit
+          hidden={hidden}
+          setHidden={setHidden}
+          singleHabit={singleHabit}
+          setSingleHabit={setSingleHabit}
+        />
+      )}
     </section>
   );
 }

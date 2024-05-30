@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-const Habit = ({ hidden, singleHabit }) => {
+const Habit = ({ hidden, setHidden, singleHabit, setSingleHabit }) => {
   const [disabled, setDisabled] = useState(true);
   const [form, setForm] = useState({
     name: singleHabit.attributes.name,
@@ -35,6 +35,11 @@ const Habit = ({ hidden, singleHabit }) => {
     setDisabled(!disabled);
   };
 
+  const handleClose = () => {
+    setHidden(true);
+    setSingleHabit(null);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(form);
@@ -45,12 +50,19 @@ const Habit = ({ hidden, singleHabit }) => {
       className={
         hidden
           ? "hidden"
-          : `absolute z-10 flex flex-col justify-center items-center w-[60%] h-[80%] bg-slate-500`
+          : `absolute z-10 w-[60%] h-[80%] bg-white border-green-500 border-2 rounded-xl px-12 py-12 shadow-lg overflow-y-auto`
       }
       onSubmit={handleSubmit}
     >
-      <div>
-        <label>
+      <button
+        type="button"
+        className="absolute top-2 right-4 font-bold text-xl border-green-500 border-2 rounded-xl px-4 py-2 bg-red-500 text-white hover:bg-red-600"
+        onClick={handleClose}
+      >
+        Close
+      </button>
+      <div className="mb-4 w-full">
+        <label className="block text-gray-700 text-sm font-bold mb-2">
           Name:
           <input
             type="text"
@@ -58,11 +70,12 @@ const Habit = ({ hidden, singleHabit }) => {
             value={form.name}
             onChange={handleChange}
             disabled={disabled}
+            className="mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </label>
       </div>
-      <div>
-        <label>
+      <div className="mb-4 w-full">
+        <label className="block text-gray-700 text-sm font-bold mb-2">
           Plant ID:
           <input
             type="number"
@@ -70,22 +83,24 @@ const Habit = ({ hidden, singleHabit }) => {
             value={form.plant_id}
             onChange={handleChange}
             disabled={disabled}
+            className="mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </label>
       </div>
-      <div>
-        <label>
+      <div className="mb-4 w-full">
+        <label className="block text-gray-700 text-sm font-bold mb-2">
           Description:
           <textarea
             name="description"
             value={form.description}
             onChange={handleChange}
             disabled={disabled}
+            className="mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-24"
           />
         </label>
       </div>
-      <div>
-        <label>
+      <div className="mb-4 w-full">
+        <label className="block text-gray-700 text-sm font-bold mb-2">
           Frequency:
           <input
             type="text"
@@ -93,30 +108,34 @@ const Habit = ({ hidden, singleHabit }) => {
             value={form.frequency}
             onChange={handleChange}
             disabled={disabled}
+            className="mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </label>
       </div>
-      <div>
-        <label>
+      <div className="mb-4 w-full">
+        <label className="block text-gray-700 text-sm font-bold mb-2">
           Days of the week (Custom Frequency):
           {Object.keys(form.custom_frequency).map((day) => (
-            <div key={day}>
-              <label>
-                {day.charAt(0).toUpperCase() + day.slice(1)}:
+            <div key={day} className="ml-4">
+              <label className="inline-flex items-center">
                 <input
                   type="checkbox"
                   name={day}
                   checked={form.custom_frequency[day]}
                   onChange={handleChange}
                   disabled={disabled}
+                  className="form-checkbox h-5 w-5 text-green-600"
                 />
+                <span className="ml-2">
+                  {day.charAt(0).toUpperCase() + day.slice(1)}
+                </span>
               </label>
             </div>
           ))}
         </label>
       </div>
-      <div>
-        <label>
+      <div className="mb-4 w-full">
+        <label className="block text-gray-700 text-sm font-bold mb-2">
           Start Date:
           <input
             type="date"
@@ -124,11 +143,12 @@ const Habit = ({ hidden, singleHabit }) => {
             value={form.start_datetime}
             onChange={handleChange}
             disabled={disabled}
+            className="mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </label>
       </div>
-      <div>
-        <label>
+      <div className="mb-4 w-full">
+        <label className="block text-gray-700 text-sm font-bold mb-2">
           End Date:
           <input
             type="date"
@@ -136,11 +156,25 @@ const Habit = ({ hidden, singleHabit }) => {
             value={form.end_datetime}
             onChange={handleChange}
             disabled={disabled}
+            className="mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </label>
       </div>
-      <button type="button" onClick={toggleEdit}>{disabled ? "Edit" : "Save"}</button>
-      <button type="submit">Submit</button>
+      <div className="flex items-center justify-between w-full">
+        <button
+          className="border-green-500 border-2 rounded-xl px-4 py-2 bg-blue-500 text-white hover:bg-blue-600"
+          type="button"
+          onClick={toggleEdit}
+        >
+          {disabled ? "Edit" : "Save"}
+        </button>
+        <button
+          className="border-green-500 border-2 rounded-xl px-4 py-2 bg-green-500 text-white hover:bg-green-600"
+          type="submit"
+        >
+          Submit
+        </button>
+      </div>
     </form>
   );
 };
