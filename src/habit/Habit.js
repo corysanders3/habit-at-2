@@ -102,14 +102,17 @@ const Habit = ({ hidden, setHidden, singleHabit, setSingleHabit }) => {
       <div className="mb-4 w-full">
         <label className="block text-gray-700 text-sm font-bold mb-2">
           Frequency:
-          <input
-            type="text"
+          <select
             name="frequency"
             value={form.frequency}
             onChange={handleChange}
             disabled={disabled}
             className="mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          />
+          >
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+            <option value="monthly">Monthly</option>
+          </select>
         </label>
       </div>
       <div className="mb-4 w-full">
@@ -169,7 +172,11 @@ const Habit = ({ hidden, setHidden, singleHabit, setSingleHabit }) => {
           {disabled ? "Edit" : "Save"}
         </button>
         <button
-          className={disabled ? `border-slate-500 border-2 rounded-xl px-4 py-2 bg-slate-500 text-white opacity-30`:`border-green-500 border-2 rounded-xl px-4 py-2 bg-green-500 text-white hover:bg-green-600`}
+          className={
+            disabled
+              ? `border-slate-500 border-2 rounded-xl px-4 py-2 bg-slate-500 text-white opacity-30`
+              : `border-green-500 border-2 rounded-xl px-4 py-2 bg-green-500 text-white hover:bg-green-600`
+          }
           type="submit"
           disabled={disabled}
         >

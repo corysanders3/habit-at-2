@@ -92,12 +92,24 @@ function Calendar() {
   });
 
   const handleEventClick = (info) => {
+    if (info.jsEvent.target.classList.contains('fc-event-checkbox')) {
+      info.jsEvent.preventDefault();
+    }
     const targetHabit = userHabits.find((event) => {
       return event.id === info.event._def.publicId;
     });
     setSingleHabit(targetHabit);
     setHidden(false);
   };
+
+  const renderEventContent = (eventInfo) => {
+    return (
+      <div className="flex justify-between items-center cursor-pointer px-2">
+        <span className="font-bold">{eventInfo.event.title}</span>
+        <input type="checkbox" className="fc-event-checkbox" onClick={(e) => e.stopPropagation()}/>
+      </div>
+    );
+  }
 
   return (
     <section className="calendar-page flex flex-col">
@@ -112,6 +124,7 @@ function Calendar() {
         }}
         events={parsedEvents}
         eventClick={handleEventClick}
+        eventContent={renderEventContent}
       />
       {singleHabit && (
         <Habit
