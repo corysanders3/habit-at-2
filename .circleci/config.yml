@@ -13,9 +13,9 @@ jobs:
       - run:
           name: Add dependencies
           command: npm ci
-      - run:
-          name: Start Application
-          command: npm start
+     # - run:
+         # name: Start Application
+         # command: npm start
       - run:
           name: Run Cypress Tests
           command: npx cypress run --headless
