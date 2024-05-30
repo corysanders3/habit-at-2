@@ -13,15 +13,12 @@ jobs:
       - run:
           name: Add dependencies
           command: npm ci
-      - run: 
-        start-command: 'npm run start'
-        cypress-command: 'npx cypress run --browser chrome'
-     # - run:
-         # name: Start Application
-         # command: npm start
-     # - run:
-        #  name: Run Cypress Tests
-        #  command: npx cypress run --headless
+      - run:
+          name: Start Application
+          command: npm run start
+      - run:
+          name: Run Cypress Tests
+          command: npx cypress run --browser chrome
 
   deploy:
     docker:
