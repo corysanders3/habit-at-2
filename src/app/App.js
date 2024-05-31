@@ -5,13 +5,15 @@ import Nav from '../nav/Nav';
 import Form from '../form/Form';
 import { getHabits } from '../apiCalls';
 import { Routes, Route } from 'react-router-dom';
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+import flower1 from '../images/flowers/flowerID_1.png';
 
 function App() {
   const [error, setError] = useState()
   const [userHabits, setHabits] = useState([])
   const [userId, setUserId] = useState(1)
   const [isActive, setIsActive] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   function loadForm(e) {
     e.preventDefault();
@@ -27,6 +29,10 @@ function App() {
 
   useEffect(() => {
     showUser(userId)
+    
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 5000)
   }, [])
 
   const showUser = async (userId) => {
