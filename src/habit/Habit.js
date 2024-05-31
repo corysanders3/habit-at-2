@@ -116,10 +116,18 @@ const Habit = ({ hidden, setHidden, singleHabit, setSingleHabit }) => {
         <h3 className="block text-gray-700 text-sm font-bold mb-2">
           Plant ID: {form.plant_id}
         </h3>
-        {form.plant_id === 1 && <img className="h-2" src={flowerOne} alt="flower one" />}
-        {form.plant_id === 2 && <img src={flowerTwo} alt="flower two" />}
-        {form.plant_id === 3 && <img className="h-16 w-12" src={flowerThree} alt="flower three" />}
-        {form.plant_id === 4 && <img src={flowerFour} alt="flower four" />}
+        {form.plant_id === 1 && (
+          <img className="h-16 w-12" src={flowerOne} alt="flower one" />
+        )}
+        {form.plant_id === 2 && (
+          <img className="h-16 w-12" src={flowerTwo} alt="flower two" />
+        )}
+        {form.plant_id === 3 && (
+          <img className="h-16 w-12" src={flowerThree} alt="flower three" />
+        )}
+        {form.plant_id === 4 && (
+          <img className="h-16 w-12" src={flowerFour} alt="flower four" />
+        )}
       </div>
       <div className="mb-4 w-full">
         <label className="block text-gray-700 text-sm font-bold mb-2">

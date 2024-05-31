@@ -39,7 +39,7 @@ function Calendar() {
           const dateKey = progress.attributes.datetime.slice(0, 10);
           return {
             ...acc,
-            [dateKey]: progress.attributes.status
+            [dateKey]: progress.attributes.status,
           };
         }, {}),
       }));
@@ -109,7 +109,7 @@ function Calendar() {
     return {
       id: event.id,
       title: event.attributes.name,
-      start: event.attributes.start_datetime.slice(0,10),
+      start: event.attributes.start_datetime.slice(0, 10),
       rrule: {
         freq: event.attributes.frequency,
         interval: 1,
@@ -137,8 +137,8 @@ function Calendar() {
   const convertDateObject = (dateObject) => {
     const date = new Date(dateObject);
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0"); 
-    const day = String(date.getDate()).padStart(2, "0"); 
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
     const formattedDate = `${year}-${month}-${day}`;
     return formattedDate;
   };
