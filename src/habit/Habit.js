@@ -1,5 +1,9 @@
 import React from "react";
 import { useState } from "react";
+import flowerOne from "../images/flowers/flowerID_1.png";
+import flowerTwo from "../images/flowers/flowerID_2.png";
+import flowerThree from "../images/flowers/flowerID_3.png";
+import flowerFour from "../images/flowers/flowerID_4.png";
 
 const Habit = ({ hidden, setHidden, singleHabit, setSingleHabit }) => {
   const [disabled, setDisabled] = useState(true);
@@ -100,22 +104,22 @@ const Habit = ({ hidden, setHidden, singleHabit, setSingleHabit }) => {
             value={form.name}
             onChange={handleChange}
             disabled={disabled}
-            className={disabled ? `mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-green-100` : `mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-green-300`}
+            className={
+              disabled
+                ? `mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-green-100`
+                : `mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-green-300`
+            }
           />
         </label>
       </div>
-      <div className="mb-4 w-full">
-        <label className="block text-gray-700 text-sm font-bold mb-2">
-          Plant ID:
-          <input
-            type="number"
-            name="plant_id"
-            value={form.plant_id}
-            onChange={handleChange}
-            disabled={true}
-            className="mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-rose-100"
-          />
-        </label>
+      <div className="flex flex-col mb-4 w-full">
+        <h3 className="block text-gray-700 text-sm font-bold mb-2">
+          Plant ID: {form.plant_id}
+        </h3>
+        {form.plant_id === 1 && <img className="h-2" src={flowerOne} alt="flower one" />}
+        {form.plant_id === 2 && <img src={flowerTwo} alt="flower two" />}
+        {form.plant_id === 3 && <img className="h-16 w-12" src={flowerThree} alt="flower three" />}
+        {form.plant_id === 4 && <img src={flowerFour} alt="flower four" />}
       </div>
       <div className="mb-4 w-full">
         <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -125,7 +129,11 @@ const Habit = ({ hidden, setHidden, singleHabit, setSingleHabit }) => {
             value={form.description}
             onChange={handleChange}
             disabled={disabled}
-            className={disabled ? `mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-24 bg-green-100`: `mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-24 bg-green-300`}
+            className={
+              disabled
+                ? `mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-24 bg-green-100`
+                : `mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-24 bg-green-300`
+            }
           />
         </label>
       </div>

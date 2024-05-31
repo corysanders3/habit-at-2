@@ -5,18 +5,19 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import rrulePlugin from "@fullcalendar/rrule";
 import { useEffect, useState } from "react";
-import { getHabits } from "../apiCalls";
+import { getHabits, getProgress } from "../apiCalls";
 import Habit from "../habit/Habit";
 import CompleteIcon from "../assets/checkmark-icon.svg";
-import IncompleteIcon from  "../assets/incomplete-icon.svg";
+import IncompleteIcon from "../assets/incomplete-icon.svg";
 import PendingIcon from "../assets/pending-icon.svg";
 
 function Calendar() {
-  const [error, setError] = useState();
+  const [error, setError] = useState(null);
   const [userHabits, setHabits] = useState([]);
   const [userId, setUserId] = useState(1);
   const [hidden, setHidden] = useState(true);
   const [singleHabit, setSingleHabit] = useState(null);
+  const [userProgress, setUserProgress] = useState({});
 
   const showUser = async (userId) => {
     try {
@@ -29,46 +30,70 @@ function Calendar() {
     }
   };
 
+  const showProgress = async (userId, habitId) => {
+    try {
+      const progresses = await getProgress(userId, habitId);
+      setUserProgress((prevState) => ({
+        ...prevState,
+        [habitId]: progresses.data.reduce((acc, progress) => {
+          const dateKey = progress.attributes.datetime.slice(0, 10);
+          return {
+            ...acc,
+            [dateKey]: progress.attributes.status
+          };
+        }, {}),
+      }));
+    } catch (error) {
+      setError(error);
+    }
+  };
+
   useEffect(() => {
     showUser(userId);
   }, []);
+
+  useEffect(() => {
+    userHabits.forEach((habit) => {
+      showProgress(userId, habit.id);
+    });
+  }, [userHabits]);
 
   function convertFrequency(frequency) {
     const frequencyDays = Object.keys(frequency);
     const result = frequencyDays.reduce((arr, day) => {
       switch (day) {
         case "monday":
-          if(frequency[day]) {
+          if (frequency[day]) {
             arr.push("mo");
           }
           break;
         case "tuesday":
-          if(frequency[day]) {
+          if (frequency[day]) {
             arr.push("tu");
           }
           break;
         case "wednesday":
-          if(frequency[day]) {
+          if (frequency[day]) {
             arr.push("we");
           }
           break;
         case "thursday":
-          if(frequency[day]) {
+          if (frequency[day]) {
             arr.push("th");
           }
           break;
         case "friday":
-          if(frequency[day]) {
+          if (frequency[day]) {
             arr.push("fr");
           }
           break;
         case "saturday":
-          if(frequency[day]) {
+          if (frequency[day]) {
             arr.push("sa");
           }
           break;
         case "sunday":
-          if(frequency[day]) {
+          if (frequency[day]) {
             arr.push("su");
           }
           break;
@@ -84,18 +109,22 @@ function Calendar() {
     return {
       id: event.id,
       title: event.attributes.name,
+      start: event.attributes.start_datetime.slice(0,10),
       rrule: {
         freq: event.attributes.frequency,
         interval: 1,
-        byweekday: event.attributes.frequency === "monthly" ?  null : convertFrequency(event.attributes.custom_frequency),
-        dtstart: event.attributes.start_datetime.slice(0,10),
-        until: event.attributes.end_datetime.slice(0, 10)
-      }
+        byweekday:
+          event.attributes.frequency === "monthly"
+            ? null
+            : convertFrequency(event.attributes.custom_frequency),
+        dtstart: event.attributes.start_datetime.slice(0, 10),
+        until: event.attributes.end_datetime.slice(0, 10),
+      },
     };
   });
 
   const handleEventClick = (info) => {
-    if (info.jsEvent.target.classList.contains('fc-event-checkbox')) {
+    if (info.jsEvent.target.classList.contains("fc-event-checkbox")) {
       info.jsEvent.preventDefault();
     }
     const targetHabit = userHabits.find((event) => {
@@ -105,19 +134,38 @@ function Calendar() {
     setHidden(false);
   };
 
+  const convertDateObject = (dateObject) => {
+    const date = new Date(dateObject);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0"); 
+    const day = String(date.getDate()).padStart(2, "0"); 
+    const formattedDate = `${year}-${month}-${day}`;
+    return formattedDate;
+  };
+
   const renderEventContent = (eventInfo) => {
+    const contentId = parseInt(eventInfo.event._def.publicId);
+    const contentDate = convertDateObject(eventInfo.event.start);
+
     return (
       <div className="flex justify-between items-center cursor-pointer px-2">
         <span className="font-bold text-wrap">{eventInfo.event.title}</span>
-        <img className="h-8 py-1" src={CompleteIcon}/>
+        {/* {userProgress[contentId][contentDate] === "completed" && <img className="h-6 py-1" src={CompleteIcon} />}
+        {userProgress[contentId][contentDate] === "incomplete" && <img className="h-6 py-1" src={PendingIcon} />}
+        {userProgress[contentId][contentDate] === "skipped" && <img className="h-6 py-1" src={IncompleteIcon} />} */}
       </div>
     );
-  }
+  };
 
   return (
     <section className="calendar-page flex flex-col">
       <Fullcalendar
-        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, rrulePlugin]}
+        plugins={[
+          dayGridPlugin,
+          timeGridPlugin,
+          interactionPlugin,
+          rrulePlugin,
+        ]}
         initialView={"dayGridMonth"}
         height={"90%"}
         headerToolbar={{
