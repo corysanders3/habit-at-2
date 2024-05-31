@@ -7,6 +7,9 @@ import rrulePlugin from "@fullcalendar/rrule";
 import { useEffect, useState } from "react";
 import { getHabits } from "../apiCalls";
 import Habit from "../habit/Habit";
+import CompleteIcon from "../assets/checkmark-icon.svg";
+import IncompleteIcon from  "../assets/incomplete-icon.svg";
+import PendingIcon from "../assets/pending-icon.svg";
 
 function Calendar() {
   const [error, setError] = useState();
@@ -106,7 +109,7 @@ function Calendar() {
     return (
       <div className="flex justify-between items-center cursor-pointer px-2">
         <span className="font-bold text-wrap">{eventInfo.event.title}</span>
-        <input type="checkbox" className="fc-event-checkbox"/>
+        <img className="h-8 py-1" src={CompleteIcon}/>
       </div>
     );
   }
