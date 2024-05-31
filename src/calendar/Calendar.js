@@ -105,7 +105,7 @@ function Calendar() {
   const renderEventContent = (eventInfo) => {
     return (
       <div className="flex justify-between items-center cursor-pointer px-2">
-        <span className="font-bold">{eventInfo.event.title}</span>
+        <span className="font-bold text-wrap">{eventInfo.event.title}</span>
         <input type="checkbox" className="fc-event-checkbox" onClick={(e) => {
           console.log(eventInfo.event._def.publicId);
           e.stopPropagation();

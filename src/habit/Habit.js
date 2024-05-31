@@ -56,114 +56,22 @@ const Habit = ({ hidden, setHidden, singleHabit, setSingleHabit }) => {
     >
       <button
         type="button"
-        className="absolute top-2 right-4 font-bold text-xl border-green-500 border-2 rounded-xl px-4 py-2 bg-red-500 text-white hover:bg-red-600"
+        className="absolute top-2 right-4 font-bold text-lg rounded-xl px-4 py-2 bg-red-500 text-white hover:bg-red-600"
         onClick={handleClose}
       >
         Close
       </button>
-      <div className="mb-4 w-full">
-        <label className="block text-gray-700 text-sm font-bold mb-2">
-          Name:
-          <input
-            type="text"
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            disabled={disabled}
-            className="mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          />
-        </label>
-      </div>
-      <div className="mb-4 w-full">
-        <label className="block text-gray-700 text-sm font-bold mb-2">
-          Plant ID:
-          <input
-            type="number"
-            name="plant_id"
-            value={form.plant_id}
-            onChange={handleChange}
-            disabled={disabled}
-            className="mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          />
-        </label>
-      </div>
-      <div className="mb-4 w-full">
-        <label className="block text-gray-700 text-sm font-bold mb-2">
-          Description:
-          <textarea
-            name="description"
-            value={form.description}
-            onChange={handleChange}
-            disabled={disabled}
-            className="mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-24"
-          />
-        </label>
-      </div>
-      <div className="mb-4 w-full">
-        <label className="block text-gray-700 text-sm font-bold mb-2">
-          Frequency:
-          <select
-            name="frequency"
-            value={form.frequency}
-            onChange={handleChange}
-            disabled={disabled}
-            className="mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          >
-            <option value="daily">Daily</option>
-            <option value="weekly">Weekly</option>
-            <option value="monthly">Monthly</option>
-          </select>
-        </label>
-      </div>
-      <div className="mb-4 w-full">
-        <label className="block text-gray-700 text-sm font-bold mb-2">
-          Days of the week (Custom Frequency):
-          {Object.keys(form.custom_frequency).map((day) => (
-            <div key={day} className="ml-4">
-              <label className="inline-flex items-center">
-                <input
-                  type="checkbox"
-                  name={day}
-                  checked={form.custom_frequency[day]}
-                  onChange={handleChange}
-                  disabled={disabled}
-                  className="form-checkbox h-5 w-5 text-green-600"
-                />
-                <span className="ml-2">
-                  {day.charAt(0).toUpperCase() + day.slice(1)}
-                </span>
-              </label>
-            </div>
-          ))}
-        </label>
-      </div>
-      <div className="mb-4 w-full">
-        <label className="block text-gray-700 text-sm font-bold mb-2">
-          Start Date:
-          <input
-            type="date"
-            name="startDate"
-            value={form.start_datetime}
-            onChange={handleChange}
-            disabled={disabled}
-            className="mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          />
-        </label>
-      </div>
-      <div className="mb-4 w-full">
-        <label className="block text-gray-700 text-sm font-bold mb-2">
-          End Date:
-          <input
-            type="date"
-            name="endDate"
-            value={form.end_datetime}
-            onChange={handleChange}
-            disabled={disabled}
-            className="mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          />
-        </label>
-      </div>
-      <div className="flex items-center justify-between w-full">
+      <h1 className="text-green-600 text-3xl font-bold mb-4">Habit View</h1>
+      <h2 className="mb-4 pr-48 text-lg">
+        Once a habit is created, you can only edit the fields in{" "}
+        <span className="text-green-500 font-extrabold">green</span>. If you'd
+        like to change{" "}
+        <span className="font-extrabold text-red-400">plant</span>,{" "}
+        <span className="font-extrabold text-red-400">frequency</span>, or{" "}
+        <span className="font-extrabold text-red-400">start/end dates</span>{" "}
+        please delete this habit and create a new one.
+      </h2>
+      <div className="flex items-center justify-start gap-4 w-full mb-12">
         <button
           className="border-green-500 border-2 rounded-xl px-4 py-2 bg-blue-500 text-white hover:bg-blue-600"
           type="button"
@@ -182,6 +90,108 @@ const Habit = ({ hidden, setHidden, singleHabit, setSingleHabit }) => {
         >
           Submit Changes
         </button>
+      </div>
+      <div className="mb-4 w-full">
+        <label className="block text-gray-700 text-sm font-bold mb-2">
+          Name:
+          <input
+            type="text"
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+            disabled={disabled}
+            className={disabled ? `mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-green-100` : `mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-green-300`}
+          />
+        </label>
+      </div>
+      <div className="mb-4 w-full">
+        <label className="block text-gray-700 text-sm font-bold mb-2">
+          Plant ID:
+          <input
+            type="number"
+            name="plant_id"
+            value={form.plant_id}
+            onChange={handleChange}
+            disabled={true}
+            className="mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-rose-100"
+          />
+        </label>
+      </div>
+      <div className="mb-4 w-full">
+        <label className="block text-gray-700 text-sm font-bold mb-2">
+          Description:
+          <textarea
+            name="description"
+            value={form.description}
+            onChange={handleChange}
+            disabled={disabled}
+            className={disabled ? `mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-24 bg-green-100`: `mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-24 bg-green-300`}
+          />
+        </label>
+      </div>
+      <div className="mb-4 w-full">
+        <label className="block text-gray-700 text-sm font-bold mb-2">
+          Frequency:
+          <select
+            name="frequency"
+            value={form.frequency}
+            onChange={handleChange}
+            disabled={true}
+            className="mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline bg-rose-100"
+          >
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+            <option value="monthly">Monthly</option>
+          </select>
+        </label>
+      </div>
+      <div className="mb-4 w-full shadow bg-rose-100 rounded-lg px-2 py-2 leading-tight focus:outline-none focus:shadow-outline">
+        <label className="block text-gray-700 text-sm font-bold mb-2">
+          Days of the week (Custom Frequency):
+          {Object.keys(form.custom_frequency).map((day) => (
+            <div key={day} className="ml-4 mt-2">
+              <label className="inline-flex items-center">
+                <input
+                  type="checkbox"
+                  name={day}
+                  checked={form.custom_frequency[day]}
+                  onChange={handleChange}
+                  disabled={true}
+                  className="form-checkbox h-5 w-5 text-green-600"
+                />
+                <span className="ml-2">
+                  {day.charAt(0).toUpperCase() + day.slice(1)}
+                </span>
+              </label>
+            </div>
+          ))}
+        </label>
+      </div>
+      <div className="mb-4 w-full">
+        <label className="block text-gray-700 text-sm font-bold mb-2">
+          Start Date:
+          <input
+            type="date"
+            name="startDate"
+            value={form.start_datetime}
+            onChange={handleChange}
+            disabled={true}
+            className="mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-rose-100"
+          />
+        </label>
+      </div>
+      <div className="mb-4 w-full">
+        <label className="block text-gray-700 text-sm font-bold mb-2">
+          End Date:
+          <input
+            type="date"
+            name="endDate"
+            value={form.end_datetime}
+            onChange={handleChange}
+            disabled={true}
+            className="mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-rose-100"
+          />
+        </label>
       </div>
     </form>
   );
