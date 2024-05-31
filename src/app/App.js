@@ -49,7 +49,7 @@ function App() {
         <Route path='/' element={<Scene habits={userHabits} setError={setError} />} />
         <Route path="/calendar" element={<Calendar />} />
       </Routes>
-      { isActive && <Form isActive={isActive} closeForm={closeForm}/> }
+      { isActive && <Form isActive={isActive} closeForm={closeForm} showUser={showUser} userId={userId}/> }
       { error && <h2 className="fetch-error">{error.message}</h2> }
     </>
   );

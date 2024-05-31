@@ -1,7 +1,7 @@
 import './Garden.css';
 import { Planter, Dirt, Gnome, Compost, Ground } from '../gardenObjects/GardenObjects';
 import { Stars } from '@react-three/drei';
-import AllFlowers from '../AllFlowers/AllFlowers';
+import AllFlowers from '../allFlowers/AllFlowers';
 
 function Garden({ habits, setError }) {
 
