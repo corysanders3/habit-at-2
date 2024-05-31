@@ -1,0 +1,50 @@
+{
+    "data": [
+        {
+            "id": "29",
+            "type": "habit",
+            "attributes": {
+                "user_id": 1,
+                "plant_id": 3,
+                "name": "Fart",
+                "description": "release gas",
+                "frequency": "daily",
+                "custom_frequency": {
+                    "friday": true,
+                    "monday": true,
+                    "sunday": true,
+                    "tuesday": true,
+                    "saturday": true,
+                    "thursday": true,
+                    "wednesday": true
+                },
+                "start_datetime": "2024-05-01T12:00:00.000Z",
+                "end_datetime": "2024-05-30T21:35:00.000Z",
+                "status": "in_progress"
+            }
+        },
+        {
+            "id": "30",
+            "type": "habit",
+            "attributes": {
+                "user_id": 1,
+                "plant_id": 2,
+                "name": "poop",
+                "description": "everyone poops",
+                "frequency": "weekly",
+                "custom_frequency": {
+                    "friday": true,
+                    "monday": false,
+                    "sunday": false,
+                    "tuesday": false,
+                    "saturday": true,
+                    "thursday": false,
+                    "wednesday": false
+                },
+                "start_datetime": "2024-05-01T19:36:00.000Z",
+                "end_datetime": "2024-05-30T19:36:00.000Z",
+                "status": "in_progress"
+            }
+        }
+    ]
+}
