@@ -50,7 +50,7 @@ describe('navigating to the form', () => {
   })
 
   it('should allow user to submit a new habit and flower garden should be updated', () => {
-    
+
     cy.intercept('POST', 'https://habitat-1873f8f155b9.herokuapp.com/api/v0/users/1/habits', {
       statusCode: 201,
       body: {
@@ -77,13 +77,13 @@ describe('navigating to the form', () => {
         }
       }
     }).as('postHabit')
-    
+
     cy.wait(3000)
     cy.get('canvas').matchImageSnapshot('scene', {
       failureThreshold: 0.01,
       failureThresholdType: 'percent'
     })
-    
+
     cy.intercept('GET', 'https://habitat-1873f8f155b9.herokuapp.com/api/v0/users/1/habits', {
       statusCode: 200,
       fixture: "habitsUpdate.json",
@@ -106,12 +106,12 @@ describe('navigating to the form', () => {
       .get('.habit-form').get(`input[name='endTime']`).type('08:35').should('have.value', '08:35')
       .get('button').contains('Submit').click()
 
-      cy.wait(1000)
-      cy.get('canvas').matchImageSnapshot('updateScene', {
-        failureThreshold: 0.01,
-        failureThresholdType: 'percent'
-      })
-      
+    cy.wait(1000)
+    cy.get('canvas').matchImageSnapshot('updateScene', {
+      failureThreshold: 0.01,
+      failureThresholdType: 'percent'
+    })
+
   })
 
 })

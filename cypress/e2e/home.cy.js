@@ -43,7 +43,7 @@ describe('navigating to the home page', () => {
     cy.get('canvas').matchImageSnapshot('scene', {
       failureThreshold: 0.01,
       failureThresholdType: 'percent'
-    }); 
+    });
   })
 
 })
