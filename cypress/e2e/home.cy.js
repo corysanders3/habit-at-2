@@ -39,9 +39,9 @@ describe('navigating to the home page', () => {
   })
 
   it('should load garden scene along with user flowers', () => {
-    cy.wait(3000)
+    cy.wait(2000)
     cy.get('canvas').matchImageSnapshot('scene', {
-      failureThreshold: 0.01,
+      failureThreshold: 0.001,
       failureThresholdType: 'percent'
     });
   })

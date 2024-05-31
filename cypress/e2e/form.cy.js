@@ -78,9 +78,9 @@ describe('navigating to the form', () => {
       }
     }).as('postHabit')
 
-    cy.wait(3000)
+    cy.wait(2000)
     cy.get('canvas').matchImageSnapshot('scene', {
-      failureThreshold: 0.01,
+      failureThreshold: 0.001,
       failureThresholdType: 'percent'
     })
 
@@ -108,7 +108,7 @@ describe('navigating to the form', () => {
 
     cy.wait(1000)
     cy.get('canvas').matchImageSnapshot('updateScene', {
-      failureThreshold: 0.01,
+      failureThreshold: 0.001,
       failureThresholdType: 'percent'
     })
 
