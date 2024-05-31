@@ -58,11 +58,13 @@ function Form({ isActive, closeForm, showUser, userId }) {
         }
 
         postHabit(postData, userId)
-            .then(data => {console.log(data)})
+            .then(data => {
+                console.log(data)
+                showUser(userId)
+            })
             .catch(err => console.log(err.message))
         closeForm(e)
         clearForm()
-        showUser(userId)
     }
 
     function clearForm() {
