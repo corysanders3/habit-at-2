@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { deleteHabit, getHabits } from "../apiCalls";
+import { deleteHabit } from "../apiCalls";
 import flowerOne from "../images/flowers/flowerID_1.png";
 import flowerTwo from "../images/flowers/flowerID_2.png";
 import flowerThree from "../images/flowers/flowerID_3.png";
