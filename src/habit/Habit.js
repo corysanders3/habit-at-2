@@ -6,7 +6,14 @@ import flowerTwo from "../images/flowers/flowerID_2.png";
 import flowerThree from "../images/flowers/flowerID_3.png";
 import flowerFour from "../images/flowers/flowerID_4.png";
 
-const Habit = ({ hidden, setHidden, singleHabit, setSingleHabit, userId, setHabits }) => {
+const Habit = ({
+  hidden,
+  setHidden,
+  singleHabit,
+  setSingleHabit,
+  userId,
+  setHabits,
+}) => {
   const [disabled, setDisabled] = useState(true);
   const [form, setForm] = useState({
     name: singleHabit.attributes.name,
@@ -36,6 +43,27 @@ const Habit = ({ hidden, setHidden, singleHabit, setSingleHabit, userId, setHabi
     }
   };
 
+  function reorderDaysOfWeek(obj) {
+    const orderedDays = [
+      "monday",
+      "tuesday",
+      "wednesday",
+      "thursday",
+      "friday",
+      "saturday",
+      "sunday",
+    ];
+    const orderedObj = {};
+
+    orderedDays.forEach((day) => {
+      if (obj.hasOwnProperty(day)) {
+        orderedObj[day] = obj[day];
+      }
+    });
+
+    return orderedObj;
+  }
+
   const toggleEdit = () => {
     setDisabled(!disabled);
   };
@@ -54,7 +82,7 @@ const Habit = ({ hidden, setHidden, singleHabit, setSingleHabit, userId, setHabi
     deleteHabit(userId, singleHabit.id);
     setTimeout(() => {
       window.location.reload();
-    }, 1000)
+    }, 1000);
   };
 
   return (
@@ -103,7 +131,11 @@ const Habit = ({ hidden, setHidden, singleHabit, setSingleHabit, userId, setHabi
           Submit Changes
         </button>
         <button
-          className={disabled ? `border-rose-800 border-2 rounded-xl px-4 py-2 bg-rose-900 text-white mx-4 opacity-20` : `border-rose-800 border-2 rounded-xl px-4 py-2 bg-rose-900 text-white mx-4`}
+          className={
+            disabled
+              ? `border-rose-800 border-2 rounded-xl px-4 py-2 bg-rose-900 text-white mx-4 opacity-20`
+              : `border-rose-800 border-2 rounded-xl px-4 py-2 bg-rose-900 text-white mx-4`
+          }
           type="button"
           disabled={disabled}
           onClick={handleDelete}
@@ -179,8 +211,8 @@ const Habit = ({ hidden, setHidden, singleHabit, setSingleHabit, userId, setHabi
       </div>
       <div className="mb-4 w-full shadow bg-rose-100 rounded-lg px-2 py-2 leading-tight focus:outline-none focus:shadow-outline">
         <label className="block text-gray-700 text-sm font-bold mb-2">
-          Days of the week (Custom Frequency):
-          {Object.keys(form.custom_frequency).map((day) => (
+          Days of the Week (Custom Frequency):
+          {Object.keys(reorderDaysOfWeek(form.custom_frequency)).map((day) => (
             <div key={day} className="ml-4 mt-2">
               <label className="inline-flex items-center">
                 <input
