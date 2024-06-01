@@ -52,6 +52,9 @@ const Habit = ({ hidden, setHidden, singleHabit, setSingleHabit, userId, setHabi
 
   const handleDelete = () => {
     deleteHabit(userId, singleHabit.id);
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000)
   };
 
   return (
