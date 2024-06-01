@@ -29,7 +29,7 @@ jobs:
       - run:
           name: Deploy Main to Heroku
           command: |
-            git push https://git.heroku.com/fe-habit-at.git
+            git push https://git.heroku.com/fe-habit-at.git main
 
 workflows:
   version: 2
