@@ -1,11 +1,12 @@
 import React from "react";
 import { useState } from "react";
+import { deleteHabit, getHabits } from "../apiCalls";
 import flowerOne from "../images/flowers/flowerID_1.png";
 import flowerTwo from "../images/flowers/flowerID_2.png";
 import flowerThree from "../images/flowers/flowerID_3.png";
 import flowerFour from "../images/flowers/flowerID_4.png";
 
-const Habit = ({ hidden, setHidden, singleHabit, setSingleHabit }) => {
+const Habit = ({ hidden, setHidden, singleHabit, setSingleHabit, userId, setHabits }) => {
   const [disabled, setDisabled] = useState(true);
   const [form, setForm] = useState({
     name: singleHabit.attributes.name,
@@ -47,6 +48,10 @@ const Habit = ({ hidden, setHidden, singleHabit, setSingleHabit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(form);
+  };
+
+  const handleDelete = () => {
+    deleteHabit(userId, singleHabit.id);
   };
 
   return (
@@ -93,6 +98,14 @@ const Habit = ({ hidden, setHidden, singleHabit, setSingleHabit }) => {
           disabled={disabled}
         >
           Submit Changes
+        </button>
+        <button
+          className={disabled ? `border-rose-800 border-2 rounded-xl px-4 py-2 bg-rose-900 text-white mx-4 opacity-20` : `border-rose-800 border-2 rounded-xl px-4 py-2 bg-rose-900 text-white mx-4`}
+          type="button"
+          disabled={disabled}
+          onClick={handleDelete}
+        >
+          Delete Habit
         </button>
       </div>
       <div className="mb-4 w-full">

@@ -31,6 +31,9 @@ function Form({ isActive, closeForm }) {
             setFormError('Please fill out all fields.')
         } else {
             prepareHabit(e)
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000)
         }
     }
 

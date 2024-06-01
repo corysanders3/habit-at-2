@@ -188,6 +188,8 @@ function Calendar() {
           setHidden={setHidden}
           singleHabit={singleHabit}
           setSingleHabit={setSingleHabit}
+          userId={userId}
+          setHabits={setHabits}
         />
       )}
     </section>
