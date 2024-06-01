@@ -11,8 +11,7 @@ const Habit = ({
   setHidden,
   singleHabit,
   setSingleHabit,
-  userId,
-  setHabits,
+  userId
 }) => {
   const [disabled, setDisabled] = useState(true);
   const [form, setForm] = useState({
@@ -90,18 +89,18 @@ const Habit = ({
       className={
         hidden
           ? "hidden"
-          : `absolute z-10 w-[60%] h-[80%] bg-white border-green-500 border-2 rounded-xl px-12 py-12 shadow-lg overflow-y-auto`
+          : `absolute z-10 w-[60%] h-[80%] bg-white border-green-500 border-2 rounded-xl px-12 py-8 shadow-lg overflow-y-auto`
       }
       onSubmit={handleSubmit}
     >
       <button
         type="button"
-        className="absolute top-2 right-4 font-bold text-lg rounded-xl px-4 py-2 bg-red-500 text-white hover:bg-red-600"
+        className="absolute top-5 right-4 font-bold text-lg rounded-xl px-4 py-2 bg-red-500 text-white hover:bg-red-600"
         onClick={handleClose}
       >
         Close
       </button>
-      <h1 className="text-green-600 text-3xl font-bold mb-4">Habit View</h1>
+      <h1 className="text-green-600 text-4xl font-bold mb-4">Habit View</h1>
       <h2 className="mb-4 pr-48 text-lg">
         Once a habit is created, you can only edit the fields in{" "}
         <span className="text-green-500 font-extrabold">green</span>. If you'd
@@ -160,6 +159,22 @@ const Habit = ({
           />
         </label>
       </div>
+      <div className="mb-4 w-full">
+        <label className="block text-gray-700 text-sm font-bold mb-2">
+          Description:
+          <textarea
+            name="description"
+            value={form.description}
+            onChange={handleChange}
+            disabled={disabled}
+            className={
+              disabled
+                ? `mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-24 bg-green-100`
+                : `mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-24 bg-green-300`
+            }
+          />
+        </label>
+      </div>
       <div className="flex flex-col mb-4 w-full">
         <h3 className="block text-gray-700 text-sm font-bold mb-2">
           Plant ID: {form.plant_id}
@@ -176,22 +191,6 @@ const Habit = ({
         {form.plant_id === 4 && (
           <img className="h-16 w-12" src={flowerFour} alt="flower four" />
         )}
-      </div>
-      <div className="mb-4 w-full">
-        <label className="block text-gray-700 text-sm font-bold mb-2">
-          Description:
-          <textarea
-            name="description"
-            value={form.description}
-            onChange={handleChange}
-            disabled={disabled}
-            className={
-              disabled
-                ? `mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-24 bg-green-100`
-                : `mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-24 bg-green-300`
-            }
-          />
-        </label>
       </div>
       <div className="mb-4 w-full">
         <label className="block text-gray-700 text-sm font-bold mb-2">
