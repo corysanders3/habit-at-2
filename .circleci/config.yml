@@ -27,11 +27,9 @@ jobs:
       - checkout
       - node/install-packages
       - run:
-          name: Deploy to Heroku
+          name: Deploy Main to Heroku
           command: |
-            echo "Deploying to Heroku..."
-            git remote add heroku https://git.heroku.com/fe-habit-at.git
-            git push heroku main
+            git push https://git.heroku.com/fe-habit-at.git
 
 workflows:
   version: 2
@@ -44,4 +42,8 @@ workflows:
       #- build
       - deploy:
           requires:
-            - cypress/run # was build
+            - cypress/run
+
+          filters:
+            branches:
+              only: main
