@@ -1,21 +1,19 @@
 import './Scene.css';
 import { PerspectiveCamera, OrbitControls, Sky } from '@react-three/drei';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useLoader } from '@react-three/fiber';
 import { useState, useEffect } from 'react';
 import Garden from '../garden/Garden';
 import flower1 from '../images/flowers/flowerID_1.png';
-import PreloadGLTFs from '../Preload/PreloadGLTF';
-import PreloadTextures from '../Preload/PreloadTexture';
+import { TextureLoader } from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 function Scene({ habits, setError }) {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        if(habits) {
-            setTimeout(() => {
-                setIsLoading(false)
-            }, 4000)
-        }
+        setTimeout(() => {
+            setIsLoading(false)
+        }, 4000)
     }, [])
 
     const modelUrls = [
@@ -35,10 +33,11 @@ function Scene({ habits, setError }) {
         'cobblestone/mossy_cobblestone_nor_gl_2k.jpg'
     ];
 
+    useLoader(GLTFLoader, modelUrls);
+    useLoader(TextureLoader, textureUrls);
+
     return (
         <>
-            <PreloadGLTFs urls={modelUrls} />
-            <PreloadTextures urls={textureUrls} />
             { isLoading ? (
                 <>
                     <h1 className='loading'>Loading<span className='dot'> . </span><span className='dot'> . </span><span className='dot'> . </span></h1>
