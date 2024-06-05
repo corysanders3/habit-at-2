@@ -1,6 +1,5 @@
 import './FlowerDetails.css';
 import moment from 'moment';
-import { useParams } from 'react-router-dom';
 
 function FlowerDetails({ details, getDetails }) {
     const startDate = moment(`${details.attributes.start_datetime}`).format('MMMM Do, YYYY')
@@ -9,7 +8,7 @@ function FlowerDetails({ details, getDetails }) {
 
     return (
         <div className="absolute top-24 ml-10 min-w-fit w-1/5 rounded-xl bg-white text-lg leading-6 shadow-lg">
-            <svg onClick={() => getDetails(false)} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-8 ml-2 mt-2 hover:fill-lime-500 cursor-pointer">
+            <svg onClick={() => getDetails(false)} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-8 ml-2 mt-2 hover:fill-lime-200 cursor-pointer">
                 <path strokeLinecap="round" strokeLinejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
             </svg>
             <div className="group relative gap-x-6 rounded-lg pb-6 pt-2">

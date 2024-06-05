@@ -5,21 +5,6 @@ orbs:
   cypress: cypress-io/cypress@3.3.1
 
 jobs:
-  build: # skipping based on workflow
-    docker:
-      - image: cypress/browsers:latest
-    steps:
-      - checkout
-      - run:
-          name: Add dependencies
-          command: npm ci
-      - run:
-          name: Start Application
-          command: npm run start
-      - run:
-          name: Run Cypress Tests
-          command: npx cypress run --browser chrome
-
   deploy:
     docker:
       - image: cypress/browsers:latest
@@ -27,9 +12,11 @@ jobs:
       - checkout
       - node/install-packages
       - run:
-          name: Deploy to Heroku
+          name: Deploy Main to Heroku
           command: |
-            echo "Deploying to Heroku..."
+            echo "machine api.heroku.com login $HEROKU_EMAIL password $HEROKU_API_KEY" > ~/.netrc
+            echo "machine git.heroku.com login $HEROKU_EMAIL password $HEROKU_API_KEY" >> ~/.netrc
+            chmod 600 ~/.netrc
             git remote add heroku https://git.heroku.com/fe-habit-at.git
             git push heroku main
 
@@ -44,4 +31,8 @@ workflows:
       #- build
       - deploy:
           requires:
-            - cypress/run # was build
+            - cypress/run
+
+          filters:
+            branches:
+              only: main
