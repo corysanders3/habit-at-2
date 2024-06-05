@@ -1,15 +1,15 @@
 import './FlowerDetails.css';
 import moment from 'moment';
+import { useParams } from 'react-router-dom';
 
-function FlowerDetails({ details }) {
-    console.log(details)
-
+function FlowerDetails({ details, getDetails }) {
     const startDate = moment(`${details.attributes.start_datetime}`).format('MMMM Do, YYYY')
     const endDate = moment(`${details.attributes.end_datetime}`).format('MMMM Do, YYYY')
 
+
     return (
         <div className="absolute top-24 ml-10 min-w-fit w-1/5 rounded-xl bg-white text-lg leading-6 shadow-lg">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-8 ml-2 mt-2 hover:fill-lime-500 cursor-pointer">
+            <svg onClick={() => getDetails(false)} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-8 ml-2 mt-2 hover:fill-lime-500 cursor-pointer">
                 <path strokeLinecap="round" strokeLinejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
             </svg>
             <div className="group relative gap-x-6 rounded-lg pb-6 pt-2">
@@ -20,7 +20,7 @@ function FlowerDetails({ details }) {
                     </svg>
                 </div>
                 <p className="px-10">{details.attributes.description}</p>
-                <div className="mt-4 mx-4 text-gray-60 bg-gray-200 p-3 pl-5 rounded-md">
+                <div className="mt-4 mx-6 text-gray-60 bg-gray-200 p-3 pl-5 rounded-md">
                     <dd className="mt-1"><span className="font-semibold">Frequency: </span> {details.attributes.frequency}</dd>
                     <dd className="mt-1"><span className="font-semibold">Start: </span> {startDate}</dd>
                     <dd className="mt-1"><span className="font-semibold">End: </span> {endDate}</dd>

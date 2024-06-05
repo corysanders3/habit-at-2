@@ -13,7 +13,7 @@ function App() {
   const [userHabits, setHabits] = useState([])
   const [userId, setUserId] = useState(1)
   const [isActive, setIsActive] = useState(false);
-  const [details, showDetails] = useState(null)
+  const [details, showDetails] = useState(false)
 
   function loadForm(e) {
     e.preventDefault();
@@ -45,19 +45,23 @@ function App() {
   }
 
   const getDetails = (habit) => {
-   showDetails(habit)
+    if (habit) {
+      showDetails(habit)
+    } else {
+      showDetails(false)
+    }
   }
-  console.log('details', details)
+
   return (
     <>
-      <Nav loadForm={loadForm} />
+      <Nav loadForm={loadForm} getDetails={getDetails}/>
       <Routes>
-        <Route path='/' element={<Scene habits={userHabits} setError={setError} getDetails={getDetails}/>} />
+        <Route path='/' element={<Scene habits={userHabits} setError={setError} getDetails={getDetails} />} />
         <Route path="/calendar" element={<Calendar />} />
       </Routes>
       {isActive && <Form isActive={isActive} closeForm={closeForm} showUser={showUser} userId={userId} />}
       {error && <h2 className="fetch-error">{error.message}</h2>}
-      {details && <FlowerDetails details={details}/>}
+      {details && <FlowerDetails details={details} getDetails={getDetails} />}
     </>
   );
 }

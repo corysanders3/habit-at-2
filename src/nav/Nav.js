@@ -4,7 +4,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavLink } from "react-router-dom";
 import FlowerIcon from "../assets/flower-icon.svg";
 
-export default function Nav({ loadForm }) {
+export default function Nav({ loadForm, getDetails }) {
 
   return (
     <Disclosure as="nav" className="bg-white shadow">
@@ -35,11 +35,15 @@ export default function Nav({ loadForm }) {
                   <NavLink
                     to="/calendar"
                     className="inline-flex items-center border-b-2 border-green-500 px-1 pt-1 text-md font-medium text-gray-900"
+                    onClick={() => getDetails(false)}
                   >
                     Calendar
                   </NavLink>
                   <button 
-                  onClick={e => loadForm(e)}
+                  onClick={e => {
+                    loadForm(e)
+                    getDetails(false)
+                  }}
                   className="inline-flex items-center border-b-2 border-green-500 px-1 pt-1 text-md font-medium text-gray-900">
                     New Habit
                   </button>
