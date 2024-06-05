@@ -49,12 +49,12 @@ function Flower(props) {
     // **** GET request for habit progress ******
     const getParameters = async (userId, habitId) => {
         try {
-          const progress = await getProgress(userId, habitId)
-          if (progress) {
-            scaleFlower(progress.data)
-          }
+            const progress = await getProgress(userId, habitId)
+            if (progress) {
+                scaleFlower(progress.data)
+            }
         } catch (error) {
-          props.setError(error)
+            props.setError(error)
         }
         // **** remove this line below once fetch is implemented
         // scaleFlower(userProgress)
@@ -76,6 +76,7 @@ function Flower(props) {
         setScale(growth)
     }
 
+
     if (!type) {
         return (
             <group></group>
@@ -85,11 +86,13 @@ function Flower(props) {
         <group {...props} dispose={null}>
             <group position={position} scale={type.attributes.scale}>
                 <animated.mesh
+                    onClick={() => { props.getDetails(props.habit) }}
                     scale={scale}
                     castShadow
                     receiveShadow
                     geometry={nodes[type.attributes.style + '_1'].geometry}
                     material={materials[type.attributes.stem]}
+                    className="flower"
                 >
                     <mesh
                         castShadow

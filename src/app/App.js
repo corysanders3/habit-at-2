@@ -6,12 +6,14 @@ import Form from '../form/Form';
 import { getHabits } from '../apiCalls';
 import { Routes, Route } from 'react-router-dom';
 import React, { useState, useEffect } from 'react'
+import FlowerDetails from '../flowerdetails/FlowerDetails';
 
 function App() {
   const [error, setError] = useState()
   const [userHabits, setHabits] = useState([])
   const [userId, setUserId] = useState(1)
   const [isActive, setIsActive] = useState(false);
+  const [details, showDetails] = useState(null)
 
   function loadForm(e) {
     e.preventDefault();
@@ -41,16 +43,21 @@ function App() {
     // **** removed this line below once fetch is implemented
     // setHabits(habits)
   }
-  
+
+  const getDetails = (habit) => {
+   showDetails(habit)
+  }
+  console.log('details', details)
   return (
     <>
       <Nav loadForm={loadForm} />
       <Routes>
-        <Route path='/' element={<Scene habits={userHabits} setError={setError} />} />
+        <Route path='/' element={<Scene habits={userHabits} setError={setError} getDetails={getDetails}/>} />
         <Route path="/calendar" element={<Calendar />} />
       </Routes>
-      { isActive && <Form isActive={isActive} closeForm={closeForm} showUser={showUser} userId={userId}/> }
-      { error && <h2 className="fetch-error">{error.message}</h2> }
+      {isActive && <Form isActive={isActive} closeForm={closeForm} showUser={showUser} userId={userId} />}
+      {error && <h2 className="fetch-error">{error.message}</h2>}
+      {details && <FlowerDetails details={details}/>}
     </>
   );
 }

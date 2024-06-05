@@ -3,13 +3,13 @@ import { PerspectiveCamera, OrbitControls, Sky } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import Garden from '../garden/Garden';
 
-function Scene({ habits, setError }) {
+function Scene({ habits, setError, getDetails }) {
     return (
         <div style={{ width: '100%', height: '90%' }}>
             <Canvas className='garden-scene'>
                 <ambientLight intensity={2} />
                 <directionalLight position={[1, 1, 4]} intensity={3} />
-                <Garden habits={habits} setError={setError} />
+                <Garden habits={habits} setError={setError} getDetails={getDetails}/>
                 <Sky sunPosition={[0.6, 0.1, 0.6]} />
                 <PerspectiveCamera makeDefault position={[0, 5, 15]} />
                 <OrbitControls

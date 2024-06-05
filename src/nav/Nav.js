@@ -15,7 +15,7 @@ export default function Nav({ loadForm }) {
               <div className="flex">
                 <NavLink to="/" className="flex">
                   <div className="flex flex-shrink-0 items-center">
-                    <h1 className="inline-flex items-center px-1 pt-1 text-lg font-medium text-green-600">
+                    <h1 className="inline-flex items-center px-1 pt-1 text-xl font-medium text-green-600">
                       Habit-at
                     </h1>
                     <img
@@ -28,19 +28,19 @@ export default function Nav({ loadForm }) {
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                   <NavLink
                     to="/"
-                    className="inline-flex items-center border-b-2 border-green-500 px-1 pt-1 text-sm font-medium text-gray-900"
+                    className="inline-flex items-center border-b-2 border-green-500 px-1 pt-1 text-md font-medium text-gray-900"
                   >
                     Home
                   </NavLink>
                   <NavLink
                     to="/calendar"
-                    className="inline-flex items-center border-b-2 border-green-500 px-1 pt-1 text-sm font-medium text-gray-900"
+                    className="inline-flex items-center border-b-2 border-green-500 px-1 pt-1 text-md font-medium text-gray-900"
                   >
                     Calendar
                   </NavLink>
                   <button 
                   onClick={e => loadForm(e)}
-                  className="inline-flex items-center border-b-2 border-green-500 px-1 pt-1 text-sm font-medium text-gray-900">
+                  className="inline-flex items-center border-b-2 border-green-500 px-1 pt-1 text-md font-medium text-gray-900">
                     New Habit
                   </button>
                 </div>
