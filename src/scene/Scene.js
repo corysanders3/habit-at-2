@@ -8,29 +8,29 @@ import { TextureLoader } from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 function Scene({ habits, setError }) {
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
-    useEffect(() => {
-        setTimeout(() => {
-            setIsLoading(false)
-        }, 4000)
-    }, [])
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         setIsLoading(false)
+    //     }, 4000)
+    // }, [])
 
     const modelUrls = [
-        '/planter_long/planter_box_02_2k.gltf',
-        '/gnome/garden_gnome_2k.gltf',
-        '/compost_bags/compost_bags_2k.gltf'
+        '/planter_long/planter_box_02_1k.gltf',
+        '/gnome/garden_gnome_1k.gltf',
+        '/compost_bags/compost_bags_1k.gltf'
     ];
 
     const textureUrls = [
-        'dirt/brown_mud_leaves_01_diff_2k.jpg',
-        'dirt/brown_mud_leaves_01_disp_2k.jpg',
-        'dirt/brown_mud_leaves_01_arm_2k.jpg',
-        'dirt/brown_mud_leaves_01_nor_gl_2k.jpg',
-        'cobblestone/mossy_cobblestone_diff_2k.jpg',
-        'cobblestone/mossy_cobblestone_disp_2k.jpg',
-        'cobblestone/mossy_cobblestone_arm_2k.jpg',
-        'cobblestone/mossy_cobblestone_nor_gl_2k.jpg'
+        'dirt/brown_mud_leaves_01_diff_1k.jpg',
+        'dirt/brown_mud_leaves_01_disp_1k.jpg',
+        'dirt/brown_mud_leaves_01_arm_1k.jpg',
+        'dirt/brown_mud_leaves_01_nor_gl_1k.jpg',
+        'cobblestone/mossy_cobblestone_diff_1k.jpg',
+        'cobblestone/mossy_cobblestone_disp_1k.jpg',
+        'cobblestone/mossy_cobblestone_arm_1k.jpg',
+        'cobblestone/mossy_cobblestone_nor_gl_1k.jpg'
     ];
 
     useLoader(GLTFLoader, modelUrls);

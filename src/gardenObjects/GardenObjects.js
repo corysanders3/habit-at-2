@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { useTexture, Plane, useGLTF, useAnimations } from '@react-three/drei';
 
 function Planter(props) {
-    const { nodes, materials } = useGLTF('/planter_long/planter_box_02_2k.gltf')
+    const { nodes, materials } = useGLTF('/planter_long/planter_box_02_1k.gltf')
     return (
         <group {...props} dispose={null}>
             <mesh
@@ -18,20 +18,20 @@ function Planter(props) {
 
 function Dirt() {
     const textureStyle = useTexture({
-        map: 'dirt/brown_mud_leaves_01_diff_2k.jpg',
-        displacementMap: 'dirt/brown_mud_leaves_01_disp_2k.jpg',
-        aoMap: 'dirt/brown_mud_leaves_01_arm_2k.jpg',
-        roughnessMap: 'dirt/brown_mud_leaves_01_arm_2k.jpg',
-        metalnessMap: 'dirt/brown_mud_leaves_01_arm_2k.jpg',
-        normalMap: 'dirt/brown_mud_leaves_01_nor_gl_2k.jpg'
+        map: 'dirt/brown_mud_leaves_01_diff_1k.jpg',
+        displacementMap: 'dirt/brown_mud_leaves_01_disp_1k.jpg',
+        aoMap: 'dirt/brown_mud_leaves_01_arm_1k.jpg',
+        roughnessMap: 'dirt/brown_mud_leaves_01_arm_1k.jpg',
+        metalnessMap: 'dirt/brown_mud_leaves_01_arm_1k.jpg',
+        normalMap: 'dirt/brown_mud_leaves_01_nor_gl_1k.jpg'
     })
 
     return (
         <group>
-            <Plane args={[5.9, 3.8, 32, 32]} position={[-2.9, -0.8, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+            <Plane args={[5.9, 3.8, 16, 16]} position={[-2.9, -0.8, 0]} rotation={[-Math.PI / 2, 0, 0]}>
                 <meshStandardMaterial {...textureStyle} />
             </Plane>
-            <Plane args={[5.9, 3.8, 32, 32]} position={[2.9, -0.8, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+            <Plane args={[5.9, 3.8, 16, 16]} position={[2.9, -0.8, 0]} rotation={[-Math.PI / 2, 0, 0]}>
                 <meshStandardMaterial {...textureStyle} />
             </Plane>
         </group>
@@ -39,7 +39,7 @@ function Dirt() {
 }
 
 function Gnome(props) {
-    const { nodes, materials } = useGLTF('/gnome/garden_gnome_2k.gltf')
+    const { nodes, materials } = useGLTF('/gnome/garden_gnome_1k.gltf')
     return (
         <group {...props} dispose={null}>
             <mesh
@@ -54,7 +54,7 @@ function Gnome(props) {
 
 function Compost(props) {
     const group = useRef()
-    const { nodes, materials, animations } = useGLTF('/compost_bags/compost_bags_2k.gltf')
+    const { nodes, materials, animations } = useGLTF('/compost_bags/compost_bags_1k.gltf')
     const { actions } = useAnimations(animations, group)
     return (
         <group ref={group} {...props} dispose={null}>
@@ -100,40 +100,40 @@ function Compost(props) {
 
 function Ground() {
     const textureStyle = useTexture({
-        map: 'cobblestone/mossy_cobblestone_diff_2k.jpg',
-        displacementMap: 'cobblestone/mossy_cobblestone_disp_2k.jpg',
-        aoMap: 'cobblestone/mossy_cobblestone_arm_2k.jpg',
-        roughnessMap: 'cobblestone/mossy_cobblestone_arm_2k.jpg',
-        metalnessMap: 'cobblestone/mossy_cobblestone_arm_2k.jpg',
-        normalMap: 'cobblestone/mossy_cobblestone_nor_gl_2k.jpg'
+        map: 'cobblestone/mossy_cobblestone_diff_1k.jpg',
+        displacementMap: 'cobblestone/mossy_cobblestone_disp_1k.jpg',
+        aoMap: 'cobblestone/mossy_cobblestone_arm_1k.jpg',
+        roughnessMap: 'cobblestone/mossy_cobblestone_arm_1k.jpg',
+        metalnessMap: 'cobblestone/mossy_cobblestone_arm_1k.jpg',
+        normalMap: 'cobblestone/mossy_cobblestone_nor_gl_1k.jpg'
     })
 
     return (
         <group>
-            <Plane args={[40, 40, 64, 64]} position={[0, -5, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+            <Plane args={[40, 40, 32, 32]} position={[0, -5, 0]} rotation={[-Math.PI / 2, 0, 0]}>
                 <meshStandardMaterial {...textureStyle} />
             </Plane>
-            <Plane args={[40, 40, 64, 64]} position={[40, -5, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+            <Plane args={[40, 40, 32, 32]} position={[40, -5, 0]} rotation={[-Math.PI / 2, 0, 0]}>
                 <meshStandardMaterial {...textureStyle} />
             </Plane>
-            <Plane args={[40, 40, 64, 64]} position={[-40, -5, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+            <Plane args={[40, 40, 32, 32]} position={[-40, -5, 0]} rotation={[-Math.PI / 2, 0, 0]}>
                 <meshStandardMaterial {...textureStyle} />
             </Plane>
-            <Plane args={[40, 40, 64, 64]} position={[0, -5, -40, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+            <Plane args={[40, 40, 32, 32]} position={[0, -5, -40, 0]} rotation={[-Math.PI / 2, 0, 0]}>
                 <meshStandardMaterial {...textureStyle} />
             </Plane>
-            <Plane args={[40, 40, 64, 64]} position={[40, -5, -40, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+            <Plane args={[40, 40, 32, 32]} position={[40, -5, -40, 0]} rotation={[-Math.PI / 2, 0, 0]}>
                 <meshStandardMaterial {...textureStyle} />
             </Plane>
-            <Plane args={[40, 40, 64, 64]} position={[-40, -5, -40, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+            <Plane args={[40, 40, 32, 32]} position={[-40, -5, -40, 0]} rotation={[-Math.PI / 2, 0, 0]}>
                 <meshStandardMaterial {...textureStyle} />
             </Plane>
         </group>
     )
 }
 
-useGLTF.preload('/planter_long/planter_box_02_2k.gltf')
-useGLTF.preload('/gnome/garden_gnome_4k.gltf')
-useGLTF.preload('/compost_bags/compost_bags_2k.gltf')
+useGLTF.preload('/planter_long/planter_box_02_1k.gltf')
+useGLTF.preload('/gnome/garden_gnome_1k.gltf')
+useGLTF.preload('/compost_bags/compost_bags_1k.gltf')
 
 export { Planter, Dirt, Gnome, Compost, Ground }
