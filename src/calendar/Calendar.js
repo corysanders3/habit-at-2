@@ -39,7 +39,10 @@ function Calendar() {
           const dateKey = progress.attributes.datetime.slice(0, 10);
           return {
             ...acc,
-            [dateKey]: progress.attributes.status,
+            [dateKey]: {
+              status: progress.attributes.status,
+              id: progress.id
+            }
           };
         }, {}),
       }));
@@ -135,6 +138,7 @@ function Calendar() {
     const targetHabit = userHabits.find((event) => {
       return event.id === info.event._def.publicId;
     });
+    targetHabit.date = convertDateObject(info.event._instance.range.end);
     setSingleHabit(targetHabit);
     setHidden(false);
   };
@@ -155,9 +159,9 @@ function Calendar() {
     return (
       <div className="flex justify-between items-center cursor-pointer px-2">
         <span className="font-bold text-wrap">{eventInfo.event.title}</span>
-        {userProgress[contentId][contentDate] === "completed" && <img className="h-6 py-1" src={CompleteIcon} />}
-        {userProgress[contentId][contentDate] === "incomplete" && <img className="h-6 py-1" src={PendingIcon} />}
-        {userProgress[contentId][contentDate] === "skipped" && <img className="h-6 py-1" src={IncompleteIcon} />}
+        {userProgress[contentId][contentDate].status === "incomplete" && <img className="h-6 py-1" src={PendingIcon} />}
+        {userProgress[contentId][contentDate].status === "skipped" && <img className="h-6 py-1" src={IncompleteIcon} />}
+        {userProgress[contentId][contentDate].status === "completed" && <img className="h-6 py-1" src={CompleteIcon} />}
       </div>
     );
   };

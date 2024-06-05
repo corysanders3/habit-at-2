@@ -84,6 +84,10 @@ const Habit = ({
     }, 1000);
   };
 
+  const handleComplete = () => {
+    console.log(singleHabit);
+  }
+
   return (
     <form
       className={
@@ -128,6 +132,18 @@ const Habit = ({
           disabled={disabled}
         >
           Submit Changes
+        </button>
+        <button
+          className={
+            disabled
+              ? `border-slate-500 border-2 rounded-xl px-4 py-2 bg-slate-500 text-white opacity-30`
+              : `border-green-500 border-2 rounded-xl px-4 py-2 bg-green-500 text-white hover:bg-green-600`
+          }
+          type="button"
+          disabled={disabled}
+          onClick={handleComplete}
+        >
+          Mark Task Complete
         </button>
         <button
           className={
