@@ -34,11 +34,11 @@ async function completeHabit(userId, habitId, progressId) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: {
-        progress: {
-          status: "completed",
+      body: JSON.stringify({
+        "progress": {
+          "status": "completed",
         }
-      },
+      }),
     }
   );
   if (!response.ok) {

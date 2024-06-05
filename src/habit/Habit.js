@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { deleteHabit } from "../apiCalls";
+import { deleteHabit, completeHabit } from "../apiCalls";
 import flowerOne from "../images/flowers/flowerID_1.png";
 import flowerTwo from "../images/flowers/flowerID_2.png";
 import flowerThree from "../images/flowers/flowerID_3.png";
@@ -11,7 +11,8 @@ const Habit = ({
   setHidden,
   singleHabit,
   setSingleHabit,
-  userId
+  userId,
+  userProgress
 }) => {
   const [disabled, setDisabled] = useState(true);
   const [form, setForm] = useState({
@@ -85,7 +86,11 @@ const Habit = ({
   };
 
   const handleComplete = () => {
-    console.log(singleHabit);
+    const progressId = userProgress[singleHabit.id][singleHabit.date].id;
+    completeHabit(userId, singleHabit.id, progressId);
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
   }
 
   return (

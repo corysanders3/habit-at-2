@@ -138,7 +138,8 @@ function Calendar() {
     const targetHabit = userHabits.find((event) => {
       return event.id === info.event._def.publicId;
     });
-    targetHabit.date = convertDateObject(info.event._instance.range.end);
+    const specificDate = convertDateObject(info.event._instance.range.end);
+    targetHabit.date = specificDate;
     setSingleHabit(targetHabit);
     setHidden(false);
   };
@@ -194,6 +195,7 @@ function Calendar() {
           setSingleHabit={setSingleHabit}
           userId={userId}
           setHabits={setHabits}
+          userProgress={userProgress}
         />
       )}
     </section>
