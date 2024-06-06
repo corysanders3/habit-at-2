@@ -1,4 +1,6 @@
 import React from "react";
+import { useState, useEffect } from "react";
+import moment from "moment";
 import { useState } from "react";
 import { deleteHabit, completeHabit, updateHabit } from "../apiCalls";
 import flowerOne from "../images/flowers/flowerID_1.png";
@@ -24,6 +26,8 @@ const Habit = ({
     start_datetime: singleHabit.attributes.start_datetime.slice(0, 10),
     end_datetime: singleHabit.attributes.end_datetime.slice(0, 10),
   });
+  const today = moment().format("YYYY-MM-DD");
+  const [isToday, setIsToday] = useState(false);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -102,6 +106,12 @@ const Habit = ({
     }, 1000);
   };
 
+  useEffect(() => {
+    if (moment(today).isSame(singleHabit.date)) {
+      setIsToday(true);
+    }
+  }, []);
+
   return (
     <form
       className={
@@ -120,6 +130,7 @@ const Habit = ({
       </button>
       <h1 className="text-green-600 text-4xl font-bold mb-4">Habit View</h1>
       <h2 className="mb-4 pr-48 text-lg">
+        Habits can only be logged as complete on the day of the habit occurence. 
         Once a habit is created, you can only edit the fields in{" "}
         <span className="text-green-500 font-extrabold">green</span>. If you'd
         like to change{" "}
@@ -149,12 +160,12 @@ const Habit = ({
         </button>
         <button
           className={
-            disabled
-              ? `border-slate-500 border-2 rounded-xl px-4 py-2 bg-slate-500 text-white opacity-30`
-              : `border-green-500 border-2 rounded-xl px-4 py-2 bg-green-500 text-white hover:bg-green-600`
+            isToday
+              ? `border-green-500 border-2 rounded-xl px-4 py-2 bg-green-500 text-white hover:bg-green-600`
+              : `border-slate-500 border-2 rounded-xl px-4 py-2 bg-slate-500 text-white opacity-30`
           }
           type="button"
-          disabled={disabled}
+          disabled={!isToday}
           onClick={handleComplete}
         >
           Mark Habit Complete
