@@ -11,10 +11,9 @@ import CompleteIcon from "../assets/checkmark-icon.svg";
 import IncompleteIcon from "../assets/incomplete-icon.svg";
 import PendingIcon from "../assets/pending-icon.svg";
 
-function Calendar() {
+function Calendar({ userId }) {
   const [error, setError] = useState(null);
   const [userHabits, setHabits] = useState([]);
-  const [userId, setUserId] = useState(1);
   const [hidden, setHidden] = useState(true);
   const [singleHabit, setSingleHabit] = useState(null);
   const [userProgress, setUserProgress] = useState({});
@@ -33,6 +32,7 @@ function Calendar() {
   const showProgress = async (userId, habitId) => {
     try {
       const progresses = await getProgress(userId, habitId);
+
       setUserProgress((prevState) => ({
         ...prevState,
         [habitId]: progresses.data.reduce((acc, progress) => {
@@ -50,7 +50,7 @@ function Calendar() {
       setError(error);
     }
   };
-
+  console.log('userProgress', userProgress)
   const loadProgress = async (userHabits) => {
     await userHabits.forEach((habit) => {
       showProgress(userId, habit.id);
@@ -155,7 +155,7 @@ function Calendar() {
   const renderEventContent = (eventInfo) => {
     const contentId = parseInt(eventInfo.event._def.publicId);
     const contentDate = convertDateObject(eventInfo.event.start);
-
+    console.log('!!!', userProgress[contentId][contentDate])
     return (
       <div className="flex justify-between items-center cursor-pointer px-2">
         <span className="font-bold text-wrap">{eventInfo.event.title}</span>

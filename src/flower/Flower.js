@@ -20,8 +20,8 @@ function Flower(props) {
     useEffect(() => {
         findFlower()
         findPosition()
-        // getFlowerScale(props.userId, props.habitId)
-        getParameters(props.userId, props.habitId)
+        getFlowerSize(props.userId, props.habitId)
+        // getParameters(props.userId, props.habitId)
     }, [props.index])
 
     // ****** GET request for flower styles *******
@@ -47,30 +47,29 @@ function Flower(props) {
     // }
 
     // **** GET request for habit progress ******
-    const getParameters = async (userId, habitId) => {
-        try {
-            const progress = await getProgress(userId, habitId)
-            if (progress) {
-                scaleFlower(progress.data)
-            }
-        } catch (error) {
-            props.setError(error)
-        }
-        // **** remove this line below once fetch is implemented
-        // scaleFlower(userProgress)
-    }
-
-    // const getFlowerSize = async (userId, habitId) => {
+    // const getParameters = async (userId, habitId) => {
     //     try {
-    //         const size = await getFlowerScale(userId, habitId)
-    //         if (size) {
-    //             console.log('size', size)
-    //             setScale(size.attributes.scale)
+    //         const progress = await getProgress(userId, habitId)
+    //         if (progress) {
+    //             scaleFlower(progress.data)
     //         }
     //     } catch (error) {
     //         props.setError(error)
     //     }
+    //     // **** remove this line below once fetch is implemented
+    //     // scaleFlower(userProgress)
     // }
+
+    const getFlowerSize = async (userId, habitId) => {
+        try {
+            const size = await getFlowerScale(userId, habitId)
+            if (size) {
+                setScale(size.data.attributes.scale)
+            }
+        } catch (error) {
+            props.setError(error)
+        }
+    }
 
     const findPosition = () => {
         let x = -4
@@ -83,10 +82,10 @@ function Flower(props) {
         }
     }
 
-    const scaleFlower = (progressLog) => {
-        const growth = calculateGrowth(progressLog, props.habit.attributes.frequency)
-        setScale(growth)
-    }
+    // const scaleFlower = (progressLog) => {
+    //     const growth = calculateGrowth(progressLog, props.habit.attributes.frequency)
+    //     setScale(growth)
+    // }
 
 
     if (!type) {

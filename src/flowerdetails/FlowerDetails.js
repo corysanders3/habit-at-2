@@ -12,6 +12,7 @@ function FlowerDetails({ details, getDetails }) {
                 fill="none" viewBox="0 0 24 24"
                 strokeWidth={1.5} stroke="currentColor"
                 className="size-8 ml-2 mt-2 hover:fill-lime-200 cursor-pointer"
+                onClick={() => getDetails(false)}
             >
                 <path
                     strokeLinecap="round"
