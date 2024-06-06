@@ -5,6 +5,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import rrulePlugin from "@fullcalendar/rrule";
 import { useEffect, useState } from "react";
+import moment from "moment";
 import { getHabits, getProgress } from "../apiCalls";
 import Habit from "../habit/Habit";
 import CompleteIcon from "../assets/checkmark-icon.svg";
@@ -137,24 +138,15 @@ function Calendar() {
     const targetHabit = userHabits.find((event) => {
       return event.id === info.event._def.publicId;
     });
-    const specificDate = convertDateObject(info.event._instance.range.end);
+    const specificDate = moment(info.event._instance.range.end).format("YYYY-MM-DD");
     targetHabit.date = specificDate;
     setSingleHabit(targetHabit);
     setHidden(false);
   };
 
-  const convertDateObject = (dateObject) => {
-    const date = new Date(dateObject);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-    const formattedDate = `${year}-${month}-${day}`;
-    return formattedDate;
-  };
-
   const renderEventContent = (eventInfo) => {
     const contentId = parseInt(eventInfo.event._def.publicId);
-    const contentDate = convertDateObject(eventInfo.event.start);
+    const contentDate = moment(eventInfo.event.start).format("YYYY-MM-DD");
 
     return (
       <div className="flex justify-between items-center cursor-pointer px-2">
