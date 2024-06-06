@@ -1,25 +1,10 @@
 import React from "react";
-import { useState } from "react";
-import Form from "../form/Form";
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavLink } from "react-router-dom";
 import FlowerIcon from "../assets/flower-icon.svg";
 
-export default function Nav() {
-  const [isActive, setIsActive] = useState(false);
-
-  function loadForm(e) {
-    e.preventDefault();
-    if (!isActive) {
-      setIsActive(true);
-    }
-  }
-
-  function closeForm(e) {
-    e.preventDefault();
-    setIsActive(false);
-  }
+export default function Nav({ loadForm }) {
 
   return (
     <Disclosure as="nav" className="bg-white shadow">
@@ -95,7 +80,6 @@ export default function Nav() {
               </button>
             </div>
           </Disclosure.Panel>
-          <Form isActive={isActive} closeForm={closeForm}/>
         </>
       )}
     </Disclosure>

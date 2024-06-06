@@ -1,0 +1,76 @@
+{
+    "data": [
+        {
+            "id": "1186",
+            "type": "progress",
+            "attributes": {
+                "habit_id": 30,
+                "status": "incomplete",
+                "datetime": "2024-05-03T00:00:00.000Z"
+            }
+        },
+        {
+            "id": "1187",
+            "type": "progress",
+            "attributes": {
+                "habit_id": 30,
+                "status": "incomplete",
+                "datetime": "2024-05-04T00:00:00.000Z"
+            }
+        },
+        {
+            "id": "1188",
+            "type": "progress",
+            "attributes": {
+                "habit_id": 30,
+                "status": "incomplete",
+                "datetime": "2024-05-10T00:00:00.000Z"
+            }
+        },
+        {
+            "id": "1189",
+            "type": "progress",
+            "attributes": {
+                "habit_id": 30,
+                "status": "incomplete",
+                "datetime": "2024-05-11T00:00:00.000Z"
+            }
+        },
+        {
+            "id": "1190",
+            "type": "progress",
+            "attributes": {
+                "habit_id": 30,
+                "status": "incomplete",
+                "datetime": "2024-05-17T00:00:00.000Z"
+            }
+        },
+        {
+            "id": "1191",
+            "type": "progress",
+            "attributes": {
+                "habit_id": 30,
+                "status": "incomplete",
+                "datetime": "2024-05-18T00:00:00.000Z"
+            }
+        },
+        {
+            "id": "1192",
+            "type": "progress",
+            "attributes": {
+                "habit_id": 30,
+                "status": "incomplete",
+                "datetime": "2024-05-24T00:00:00.000Z"
+            }
+        },
+        {
+            "id": "1193",
+            "type": "progress",
+            "attributes": {
+                "habit_id": 30,
+                "status": "incomplete",
+                "datetime": "2024-05-25T00:00:00.000Z"
+            }
+        }
+    ]
+}

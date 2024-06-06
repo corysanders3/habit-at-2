@@ -2,22 +2,9 @@ version: 2.1
 
 orbs:
   node: circleci/node@4.1
-  cypress: cypress-io/cypress@3.1.1
+  cypress: cypress-io/cypress@3.3.1
 
 jobs:
-  build:
-    docker:
-      - image: cypress/browsers:latest
-    steps:
-      - checkout
-      - node/install-packages
-      - run:
-          name: Start Server
-          command: npm start
-      - run:
-          name: Run Cypress Tests
-          command: npx cypress run --headless
-
   deploy:
     docker:
       - image: cypress/browsers:latest
@@ -25,12 +12,11 @@ jobs:
       - checkout
       - node/install-packages
       - run:
-          name: Install @smartbear/visualtest-cypress
-          command: npm install @smartbear/visualtest-cypress@latest --save-dev
-      - run:
-          name: Deploy to Heroku
+          name: Deploy Main to Heroku
           command: |
-            echo "Deploying to Heroku..."
+            echo "machine api.heroku.com login $HEROKU_EMAIL password $HEROKU_API_KEY" > ~/.netrc
+            echo "machine git.heroku.com login $HEROKU_EMAIL password $HEROKU_API_KEY" >> ~/.netrc
+            chmod 600 ~/.netrc
             git remote add heroku https://git.heroku.com/fe-habit-at.git
             git push heroku main
 
@@ -38,7 +24,15 @@ workflows:
   version: 2
   build-and-deploy:
     jobs:
-      - build
+      - cypress/run: # "run" job comes from "cypress" orb
+          cypress-command: npx cypress run --browser chrome
+          install-browsers: true
+          start-command: 'npm run start'
+      #- build
       - deploy:
           requires:
-            - build
+            - cypress/run
+
+          filters:
+            branches:
+              only: main

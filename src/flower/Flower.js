@@ -1,10 +1,8 @@
 import './Flower.css';
-// import flowerData from '../mockData/flowerDetails';
 import React, { useState, useEffect } from 'react';
 import { calculateGrowth } from '../grow/Grow';
 import { getFlowers } from '../apiCalls';
 import { getProgress } from '../apiCalls';
-// import userProgress from '../mockData/userProgress';
 import { useGLTF } from '@react-three/drei';
 import { useSpring, animated, config } from '@react-spring/three';
 
