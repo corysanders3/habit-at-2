@@ -2,12 +2,14 @@
 
 .fetch-error {
   position: absolute;
-  background-color: rgba(240, 248, 255, 0);
+  background-color: rgb(240, 248, 255);
   top: 12vh;
-  margin-left: 2em;
-  z-index: 2;
+  margin-left: 4em;
+  z-index: 0;
   font-size: 1.5em;
   font-weight: bold;
   color: rgb(7, 26, 172);
+  padding: 1em;
+  border-radius: 10px;
 }
 

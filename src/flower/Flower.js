@@ -1,8 +1,6 @@
 import './Flower.css';
 import React, { useState, useEffect } from 'react';
-import { calculateGrowth } from '../grow/Grow';
-import { getFlowers } from '../apiCalls';
-import { getProgress } from '../apiCalls';
+import { getFlowers, getFlowerScale } from '../apiCalls';
 import { useGLTF } from '@react-three/drei';
 import { useSpring, animated, config } from '@react-spring/three';
 
@@ -21,10 +19,9 @@ function Flower(props) {
     useEffect(() => {
         findFlower()
         findPosition()
-        getParameters(props.userId, props.habitId)
+        getFlowerSize(props.userId, props.habitId)
     }, [props.index])
 
-    // ****** GET request for flower styles *******
     const findFlower = async () => {
         try {
             const flowers = await getFlowers()
@@ -38,26 +35,16 @@ function Flower(props) {
             props.setError(error)
         }
     }
-    // ****** Remove this findFlower() function below once fetch is implemented
-    // const findFlower = () => {
-    //     const flowerType = flowerData.find(type => {
-    //         return type.id === props.flower
-    //     })
-    //     setType(flowerType)
-    // }
 
-    // **** GET request for habit progress ******
-    const getParameters = async (userId, habitId) => {
+    const getFlowerSize = async (userId, habitId) => {
         try {
-          const progress = await getProgress(userId, habitId)
-          if (progress) {
-            scaleFlower(progress.data)
-          }
+            const size = await getFlowerScale(userId, habitId)
+            if (size) {
+                setScale(size.data.attributes.scale)
+            }
         } catch (error) {
-          props.setError(error)
+            props.setError(error)
         }
-        // **** remove this line below once fetch is implemented
-        // scaleFlower(userProgress)
     }
 
     const findPosition = () => {
@@ -71,11 +58,6 @@ function Flower(props) {
         }
     }
 
-    const scaleFlower = (progressLog) => {
-        const growth = calculateGrowth(progressLog, props.habit.attributes.frequency)
-        setScale(growth)
-    }
-
     if (!type) {
         return (
             <group></group>
@@ -85,11 +67,13 @@ function Flower(props) {
         <group {...props} dispose={null}>
             <group position={position} scale={type.attributes.scale}>
                 <animated.mesh
+                    onClick={() => { props.getDetails(props.habit) }}
                     scale={scale}
                     castShadow
                     receiveShadow
                     geometry={nodes[type.attributes.style + '_1'].geometry}
                     material={materials[type.attributes.stem]}
+                    className="flower"
                 >
                     <mesh
                         castShadow

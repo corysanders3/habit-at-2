@@ -1,7 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import moment from "moment";
-import { deleteHabit, completeHabit } from "../apiCalls";
+import { useState } from "react";
+import { deleteHabit, completeHabit, updateHabit } from "../apiCalls";
 import flowerOne from "../images/flowers/flowerID_1.png";
 import flowerTwo from "../images/flowers/flowerID_2.png";
 import flowerThree from "../images/flowers/flowerID_3.png";
@@ -78,7 +79,16 @@ const Habit = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(form);
+    const updatedContent = {
+      habit: {
+        name: form.name,
+        description: form.description
+      }
+    }
+    updateHabit(userId, singleHabit.id, updatedContent);
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
   };
 
   const handleDelete = () => {

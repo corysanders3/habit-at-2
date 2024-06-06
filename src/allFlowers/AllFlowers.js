@@ -2,7 +2,7 @@ import './AllFlowers.css';
 import { Flower } from '../flower/Flower';
 import React, { useState, useEffect } from 'react';
 
-function AllFlowers({ habits, setError }) {
+function AllFlowers({ habits, setError, getDetails }) {
     const [flowers, setFlowers] = useState()
 
     useEffect(() => {
@@ -23,6 +23,7 @@ function AllFlowers({ habits, setError }) {
                 habitId={habit.id}
                 habit={habit}
                 setError={setError}
+                getDetails={getDetails}
                 />
             )
         })
@@ -31,7 +32,7 @@ function AllFlowers({ habits, setError }) {
 
     return (
         <React.Fragment>
-            {flowers}
+            {flowers} 
         </React.Fragment>
     )
 }
