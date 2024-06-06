@@ -47,8 +47,6 @@ function App() {
     } catch (error) {
       setError(error)
     }
-    // **** removed this line below once fetch is implemented
-    // setHabits(habits)
   }
 
   const getDetails = (habit) => {

@@ -74,11 +74,15 @@ export default function Nav({ loadForm, getDetails }) {
               <NavLink
                 to="/calendar"
                 className="block border-l-4 border-green-500 bg-green-50 py-2 pl-3 pr-4 text-base font-medium text-green-700"
+                onClick={() => getDetails(false)}
               >
                 Calendar
               </NavLink>
               <button 
-              onClick={e => loadForm(e)}
+                onClick={e => {
+                loadForm(e)
+                getDetails(false)
+                }}
               className="block border-l-4 border-green-500 bg-green-50 py-2 pl-3 pr-4 text-base font-medium text-green-700">
                 New Habit
               </button>
