@@ -12,7 +12,7 @@ const Habit = ({
   singleHabit,
   setSingleHabit,
   userId,
-  userProgress
+  userProgress,
 }) => {
   const [disabled, setDisabled] = useState(true);
   const [form, setForm] = useState({
@@ -91,7 +91,7 @@ const Habit = ({
     setTimeout(() => {
       window.location.reload();
     }, 1000);
-  }
+  };
 
   return (
     <form
@@ -148,7 +148,7 @@ const Habit = ({
           disabled={disabled}
           onClick={handleComplete}
         >
-          Mark Task Complete
+          Mark Habit Complete
         </button>
         <button
           className={

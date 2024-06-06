@@ -35,9 +35,9 @@ async function completeHabit(userId, habitId, progressId) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        "progress": {
-          "status": "completed",
-        }
+        progress: {
+          status: "completed",
+        },
       }),
     }
   );
@@ -86,4 +86,11 @@ function postHabit(data, userId) {
   });
 }
 
-export { getHabits, deleteHabit, completeHabit, getFlowers, getProgress, postHabit };
+export {
+  getHabits,
+  deleteHabit,
+  completeHabit,
+  getFlowers,
+  getProgress,
+  postHabit,
+};

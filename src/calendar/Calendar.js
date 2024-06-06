@@ -41,8 +41,8 @@ function Calendar() {
             ...acc,
             [dateKey]: {
               status: progress.attributes.status,
-              id: progress.id
-            }
+              id: progress.id,
+            },
           };
         }, {}),
       }));
@@ -55,7 +55,7 @@ function Calendar() {
     await userHabits.forEach((habit) => {
       showProgress(userId, habit.id);
     });
-  }
+  };
 
   useEffect(() => {
     showUser(userId);
@@ -64,7 +64,6 @@ function Calendar() {
   useEffect(() => {
     loadProgress(userHabits);
   }, [userHabits]);
-
 
   function convertFrequency(frequency) {
     const frequencyDays = Object.keys(frequency);
@@ -156,13 +155,19 @@ function Calendar() {
   const renderEventContent = (eventInfo) => {
     const contentId = parseInt(eventInfo.event._def.publicId);
     const contentDate = convertDateObject(eventInfo.event.start);
-    
+
     return (
       <div className="flex justify-between items-center cursor-pointer px-2">
         <span className="font-bold text-wrap">{eventInfo.event.title}</span>
-        {userProgress[contentId][contentDate].status === "incomplete" && <img className="h-6 py-1" src={PendingIcon} />}
-        {userProgress[contentId][contentDate].status === "skipped" && <img className="h-6 py-1" src={IncompleteIcon} />}
-        {userProgress[contentId][contentDate].status === "completed" && <img className="h-6 py-1" src={CompleteIcon} />}
+        {userProgress[contentId][contentDate].status === "incomplete" && (
+          <img className="h-6 py-1" src={PendingIcon} />
+        )}
+        {userProgress[contentId][contentDate].status === "skipped" && (
+          <img className="h-6 py-1" src={IncompleteIcon} />
+        )}
+        {userProgress[contentId][contentDate].status === "completed" && (
+          <img className="h-6 py-1" src={CompleteIcon} />
+        )}
       </div>
     );
   };
@@ -185,7 +190,10 @@ function Calendar() {
         }}
         events={parsedEvents}
         eventClick={handleEventClick}
-        eventContent={Object.keys(userProgress).length === userHabits.length && renderEventContent}
+        eventContent={
+          Object.keys(userProgress).length === userHabits.length &&
+          renderEventContent
+        }
       />
       {singleHabit && (
         <Habit
