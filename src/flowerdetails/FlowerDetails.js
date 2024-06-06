@@ -4,7 +4,7 @@ function FlowerDetails({ details, getDetails }) {
     const startDate = moment(`${details.attributes.start_datetime}`).format('MMMM Do, YYYY')
     const endDate = moment(`${details.attributes.end_datetime}`).format('MMMM Do, YYYY')
 
-
+    console.log('details', details)
     return (
         <div className="absolute top-24 ml-10 min-w-fit w-1/5 rounded-xl bg-white text-lg leading-6 shadow-lg">
             <svg onClick={() => getDetails(false)} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-8 ml-2 mt-2 hover:fill-lime-200 cursor-pointer">
@@ -25,18 +25,7 @@ function FlowerDetails({ details, getDetails }) {
                 </div>
             </div>
         </div>
-
     )
 }
 
 export default FlowerDetails;
-
-// custom_frequency : {friday: true, monday: true, sunday: false, tuesday: false, saturday: false, …}
-// description :  "Leetcode practice"
-// end_datetime : "2024-05-15T20:00:00.000Z"
-// frequency :  "weekly"
-// name :  "Code"
-// plant_id :  2
-// start_datetime :  "2024-05-01T20:00:00.000Z"
-// status :  "in_progress"
-// user_id :  1
