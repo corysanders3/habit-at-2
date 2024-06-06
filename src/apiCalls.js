@@ -26,6 +26,24 @@ async function deleteHabit(userId, habitId) {
   console.log(data);
 }
 
+async function updateHabit(userId, habitId, update) {
+  const response = await fetch(
+    `https://habitat-1873f8f155b9.herokuapp.com/api/v0/users/${userId}/habits/${habitId}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(update),
+    }
+  );
+  if (!response.ok) {
+    throw new Error(`An error has occurred: ${response.status}`);
+  }
+  const data = await response.json();
+  console.log(data);
+}
+
 async function completeHabit(userId, habitId, progressId) {
   const response = await fetch(
     `https://habitat-1873f8f155b9.herokuapp.com/api/v0/users/${userId}/habits/${habitId}/progresses/${progressId}`,
@@ -90,6 +108,7 @@ export {
   getHabits,
   deleteHabit,
   completeHabit,
+  updateHabit,
   getFlowers,
   getProgress,
   postHabit,
