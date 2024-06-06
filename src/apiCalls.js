@@ -25,6 +25,15 @@ async function getProgress(userId, habitId) {
     return progress
 }
 
+async function getFlowerScale(userId, habitId) {
+    const response = await fetch(`https://habitat-1873f8f155b9.herokuapp.com/api/v0/users/${userId}/habits/${habitId}/habit_plant`)
+    if (!response.ok) {
+        throw new Error(`An error has occurred: ${response.status}`)
+    }
+    const scale = await response.json()
+    return scale
+}
+
 function postHabit(data, userId) {
     return fetch(`https://habitat-1873f8f155b9.herokuapp.com/api/v0/users/${userId}/habits`, {
         method: 'POST',
@@ -43,5 +52,6 @@ export {
     getHabits,
     getFlowers,
     getProgress,
-    postHabit
+    postHabit,
+    getFlowerScale
 }

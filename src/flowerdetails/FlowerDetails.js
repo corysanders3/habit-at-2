@@ -1,4 +1,3 @@
-import './FlowerDetails.css';
 import moment from 'moment';
 
 function FlowerDetails({ details, getDetails }) {

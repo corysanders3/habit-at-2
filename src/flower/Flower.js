@@ -1,8 +1,7 @@
 import './Flower.css';
 import React, { useState, useEffect } from 'react';
 import { calculateGrowth } from '../grow/Grow';
-import { getFlowers } from '../apiCalls';
-import { getProgress } from '../apiCalls';
+import { getFlowers, getFlowerScale, getProgress } from '../apiCalls';
 import { useGLTF } from '@react-three/drei';
 import { useSpring, animated, config } from '@react-spring/three';
 
@@ -21,6 +20,7 @@ function Flower(props) {
     useEffect(() => {
         findFlower()
         findPosition()
+        // getFlowerScale(props.userId, props.habitId)
         getParameters(props.userId, props.habitId)
     }, [props.index])
 
@@ -59,6 +59,18 @@ function Flower(props) {
         // **** remove this line below once fetch is implemented
         // scaleFlower(userProgress)
     }
+
+    // const getFlowerSize = async (userId, habitId) => {
+    //     try {
+    //         const size = await getFlowerScale(userId, habitId)
+    //         if (size) {
+    //             console.log('size', size)
+    //             setScale(size.attributes.scale)
+    //         }
+    //     } catch (error) {
+    //         props.setError(error)
+    //     }
+    // }
 
     const findPosition = () => {
         let x = -4
