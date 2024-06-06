@@ -155,7 +155,6 @@ function Calendar({ userId }) {
   const renderEventContent = (eventInfo) => {
     const contentId = parseInt(eventInfo.event._def.publicId);
     const contentDate = convertDateObject(eventInfo.event.start);
-    console.log('!!!', userProgress[contentId][contentDate])
     return (
       <div className="flex justify-between items-center cursor-pointer px-2">
         <span className="font-bold text-wrap">{eventInfo.event.title}</span>

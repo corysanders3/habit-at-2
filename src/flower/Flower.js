@@ -1,7 +1,6 @@
 import './Flower.css';
 import React, { useState, useEffect } from 'react';
-import { calculateGrowth } from '../grow/Grow';
-import { getFlowers, getFlowerScale, getProgress } from '../apiCalls';
+import { getFlowers, getFlowerScale } from '../apiCalls';
 import { useGLTF } from '@react-three/drei';
 import { useSpring, animated, config } from '@react-spring/three';
 
@@ -21,10 +20,8 @@ function Flower(props) {
         findFlower()
         findPosition()
         getFlowerSize(props.userId, props.habitId)
-        // getParameters(props.userId, props.habitId)
     }, [props.index])
 
-    // ****** GET request for flower styles *******
     const findFlower = async () => {
         try {
             const flowers = await getFlowers()
@@ -38,27 +35,6 @@ function Flower(props) {
             props.setError(error)
         }
     }
-    // ****** Remove this findFlower() function below once fetch is implemented
-    // const findFlower = () => {
-    //     const flowerType = flowerData.find(type => {
-    //         return type.id === props.flower
-    //     })
-    //     setType(flowerType)
-    // }
-
-    // **** GET request for habit progress ******
-    // const getParameters = async (userId, habitId) => {
-    //     try {
-    //         const progress = await getProgress(userId, habitId)
-    //         if (progress) {
-    //             scaleFlower(progress.data)
-    //         }
-    //     } catch (error) {
-    //         props.setError(error)
-    //     }
-    //     // **** remove this line below once fetch is implemented
-    //     // scaleFlower(userProgress)
-    // }
 
     const getFlowerSize = async (userId, habitId) => {
         try {
@@ -81,12 +57,6 @@ function Flower(props) {
             setPosition([x, -0.75, -1])
         }
     }
-
-    // const scaleFlower = (progressLog) => {
-    //     const growth = calculateGrowth(progressLog, props.habit.attributes.frequency)
-    //     setScale(growth)
-    // }
-
 
     if (!type) {
         return (
