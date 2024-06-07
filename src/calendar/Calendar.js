@@ -51,7 +51,7 @@ function Calendar({ userId }) {
       setError(error);
     }
   };
-  console.log('userProgress', userProgress)
+
   const loadProgress = async (userHabits) => {
     await userHabits.forEach((habit) => {
       showProgress(userId, habit.id);

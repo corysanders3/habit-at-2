@@ -1,7 +1,7 @@
 import moment from 'moment';
 import { NavLink } from 'react-router-dom';
 
-function FlowerDetails({ details, getDetails }) {
+function FlowerDetails({ details, getDetails, loadForm, questionActive, setQuestionActive }) {
     const startDate = moment(`${details.attributes.start_datetime}`).format('MMMM Do, YYYY')
     const endDate = moment(`${details.attributes.end_datetime}`).format('MMMM Do, YYYY')
 
@@ -43,6 +43,11 @@ function FlowerDetails({ details, getDetails }) {
                     <dd className="mt-1"><span className="font-semibold">Start: </span> {startDate}</dd>
                     <dd className="mt-1"><span className="font-semibold">End: </span> {endDate}</dd>
                 </div>
+            </div>
+            <div className="font-semibold mt-0 mb-4 mx-6 text-gray-60 bg-gray-200 p-3 pl-5 pr-5 rounded-md hover:bg-lime-200 hover:cursor-pointer">
+                <button onClick={e => {
+                    loadForm(e, questionActive, setQuestionActive)
+                }}>Got A Question About This Habit?</button>
             </div>
         </div>
     )

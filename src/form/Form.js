@@ -6,7 +6,7 @@ import flowerTwo from '../images/flowers/flowerID_2.png';
 import flowerThree from '../images/flowers/flowerID_3.png';
 import flowerFour from '../images/flowers/flowerID_4.png';
 
-function Form({ closeForm, showUser, userId }) {
+function Form({ setFormActive, closeForm, showUser, userId }) {
     const [nameInput, setNameInput] = useState('')
     const [descriptionInput, setDescriptionInput] = useState('')
     const [frequencyInput, setFrequencyInput] = useState('')
@@ -78,11 +78,10 @@ function Form({ closeForm, showUser, userId }) {
 
         postHabit(postData, userId)
             .then(data => {
-                console.log(data)
                 showUser(userId)
             })
             .catch(err => console.log(err.message))
-        closeForm(e)
+        closeForm(e, setFormActive)
         clearForm()
     }
 
@@ -112,7 +111,7 @@ function Form({ closeForm, showUser, userId }) {
     function closeSteps(e) {
         e.preventDefault()
         setFormError('')
-        closeForm(e)
+        closeForm(e, setFormActive)
         clearForm()
     }
 

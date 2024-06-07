@@ -113,6 +113,22 @@ function postHabit(data, userId) {
   });
 }
 
+function answerHabitQuestion(userId, habitId, data) {
+  return fetch(
+    `https://habitat-1873f8f155b9.herokuapp.com/api/v0/users/${userId}/habits/${habitId}/questions`,
+    {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" },
+    }
+  ).then((res) => {
+    if (!res.ok) {
+      throw new Error(`An error has occurred: ${res.status}`);
+    }
+    return res.json();
+  });
+}
+
 export {
   getHabits,
   deleteHabit,
@@ -121,5 +137,6 @@ export {
   getFlowers,
   getProgress,
   postHabit,
-    getFlowerScale,
+  getFlowerScale,
+  answerHabitQuestion
 };

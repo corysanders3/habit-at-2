@@ -1,7 +1,8 @@
-import './Question.css'
+import './Question.css';
+import { answerHabitQuestion } from '../apiCalls';
 import { useState } from 'react';
 
-function Question() {
+function Question({ details, setQuestionActive, closeForm, userId }) {
     const [question, setQuestion] = useState('');
     const [formError, setFormError] = useState('');
     const [result, setResult] = useState('');
@@ -9,24 +10,33 @@ function Question() {
     function checkForm(e) {
         e.preventDefault()
         setFormError('')
+        setResult('')
         
         if(question.trim().length < 6) {
             setFormError('Question must be at least 5 characters long.')
         } else {
-
+            answerHabitQuestion(userId, details.id, { "question": question })
+                .then(data => {
+                    setResult(data.response)
+                })
+                .catch(err => console.log(err.message))
         }
     }
 
     function closeSteps(e) {
         e.preventDefault()
+        setFormError('')
+        setQuestion('')
+        setResult('')
+        closeForm(e, setQuestionActive)
     }
 
     return (
-        <section>
-            <h3>Ask Us A Question</h3>
-            <h4>ex: How can I stay on track with my habit to walk every day?</h4>
-            <form>
-                <label htmlFor='question'>What Can We Help With?</label>
+        <section className='question-section'>
+            <form className='question-form'>
+                <label htmlFor='question' className='question-prompt'>Ask A Question
+                <br />ex: What is the completion rate of my habit?
+                </label>
                 <input 
                     name='question'
                     id='question'
@@ -35,8 +45,8 @@ function Question() {
                     onChange={e => setQuestion(e.target.value)}
                 />
             </form>
-            { formError && <h4 className='error'>{formError}</h4> }
-            { result && <h4>{result}</h4> }
+            { formError && <h4 className='question-error'>{formError}</h4> }
+            { result && <h4 className='question-result'>{result}</h4> }
             <div className='button-container'>
                 <button className='submit' onClick={e => checkForm(e)}>Submit</button>
                 <button className='close' onClick={e => closeSteps(e)}>Close</button>
