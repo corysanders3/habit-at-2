@@ -5,16 +5,16 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import rrulePlugin from "@fullcalendar/rrule";
 import { useEffect, useState } from "react";
+import moment from "moment";
 import { getHabits, getProgress } from "../apiCalls";
 import Habit from "../habit/Habit";
 import CompleteIcon from "../assets/checkmark-icon.svg";
 import IncompleteIcon from "../assets/incomplete-icon.svg";
 import PendingIcon from "../assets/pending-icon.svg";
 
-function Calendar() {
+function Calendar({ userId }) {
   const [error, setError] = useState(null);
   const [userHabits, setHabits] = useState([]);
-  const [userId, setUserId] = useState(1);
   const [hidden, setHidden] = useState(true);
   const [singleHabit, setSingleHabit] = useState(null);
   const [userProgress, setUserProgress] = useState({});
@@ -33,6 +33,7 @@ function Calendar() {
   const showProgress = async (userId, habitId) => {
     try {
       const progresses = await getProgress(userId, habitId);
+
       setUserProgress((prevState) => ({
         ...prevState,
         [habitId]: progresses.data.reduce((acc, progress) => {
@@ -50,7 +51,7 @@ function Calendar() {
       setError(error);
     }
   };
-
+  console.log('userProgress', userProgress)
   const loadProgress = async (userHabits) => {
     await userHabits.forEach((habit) => {
       showProgress(userId, habit.id);
@@ -137,25 +138,15 @@ function Calendar() {
     const targetHabit = userHabits.find((event) => {
       return event.id === info.event._def.publicId;
     });
-    const specificDate = convertDateObject(info.event._instance.range.end);
+    const specificDate = moment(info.event._instance.range.end).format("YYYY-MM-DD");
     targetHabit.date = specificDate;
     setSingleHabit(targetHabit);
     setHidden(false);
   };
 
-  const convertDateObject = (dateObject) => {
-    const date = new Date(dateObject);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-    const formattedDate = `${year}-${month}-${day}`;
-    return formattedDate;
-  };
-
   const renderEventContent = (eventInfo) => {
     const contentId = parseInt(eventInfo.event._def.publicId);
-    const contentDate = convertDateObject(eventInfo.event.start);
-
+    const contentDate = moment(eventInfo.event.start).format("YYYY-MM-DD");
     return (
       <div className="flex justify-between items-center cursor-pointer px-2">
         <span className="font-bold text-wrap">{eventInfo.event.title}</span>

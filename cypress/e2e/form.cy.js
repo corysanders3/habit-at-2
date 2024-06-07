@@ -20,6 +20,21 @@ describe('navigating to the form', () => {
       fixture: "progressHabit30.json",
       timeout: 10000
     }).as('userProgress30')
+    cy.intercept('GET', `https://habitat-1873f8f155b9.herokuapp.com/api/v0/users/1/habits/29/habit_plant`, {
+      statusCode: 200,
+      fixture: "plantScale29.json",
+      timeout: 10000
+    }).as('plantScale29')
+    cy.intercept('GET', `https://habitat-1873f8f155b9.herokuapp.com/api/v0/users/1/habits/30/habit_plant`, {
+      statusCode: 200,
+      fixture: "plantScale30.json",
+      timeout: 10000
+    }).as('plantScale30')
+    cy.intercept('GET', `https://habitat-1873f8f155b9.herokuapp.com/api/v0/users/1/habits/31/habit_plant`, {
+      statusCode: 200,
+      fixture: "plantScale31.json",
+      timeout: 10000
+    }).as('plantScale31')
     cy.visit('http://localhost:3000/')
   })
 

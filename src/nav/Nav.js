@@ -4,7 +4,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavLink } from "react-router-dom";
 import FlowerIcon from "../assets/flower-icon.svg";
 
-export default function Nav({ loadForm, formActive, setFormActive, questionActive, setQuestionActive }) {
+export default function Nav({ loadForm, getDetails }) {
 
   return (
     <Disclosure as="nav" className="bg-white shadow">
@@ -15,7 +15,7 @@ export default function Nav({ loadForm, formActive, setFormActive, questionActiv
               <div className="flex">
                 <NavLink to="/" className="flex">
                   <div className="flex flex-shrink-0 items-center">
-                    <h1 className="inline-flex items-center px-1 pt-1 text-lg font-medium text-green-600">
+                    <h1 className="inline-flex items-center px-1 pt-1 text-xl font-medium text-green-600">
                       Habit-at
                     </h1>
                     <img
@@ -28,25 +28,24 @@ export default function Nav({ loadForm, formActive, setFormActive, questionActiv
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                   <NavLink
                     to="/"
-                    className="inline-flex items-center border-b-2 border-green-500 px-1 pt-1 text-sm font-medium text-gray-900"
+                    className="inline-flex items-center border-b-2 border-green-500 px-1 pt-1 text-md font-medium text-gray-900"
                   >
                     Home
                   </NavLink>
                   <NavLink
                     to="/calendar"
-                    className="inline-flex items-center border-b-2 border-green-500 px-1 pt-1 text-sm font-medium text-gray-900"
+                    className="inline-flex items-center border-b-2 border-green-500 px-1 pt-1 text-md font-medium text-gray-900"
+                    onClick={() => getDetails(false)}
                   >
                     Calendar
                   </NavLink>
                   <button 
-                  onClick={e => loadForm(e, formActive, setFormActive)}
-                  className="inline-flex items-center border-b-2 border-green-500 px-1 pt-1 text-sm font-medium text-gray-900">
+                  onClick={e => {
+                    loadForm(e)
+                    getDetails(false)
+                  }}
+                  className="inline-flex items-center border-b-2 border-green-500 px-1 pt-1 text-md font-medium text-gray-900">
                     New Habit
-                  </button>
-                  <button 
-                  onClick={e => loadForm(e, questionActive, setQuestionActive)}
-                  className="inline-flex items-center border-b-2 border-green-500 px-1 pt-1 text-sm font-medium text-gray-900">
-                    Habit Help
                   </button>
                 </div>
               </div>
@@ -75,18 +74,17 @@ export default function Nav({ loadForm, formActive, setFormActive, questionActiv
               <NavLink
                 to="/calendar"
                 className="block border-l-4 border-green-500 bg-green-50 py-2 pl-3 pr-4 text-base font-medium text-green-700"
+                onClick={() => getDetails(false)}
               >
                 Calendar
               </NavLink>
               <button 
-              onClick={e => loadForm(e, formActive, setFormActive)}
+                onClick={e => {
+                loadForm(e)
+                getDetails(false)
+                }}
               className="block border-l-4 border-green-500 bg-green-50 py-2 pl-3 pr-4 text-base font-medium text-green-700">
                 New Habit
-              </button>
-              <button 
-              onClick={e => loadForm(e, questionActive, setQuestionActive)}
-              className="block border-l-4 border-green-500 bg-green-50 py-2 pl-3 pr-4 text-base font-medium text-green-700">
-                Habit Help
               </button>
             </div>
           </Disclosure.Panel>

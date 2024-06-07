@@ -7,7 +7,7 @@ import flower1 from '../images/flowers/flowerID_1.png';
 import { TextureLoader } from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
-function Scene({ habits, setError }) {
+function Scene({ habits, setError, getDetails }) {
     const [isLoading, setIsLoading] = useState(false);
 
     // useEffect(() => {
@@ -50,7 +50,7 @@ function Scene({ habits, setError }) {
                     <Canvas className='garden-scene'>
                         <ambientLight intensity={2} />
                         <directionalLight position={[1, 1, 4]} intensity={3} />
-                        <Garden habits={habits} setError={setError} />
+                        <Garden habits={habits} setError={setError} getDetails={getDetails}/>
                         <Sky sunPosition={[0.6, 0.1, 0.6]} />
                         <PerspectiveCamera makeDefault position={[0, 5, 15]} />
                         <OrbitControls

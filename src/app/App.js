@@ -3,18 +3,19 @@ import Scene from '../scene/Scene';
 import Calendar from '../calendar/Calendar';
 import Nav from '../nav/Nav';
 import Form from '../form/Form';
-import Question from '../question/Question';
+import NotFound from '../notFound/NotFound';
 import { getHabits } from '../apiCalls';
 import { Routes, Route } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import FlowerDetails from '../flowerdetails/FlowerDetails';
 
 function App() {
   const [error, setError] = useState()
   const [userHabits, setHabits] = useState([])
   const [userId, setUserId] = useState(1)
   const [formActive, setFormActive] = useState(false);
-  const [questionActive, setQuestionActive] = useState(false);
-  // const [isLoading, setIsLoading] = useState(true);
+  const [details, showDetails] = useState(false)
+  const [isLoading, setIsLoading] = useState(true);
 
   function loadForm(e) {
     e.preventDefault();
@@ -45,19 +46,27 @@ function App() {
     } catch (error) {
       setError(error)
     }
-    // **** removed this line below once fetch is implemented
-    // setHabits(habits)
   }
-  
+
+  const getDetails = (habit) => {
+    if (habit) {
+      showDetails(habit)
+    } else {
+      showDetails(false)
+    }
+  }
+
   return (
     <>
-      <Nav loadForm={loadForm} />
+      <Nav loadForm={loadForm} getDetails={getDetails}/>
       <Routes>
-        <Route path='/' element={<Scene habits={userHabits} setError={setError} />} />
-        <Route path="/calendar" element={<Calendar />} />
+        <Route path='/' element={<Scene habits={userHabits} setError={setError} getDetails={getDetails} />} />
+        <Route path="/calendar" element={<Calendar userId={userId} />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       { formActive && <Form closeForm={closeForm} showUser={showUser} userId={userId}/> }
-      { error && <h2 className="fetch-error">{error.message}</h2> }
+      {error && <h2 className="fetch-error">{error.message}</h2>}
+      {details && <FlowerDetails details={details} getDetails={getDetails} />}
     </>
   );
 }
