@@ -3,36 +3,37 @@ import Scene from '../scene/Scene';
 import Calendar from '../calendar/Calendar';
 import Nav from '../nav/Nav';
 import Form from '../form/Form';
+import Question from '../question/Question';
 import { getHabits } from '../apiCalls';
 import { Routes, Route } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import flower1 from '../images/flowers/flowerID_1.png';
 
 function App() {
   const [error, setError] = useState()
   const [userHabits, setHabits] = useState([])
   const [userId, setUserId] = useState(1)
-  const [isActive, setIsActive] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [formActive, setFormActive] = useState(false);
+  const [questionActive, setQuestionActive] = useState(false);
+  // const [isLoading, setIsLoading] = useState(true);
 
-  function loadForm(e) {
+  function loadForm(e, activeState, setActiveState) {
     e.preventDefault();
-    if (!isActive) {
-      setIsActive(true);
+    if (!activeState) {
+      setActiveState(true);
     }
   }
 
-  function closeForm(e) {
+  function closeForm(e, setActiveState) {
     e.preventDefault();
-    setIsActive(false);
+    setActiveState(false);
   }
 
   useEffect(() => {
     showUser(userId)
     
-    setTimeout(() => {
-      setIsLoading(false)
-    }, 5000)
+    // setTimeout(() => {
+    //   setIsLoading(false)
+    // }, 5000)
   }, [])
 
   const showUser = async (userId) => {
@@ -50,12 +51,13 @@ function App() {
   
   return (
     <>
-      <Nav loadForm={loadForm} />
+      <Nav loadForm={loadForm} formActive={formActive} setFormActive={setFormActive} questionActive={questionActive} setQuestionActive={setQuestionActive} />
       <Routes>
         <Route path='/' element={<Scene habits={userHabits} setError={setError} />} />
         <Route path="/calendar" element={<Calendar />} />
       </Routes>
-      { isActive && <Form isActive={isActive} closeForm={closeForm} showUser={showUser} userId={userId}/> }
+      { formActive && <Form setFormActive={setFormActive} closeForm={closeForm} showUser={showUser} userId={userId}/> }
+      { questionActive && <Question setQuestionActive={setQuestionActive} closeForm={closeForm} /> }
       { error && <h2 className="fetch-error">{error.message}</h2> }
     </>
   );

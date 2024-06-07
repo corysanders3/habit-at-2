@@ -1,0 +1,48 @@
+
+
+
+
+
+
+
+
+
+.button-container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.submit,
+.close {
+    padding: 10px 40px;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.submit {
+    color: black;
+    background-color: white;
+}
+
+.close {
+    color: white;
+    background-color: red;
+}
+
+.submit:hover {
+    color: white;
+    background-color: black;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: red;
+    background-color: white;
+    cursor: pointer;
+}
+
+.error {
+    margin-bottom: 0;
+    color: red;
+}
