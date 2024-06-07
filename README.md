@@ -8,9 +8,11 @@ Habit-at allows users to track habit progress and consistency using 3D flower mo
 - [Cory Sanders](https://github.com/corysanders3)
 - [Megan Crotteau](https://github.com/crotteau)
 - [David Kwon](https://github.com/dkwon1223)
-#### Back End Team
+#### Back End Team - [BE repo](https://github.com/Habit-at-2311/be_habit_at)
 - [Hoa Dam](https://github.com/hoadam)
-- [Matt Darlington](https://github.com/mdarl17)
+- [Matt Darlington](https://github.com/mdarl17)  
+
+
 
 ## Preview
 <img width="1678" alt="Screenshot 2024-05-19 at 9 15 08 PM" src="https://github.com/Habit-at-2311/fe-habit-at/assets/149750476/baeba9df-4ea3-4c6f-924d-1ba9f6b7e536">
@@ -25,6 +27,7 @@ Habit-at allows users to track habit progress and consistency using 3D flower mo
   <img src='https://img.shields.io/badge/Cypress-69D3A7.svg?style=for-the-badge&logo=Cypress&logoColor=white' alt='cypress'/>
   <img src='https://img.shields.io/badge/Tailwind%20CSS-06B6D4.svg?style=for-the-badge&logo=Tailwind-CSS&logoColor=white' alt='Tailwind'/>
   <img src='https://img.shields.io/badge/CircleCI-343434.svg?style=for-the-badge&logo=CircleCI&logoColor=white' alt='CirclCi'/>
+  <img src='https://img.shields.io/badge/Blender-E87D0D.svg?style=for-the-badge&logo=Blender&logoColor=white' alt='blender'/>
 </div>
 
 ## Cypress Testing
@@ -41,7 +44,7 @@ We used Cypress to implement E2E testing for this app. To run the tests:
 Habit-at is a final group project as students at Turing. The goal was to showcase the technologies we've learned and expand upon our knowledge through implenting new technologies. We used an agile process and gained experience working with both a front-end and back-end team. Our application uses CircleCI for continuous integration and deployment with the front-end being deployed on Heroku.
 
 ## Challenges and Wins
+An initial hurdle was determining how to implement a 3D scene into our app and how to go about dynamically rendering flowers based on user input. We settled on using Three.js and React Three Fiber to load our scene, and we used React Spring to animate our flowers to grow. Throughout this project, we implemented multiple libraries to streamline our code and while using them can simplify code, there was a large learning curve for understanding how to access and manipulate elements.
 
-
-## Future Direction
+## Future Direction  
 
