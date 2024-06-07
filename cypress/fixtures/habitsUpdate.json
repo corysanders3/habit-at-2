@@ -29,8 +29,8 @@
             "attributes": {
                 "user_id": 1,
                 "plant_id": 2,
-                "name": "Read",
-                "description": "read novel",
+                "name": "Draw",
+                "description": "draw gnomes",
                 "frequency": "weekly",
                 "custom_frequency": {
                     "friday": true,
