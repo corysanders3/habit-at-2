@@ -44,11 +44,11 @@ function FlowerDetails({ details, getDetails, loadForm, questionActive, setQuest
                     <dd className="mt-1"><span className="font-semibold">End: </span> {endDate}</dd>
                 </div>
             </div>
-            <div className="font-semibold mt-0 mb-5 mx-6 text-gray-60 bg-gray-200 p-3 pl-5 pr-5 rounded-md hover:bg-lime-200 hover:cursor-pointer">
-                <button onClick={e => {
-                    loadForm(e, questionActive, setQuestionActive)
-                }}>Got A Question About This Habit?</button>
-            </div>
+            <button 
+                className="font-semibold mt-0 mb-5 mx-6 text-gray-60 bg-gray-200 p-3 pl-5 pr-5 rounded-md hover:bg-lime-200 hover:cursor-pointer"
+                onClick={e => {loadForm(e, questionActive, setQuestionActive)}}>
+                Got A Question About This Habit?
+            </button>
         </div>
     )
 }
