@@ -4,7 +4,6 @@ import { getFlowers, getFlowerScale } from '../apiCalls';
 import { useGLTF } from '@react-three/drei';
 import { useSpring, animated, config } from '@react-spring/three';
 
-
 function Flower(props) {
     const { nodes, materials } = useGLTF('/flowers/Habitat.gltf')
     const [type, setType] = useState()
