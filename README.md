@@ -1,7 +1,7 @@
 # Habit-at
 
 ## About
-Habit-at allows users to track habit progress and consistency in a visually fun way. Habits are represented as flowers that grow or shrink based on how close the user follows their goals.
+Habit-at allows users to track habit progress and consistency using 3D flower models for visualization. Habits are represented as flowers that grow or shrink based on how close the user follows their goals.
 
 ## Contributors
 #### Front End Team
@@ -18,11 +18,13 @@ Habit-at allows users to track habit progress and consistency in a visually fun 
 
 ## Technologies Used
 <div>
-  <img src='https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=for-the-badge&logo=JavaScript&logoColor=black' alt='javascript'/>
-  <img src='https://img.shields.io/badge/HTML5-E34F26.svg?style=for-the-badge&logo=HTML5&logoColor=white' alt='html'/>
   <img src='https://img.shields.io/badge/React-61DAFB.svg?style=for-the-badge&logo=React&logoColor=black' alt='react'/>
+  <img src='https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=for-the-badge&logo=JavaScript&logoColor=black' alt='javascript'/>
+  <img src='https://img.shields.io/badge/Three.js-000000.svg?style=for-the-badge&logo=threedotjs&logoColor=white' alt='Three.js'/>
   <img src='https://img.shields.io/badge/React%20Router-CA4245.svg?style=for-the-badge&logo=React-Router&logoColor=white' alt='react-router'/>
   <img src='https://img.shields.io/badge/Cypress-69D3A7.svg?style=for-the-badge&logo=Cypress&logoColor=white' alt='cypress'/>
+  <img src='https://img.shields.io/badge/Tailwind%20CSS-06B6D4.svg?style=for-the-badge&logo=Tailwind-CSS&logoColor=white' alt='Tailwind'/>
+  <img src='https://img.shields.io/badge/CircleCI-343434.svg?style=for-the-badge&logo=CircleCI&logoColor=white' alt='CirclCi'/>
 </div>
 
 ## Cypress Testing
@@ -35,12 +37,11 @@ We used Cypress to implement E2E testing for this app. To run the tests:
 - click `E2E testing`
 - when finished, `ctrl + c` to stop running local server
 
-# Part 1
 ## Background
- 
+Habit-at is a final group project as students at Turing. The goal was to showcase the technologies we've learned and expand upon our knowledge through implenting new technologies. We used an agile process and gained experience working with both a front-end and back-end team. Our application uses CircleCI for continuous integration and deployment with the front-end being deployed on Heroku.
 
 ## Challenges and Wins
 
 
-## Additional Features for Part 2
+## Future Direction
 
