@@ -46,10 +46,10 @@ describe('navigating to the home page', () => {
       .get('button').contains('New Habit')
 
     cy.get('a[href="/"]').eq(1).should('be.visible').and('have.text', 'Home').click()
-    cy.url().should('eq', 'http://localhost:3000/');
+    cy.url().should('eq', 'http://localhost:3000/')
 
     cy.get('a[href="/calendar"]').should('be.visible').and('have.text', 'Calendar').click()
-    cy.url().should('eq', 'http://localhost:3000/calendar');
+    cy.url().should('eq', 'http://localhost:3000/calendar')
   })
 
   it('should load garden scene along with user flowers', () => {
@@ -57,7 +57,6 @@ describe('navigating to the home page', () => {
     cy.get('canvas').matchImageSnapshot('scene', {
       failureThreshold: 0.001,
       failureThresholdType: 'percent'
-    });
+    })
   })
-
 })

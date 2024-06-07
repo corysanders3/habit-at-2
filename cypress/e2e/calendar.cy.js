@@ -30,11 +30,6 @@ describe('Calendar page', () => {
       fixture: "plantScale30.json",
       timeout: 10000
     }).as('plantScale30')
-    cy.intercept('GET', `https://habitat-1873f8f155b9.herokuapp.com/api/v0/users/1/habits/31/habit_plant`, {
-      statusCode: 200,
-      fixture: "plantScale31.json",
-      timeout: 10000
-    }).as('plantScale31')
     it('should load all user flowers', () => {
       cy.get('.garden-scene')
     })
