@@ -120,7 +120,7 @@ describe('navigating to the form', () => {
       .get('.habit-form').get(`input[name='endTime']`).type('08:35').should('have.value', '08:35')
       .get('button').contains('Submit').click()
 
-    cy.wait(1000)
+    cy.wait(2000)
     cy.get('canvas').matchImageSnapshot('updateScene', {
       failureThreshold: 0.001,
       failureThresholdType: 'percent'
