@@ -1,4 +1,4 @@
-describe('navigating to the home page', () => {
+describe('Error handling', () => {
   beforeEach(() => {
     cy.intercept('GET', `https://habitat-1873f8f155b9.herokuapp.com/api/v0/users/1/habits`, {
       statusCode: 200,
@@ -30,33 +30,30 @@ describe('navigating to the home page', () => {
       fixture: "plantScale30.json",
       timeout: 10000
     }).as('plantScale30')
-    cy.intercept('GET', `https://habitat-1873f8f155b9.herokuapp.com/api/v0/users/1/habits/31/habit_plant`, {
-      statusCode: 200,
-      fixture: "plantScale31.json",
-      timeout: 10000
-    }).as('plantScale31')
     it('should load all user flowers', () => {
       cy.get('.garden-scene')
     })
     cy.visit('http://localhost:3000/')
   })
 
-  it('should load nav bar with NavLinks', () => {
-    cy.get('h1').contains('Habit-at')
-      .get('button').contains('New Habit')
+  it('Should display an error page if user navigates to invalid URL', () => {
+    cy.visit('http://localhost:3000/gnome')
+    cy.get('h1').contains('Page not found')
+    cy.get('p').contains('404')
+    cy.get('a').contains('Return Home').click()
 
-    cy.get('a[href="/"]').eq(1).should('be.visible').and('have.text', 'Home').click()
-    cy.url().should('eq', 'http://localhost:3000/')
-
-    cy.get('a[href="/calendar"]').should('be.visible').and('have.text', 'Calendar').click()
-    cy.url().should('eq', 'http://localhost:3000/calendar')
-  })
-
-  it('should load garden scene along with user flowers', () => {
     cy.wait(2000)
     cy.get('canvas').matchImageSnapshot('scene', {
       failureThreshold: 0.001,
       failureThresholdType: 'percent'
     })
+  })
+
+  it('Should display error notification if network request fails', () => {
+    cy.intercept('GET', `https://habitat-1873f8f155b9.herokuapp.com/api/v0/users/1/habits`, {
+      statusCode: 400
+    })
+
+    cy.get('h2').contains('An error has occurred: 400')
   })
 })

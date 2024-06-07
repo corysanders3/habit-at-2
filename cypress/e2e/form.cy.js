@@ -65,7 +65,6 @@ describe('navigating to the form', () => {
   })
 
   it('should allow user to submit a new habit and flower garden should be updated', () => {
-
     cy.intercept('POST', 'https://habitat-1873f8f155b9.herokuapp.com/api/v0/users/1/habits', {
       statusCode: 201,
       body: {
@@ -126,7 +125,11 @@ describe('navigating to the form', () => {
       failureThreshold: 0.001,
       failureThresholdType: 'percent'
     })
-
   })
 
+  it('Should not allow the user to submit an incomplete form', () => {
+    cy.get('button').contains('New Habit').click()
+    cy.get('button').contains('Submit').click()
+    cy.get('h4').contains('Please fill out all fields.')
+  })
 })

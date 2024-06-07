@@ -4,7 +4,6 @@ import { getFlowers, getFlowerScale } from '../apiCalls';
 import { useGLTF } from '@react-three/drei';
 import { useSpring, animated, config } from '@react-spring/three';
 
-
 function Flower(props) {
     const { nodes, materials } = useGLTF('/flowers/Habitat.gltf')
     const [type, setType] = useState()
@@ -58,6 +57,16 @@ function Flower(props) {
         }
     }
 
+    const handlePointerOver = (e) => {
+        e.stopPropagation()
+        document.body.style.cursor = 'pointer'
+    }
+
+    const handlePointerOut = (e) => {
+        e.stopPropagation()
+        document.body.style.cursor = 'auto'
+    }
+
     if (!type) {
         return (
             <group></group>
@@ -73,7 +82,8 @@ function Flower(props) {
                     receiveShadow
                     geometry={nodes[type.attributes.style + '_1'].geometry}
                     material={materials[type.attributes.stem]}
-                    className="flower"
+                    onPointerOver={handlePointerOver}
+                    onPointerOut={handlePointerOut}
                 >
                     <mesh
                         castShadow

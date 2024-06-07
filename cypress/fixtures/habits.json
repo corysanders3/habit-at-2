@@ -6,8 +6,8 @@
             "attributes": {
                 "user_id": 1,
                 "plant_id": 3,
-                "name": "Fart",
-                "description": "release gas",
+                "name": "Study",
+                "description": "learn typescript",
                 "frequency": "daily",
                 "custom_frequency": {
                     "friday": true,
@@ -29,8 +29,8 @@
             "attributes": {
                 "user_id": 1,
                 "plant_id": 2,
-                "name": "poop",
-                "description": "everyone poops",
+                "name": "Draw",
+                "description": "draw gnomes",
                 "frequency": "weekly",
                 "custom_frequency": {
                     "friday": true,
