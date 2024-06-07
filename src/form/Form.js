@@ -6,7 +6,7 @@ import flowerTwo from '../images/flowers/flowerID_2.png';
 import flowerThree from '../images/flowers/flowerID_3.png';
 import flowerFour from '../images/flowers/flowerID_4.png';
 
-function Form({ setFormActive, closeForm, showUser, userId }) {
+function Form({ closeForm, showUser, userId }) {
     const [nameInput, setNameInput] = useState('')
     const [descriptionInput, setDescriptionInput] = useState('')
     const [frequencyInput, setFrequencyInput] = useState('')
@@ -82,7 +82,7 @@ function Form({ setFormActive, closeForm, showUser, userId }) {
                 showUser(userId)
             })
             .catch(err => console.log(err.message))
-        closeForm(e, setFormActive)
+        closeForm(e)
         clearForm()
     }
 
@@ -112,7 +112,7 @@ function Form({ setFormActive, closeForm, showUser, userId }) {
     function closeSteps(e) {
         e.preventDefault()
         setFormError('')
-        closeForm(e, setFormActive)
+        closeForm(e)
         clearForm()
     }
 

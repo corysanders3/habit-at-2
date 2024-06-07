@@ -1,7 +1,7 @@
 import './Question.css'
 import { useState } from 'react';
 
-function Question({ setQuestionActive, closeForm }) {
+function Question() {
     const [question, setQuestion] = useState('');
     const [formError, setFormError] = useState('');
     const [result, setResult] = useState('');
@@ -13,8 +13,12 @@ function Question({ setQuestionActive, closeForm }) {
         if(question.trim().length < 6) {
             setFormError('Question must be at least 5 characters long.')
         } else {
-            
+
         }
+    }
+
+    function closeSteps(e) {
+        e.preventDefault()
     }
 
     return (

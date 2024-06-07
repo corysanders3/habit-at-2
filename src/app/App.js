@@ -16,16 +16,16 @@ function App() {
   const [questionActive, setQuestionActive] = useState(false);
   // const [isLoading, setIsLoading] = useState(true);
 
-  function loadForm(e, activeState, setActiveState) {
+  function loadForm(e) {
     e.preventDefault();
-    if (!activeState) {
-      setActiveState(true);
+    if (!formActive) {
+      setFormActive(true);
     }
   }
 
-  function closeForm(e, setActiveState) {
+  function closeForm(e) {
     e.preventDefault();
-    setActiveState(false);
+    setFormActive(false);
   }
 
   useEffect(() => {
@@ -51,13 +51,12 @@ function App() {
   
   return (
     <>
-      <Nav loadForm={loadForm} formActive={formActive} setFormActive={setFormActive} questionActive={questionActive} setQuestionActive={setQuestionActive} />
+      <Nav loadForm={loadForm} />
       <Routes>
         <Route path='/' element={<Scene habits={userHabits} setError={setError} />} />
         <Route path="/calendar" element={<Calendar />} />
       </Routes>
-      { formActive && <Form setFormActive={setFormActive} closeForm={closeForm} showUser={showUser} userId={userId}/> }
-      { questionActive && <Question setQuestionActive={setQuestionActive} closeForm={closeForm} /> }
+      { formActive && <Form closeForm={closeForm} showUser={showUser} userId={userId}/> }
       { error && <h2 className="fetch-error">{error.message}</h2> }
     </>
   );
