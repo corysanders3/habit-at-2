@@ -6,7 +6,7 @@ import flowerTwo from '../images/flowers/flowerID_2.png';
 import flowerThree from '../images/flowers/flowerID_3.png';
 import flowerFour from '../images/flowers/flowerID_4.png';
 
-function Form({ isActive, closeForm, showUser, userId }) {
+function Form({ setFormActive, closeForm, showUser, userId }) {
     const [nameInput, setNameInput] = useState('')
     const [descriptionInput, setDescriptionInput] = useState('')
     const [frequencyInput, setFrequencyInput] = useState('')
@@ -78,11 +78,10 @@ function Form({ isActive, closeForm, showUser, userId }) {
 
         postHabit(postData, userId)
             .then(data => {
-                console.log(data)
                 showUser(userId)
             })
             .catch(err => console.log(err.message))
-        closeForm(e)
+        closeForm(e, setFormActive)
         clearForm()
     }
 
@@ -112,238 +111,236 @@ function Form({ isActive, closeForm, showUser, userId }) {
     function closeSteps(e) {
         e.preventDefault()
         setFormError('')
-        closeForm(e)
+        closeForm(e, setFormActive)
         clearForm()
     }
 
     return (
-        <>
-            <section className='habit-section'>
-                <h3 className='form-header'>Create a New Habit</h3>
-                <form className='habit-form'>
-                    <label htmlFor='name'>Habit Name:</label>
+        <section className='habit-section'>
+            <h3 className='form-header'>Create a New Habit</h3>
+            <form className='habit-form'>
+                <label htmlFor='name'>Habit Name:</label>
+                <input
+                    name='name'
+                    id='name'
+                    type='text'
+                    value={nameInput}
+                    onChange={e => setNameInput(e.target.value)}
+                />
+                <br></br>
+                <label htmlFor='description'>Habit Description:</label>
+                <input
+                    name='description'
+                    id='description'
+                    type='text'
+                    value={descriptionInput}
+                    onChange={e => setDescriptionInput(e.target.value)}
+                />
+                <br></br>
+                <p className='checkbox-p'>Frequency:</p>
+                <div className='frequency-container'>
                     <input
-                        name='name'
-                        id='name'
-                        type='text'
-                        value={nameInput}
-                        onChange={e => setNameInput(e.target.value)}
+                        name='frequency'
+                        id='daily'
+                        type='radio'
+                        value='daily'
+                        onChange={e => setFrequencyInput(e.target.value)}
                     />
-                    <br></br>
-                    <label htmlFor='description'>Habit Description:</label>
+                    <label htmlFor='daily'>Daily</label>
+                    &nbsp;&nbsp;
                     <input
-                        name='description'
-                        id='description'
-                        type='text'
-                        value={descriptionInput}
-                        onChange={e => setDescriptionInput(e.target.value)}
+                        name='frequency'
+                        id='weekly'
+                        type='radio'
+                        value='weekly'
+                        onChange={e => setFrequencyInput(e.target.value)}
                     />
-                    <br></br>
-                    <p className='checkbox-p'>Frequency:</p>
-                    <div className='frequency-container'>
-                        <input
-                            name='frequency'
-                            id='daily'
-                            type='radio'
-                            value='daily'
-                            onChange={e => setFrequencyInput(e.target.value)}
-                        />
-                        <label htmlFor='daily'>Daily</label>
-                        &nbsp;&nbsp;
-                        <input
-                            name='frequency'
-                            id='weekly'
-                            type='radio'
-                            value='weekly'
-                            onChange={e => setFrequencyInput(e.target.value)}
-                        />
-                        <label htmlFor='weekly'>Weekly</label>
-                        &nbsp;&nbsp;
-                        <input
-                            name='frequency'
-                            id='monthly'
-                            type='radio'
-                            value='monthly'
-                            onChange={e => setFrequencyInput(e.target.value)}
-                        />
-                        <label htmlFor='monthly'>Monthly</label>
-                    </div>
-                    {(frequencyInput === 'weekly' || frequencyInput === 'monthly') && (
-                        <>
-                            <br></br>
-                            <p className='checkbox-p'>Choose Days:</p>
-                            <div className='days-container'>
-                                <div>
-                                    <input
-                                        name='monday'
-                                        id='monday'
-                                        type='checkbox'
-                                        value='monday'
-                                        onChange={(e) => updateDays(e)}
-                                    />
-                                    <label htmlFor='monday'>Monday</label>
-                                </div>
-                                <div>
-                                    <input
-                                        name='tuesday'
-                                        id='tuesday'
-                                        type='checkbox'
-                                        value='tuesday'
-                                        onChange={(e) => updateDays(e)}
-                                    />
-                                    <label htmlFor='tuesday'>Tuesday</label>
-                                </div>
-                                <div>
-                                    <input
-                                        name='wednesday'
-                                        id='wednesday'
-                                        type='checkbox'
-                                        value='wednesday'
-                                        onChange={(e) => updateDays(e)}
-                                    />
-                                    <label htmlFor='wednesday'>Wednesday</label>
-                                </div>
-                                <div>
-                                    <input
-                                        name='thursday'
-                                        id='thursday'
-                                        type='checkbox'
-                                        value='thursday'
-                                        onChange={(e) => updateDays(e)}
-                                    />
-                                    <label htmlFor='thursday'>Thursday</label>
-                                </div>
-                                <div>
-                                    <input
-                                        name='friday'
-                                        id='friday'
-                                        type='checkbox'
-                                        value='friday'
-                                        onChange={(e) => updateDays(e)}
-                                    />
-                                    <label htmlFor='friday'>Friday</label>
-                                </div>
-                                <div>
-                                    <input
-                                        name='saturday'
-                                        id='saturday'
-                                        type='checkbox'
-                                        value='saturday'
-                                        onChange={(e) => updateDays(e)}
-                                    />
-                                    <label htmlFor='saturday'>Saturday</label>
-                                </div>
-                                <div>
-                                    <input
-                                        name='sunday'
-                                        id='sunday'
-                                        type='checkbox'
-                                        value='sunday'
-                                        onChange={(e) => updateDays(e)}
-                                    />
-                                    <label htmlFor='sunday'>Sunday</label>
-                                </div>
+                    <label htmlFor='weekly'>Weekly</label>
+                    &nbsp;&nbsp;
+                    <input
+                        name='frequency'
+                        id='monthly'
+                        type='radio'
+                        value='monthly'
+                        onChange={e => setFrequencyInput(e.target.value)}
+                    />
+                    <label htmlFor='monthly'>Monthly</label>
+                </div>
+                {(frequencyInput === 'weekly' || frequencyInput === 'monthly') && (
+                    <>
+                        <br></br>
+                        <p className='checkbox-p'>Choose Days:</p>
+                        <div className='days-container'>
+                            <div>
+                                <input
+                                    name='monday'
+                                    id='monday'
+                                    type='checkbox'
+                                    value='monday'
+                                    onChange={(e) => updateDays(e)}
+                                />
+                                <label htmlFor='monday'>Monday</label>
                             </div>
-                        </>
-                    )}
-                    <br></br>
-                    <p className='checkbox-p'>Pick Your Flower:</p>
-                    <div className='flowers-container'>
-                        <div className='single-container'>
-                            <input
-                                name='flower'
-                                id='1'
-                                type='radio'
-                                value='1'
-                                onChange={e => setFlowerId(e.target.value)}
-                            />
-                            <label htmlFor='1'><img src={flowerOne} className='flower-pic' /></label>
+                            <div>
+                                <input
+                                    name='tuesday'
+                                    id='tuesday'
+                                    type='checkbox'
+                                    value='tuesday'
+                                    onChange={(e) => updateDays(e)}
+                                />
+                                <label htmlFor='tuesday'>Tuesday</label>
+                            </div>
+                            <div>
+                                <input
+                                    name='wednesday'
+                                    id='wednesday'
+                                    type='checkbox'
+                                    value='wednesday'
+                                    onChange={(e) => updateDays(e)}
+                                />
+                                <label htmlFor='wednesday'>Wednesday</label>
+                            </div>
+                            <div>
+                                <input
+                                    name='thursday'
+                                    id='thursday'
+                                    type='checkbox'
+                                    value='thursday'
+                                    onChange={(e) => updateDays(e)}
+                                />
+                                <label htmlFor='thursday'>Thursday</label>
+                            </div>
+                            <div>
+                                <input
+                                    name='friday'
+                                    id='friday'
+                                    type='checkbox'
+                                    value='friday'
+                                    onChange={(e) => updateDays(e)}
+                                />
+                                <label htmlFor='friday'>Friday</label>
+                            </div>
+                            <div>
+                                <input
+                                    name='saturday'
+                                    id='saturday'
+                                    type='checkbox'
+                                    value='saturday'
+                                    onChange={(e) => updateDays(e)}
+                                />
+                                <label htmlFor='saturday'>Saturday</label>
+                            </div>
+                            <div>
+                                <input
+                                    name='sunday'
+                                    id='sunday'
+                                    type='checkbox'
+                                    value='sunday'
+                                    onChange={(e) => updateDays(e)}
+                                />
+                                <label htmlFor='sunday'>Sunday</label>
+                            </div>
                         </div>
-                        <div className='single-container'>
-                            <input
-                                name='flower'
-                                id='2'
-                                type='radio'
-                                value='2'
-                                onChange={e => setFlowerId(e.target.value)}
-                            />
-                            <label htmlFor='2'><img src={flowerTwo} className='flower-pic' /></label>
-                        </div>
-                        <div className='single-container'>
-                            <input
-                                name='flower'
-                                id='3'
-                                type='radio'
-                                value='3'
-                                onChange={e => setFlowerId(e.target.value)}
-                            />
-                            <label htmlFor='3'><img src={flowerThree} className='flower-pic' /></label>
-                        </div>
-                        <div className='single-container'>
-                            <input
-                                name='flower'
-                                id='4'
-                                type='radio'
-                                value='4'
-                                onChange={e => setFlowerId(e.target.value)}
-                            />
-                            <label htmlFor='4'><img src={flowerFour} className='flower-pic flower-four' /></label>
-                        </div>
+                    </>
+                )}
+                <br></br>
+                <p className='checkbox-p'>Pick Your Flower:</p>
+                <div className='flowers-container'>
+                    <div className='single-container'>
+                        <input
+                            name='flower'
+                            id='1'
+                            type='radio'
+                            value='1'
+                            onChange={e => setFlowerId(e.target.value)}
+                        />
+                        <label htmlFor='1'><img src={flowerOne} className='flower-pic' /></label>
                     </div>
-                    <br></br>
-                    <div className='date-container'>
-                        <div>
-                            <label htmlFor='startDate'>Start Date:</label>
-                            <input
-                                name='startDate'
-                                id='startDate'
-                                type='date'
-                                value={startDateInput}
-                                onChange={e => setStartDateInput(e.target.value)}
-                            />
-                        </div>
-                        <div>
-                            <label>Start Time:</label>
-                            <input
-                                name='startTime'
-                                id='startTime'
-                                type='time'
-                                value={startTimeInput}
-                                onChange={e => setStartTimeInput(e.target.value)}
-                            />
-                        </div>
+                    <div className='single-container'>
+                        <input
+                            name='flower'
+                            id='2'
+                            type='radio'
+                            value='2'
+                            onChange={e => setFlowerId(e.target.value)}
+                        />
+                        <label htmlFor='2'><img src={flowerTwo} className='flower-pic' /></label>
                     </div>
-                    <br></br>
-                    <div className='date-container'>
-                        <div>
-                            <label htmlFor='endDate'>End Date:</label>
-                            <input
-                                name='endDate'
-                                id='endDate'
-                                type='date'
-                                value={endDateInput}
-                                onChange={e => setEndDateInput(e.target.value)}
-                            />
-                        </div>
-                        <div>
-                            <label>End Time:</label>
-                            <input
-                                name='endTime'
-                                id='endTime'
-                                type='time'
-                                value={endTimeInput}
-                                onChange={e => setEndTimeInput(e.target.value)}
-                            />
-                        </div>
+                    <div className='single-container'>
+                        <input
+                            name='flower'
+                            id='3'
+                            type='radio'
+                            value='3'
+                            onChange={e => setFlowerId(e.target.value)}
+                        />
+                        <label htmlFor='3'><img src={flowerThree} className='flower-pic' /></label>
                     </div>
-                    {formError && <h4 className='error'>{formError}</h4>}
-                    <div className='button-container'>
-                        <button className='submit' onClick={e => checkForm(e)}>Submit</button>
-                        <button className='close' onClick={e => closeSteps(e)}>Close</button>
+                    <div className='single-container'>
+                        <input
+                            name='flower'
+                            id='4'
+                            type='radio'
+                            value='4'
+                            onChange={e => setFlowerId(e.target.value)}
+                        />
+                        <label htmlFor='4'><img src={flowerFour} className='flower-pic flower-four' /></label>
                     </div>
-                </form>
-            </section>
-        </>
+                </div>
+                <br></br>
+                <div className='date-container'>
+                    <div>
+                        <label htmlFor='startDate'>Start Date:</label>
+                        <input
+                            name='startDate'
+                            id='startDate'
+                            type='date'
+                            value={startDateInput}
+                            onChange={e => setStartDateInput(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <label>Start Time:</label>
+                        <input
+                            name='startTime'
+                            id='startTime'
+                            type='time'
+                            value={startTimeInput}
+                            onChange={e => setStartTimeInput(e.target.value)}
+                        />
+                    </div>
+                </div>
+                <br></br>
+                <div className='date-container'>
+                    <div>
+                        <label htmlFor='endDate'>End Date:</label>
+                        <input
+                            name='endDate'
+                            id='endDate'
+                            type='date'
+                            value={endDateInput}
+                            onChange={e => setEndDateInput(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <label>End Time:</label>
+                        <input
+                            name='endTime'
+                            id='endTime'
+                            type='time'
+                            value={endTimeInput}
+                            onChange={e => setEndTimeInput(e.target.value)}
+                        />
+                    </div>
+                </div>
+                {formError && <h4 className='error'>{formError}</h4>}
+                <div className='button-container'>
+                    <button className='submit' onClick={e => checkForm(e)}>Submit</button>
+                    <button className='close' onClick={e => closeSteps(e)}>Close</button>
+                </div>
+            </form>
+        </section>
     )
 }
 

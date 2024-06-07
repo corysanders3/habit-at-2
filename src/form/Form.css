@@ -3,7 +3,7 @@
     top: 15%;
     left: 35%;
     z-index: 2;
-    border: 3px solid black;
+    border: 3px solid rgb(183, 171, 171);
     padding: 40px 50px;
     background-color: rgba(240, 240, 240, 0.944);
     font-weight: 500;
@@ -47,7 +47,7 @@
 }
 
 input:hover {
-    cursor: pointer;
+    cursor: text;
 }
 
 .button-container {

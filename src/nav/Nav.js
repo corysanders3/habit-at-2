@@ -4,7 +4,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavLink } from "react-router-dom";
 import FlowerIcon from "../assets/flower-icon.svg";
 
-export default function Nav({ loadForm, getDetails }) {
+export default function Nav({ loadForm, getDetails, formActive, setFormActive }) {
 
   return (
     <Disclosure as="nav" className="bg-white shadow">
@@ -41,7 +41,7 @@ export default function Nav({ loadForm, getDetails }) {
                   </NavLink>
                   <button 
                   onClick={e => {
-                    loadForm(e)
+                    loadForm(e, formActive, setFormActive)
                     getDetails(false)
                   }}
                   className="inline-flex items-center border-b-2 border-green-500 px-1 pt-1 text-md font-medium text-gray-900">
@@ -80,7 +80,7 @@ export default function Nav({ loadForm, getDetails }) {
               </NavLink>
               <button 
                 onClick={e => {
-                loadForm(e)
+                loadForm(e, formActive, setFormActive)
                 getDetails(false)
                 }}
               className="block border-l-4 border-green-500 bg-green-50 py-2 pl-3 pr-4 text-base font-medium text-green-700">
