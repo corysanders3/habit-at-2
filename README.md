@@ -33,7 +33,7 @@ Habit-at allows users to track habit progress and consistency using 3D flower mo
 Flower models were created by [Yashar](https://blendermarket.com/products/stylized-plants-pack).
 ## Cypress Testing
 We used Cypress to implement E2E testing for this app. To run the tests:
-- `git clone` this [repo](https://github.com/Habit-at-2311/fe-habit-at)
+- `git clone` this [repo](https://github.com/corysanders3/habit-at-2)
 - `cd` into the directory
 - `npm i` to install dependencies
 - `npm start` and open http://localhost:3000 in your browser
@@ -43,6 +43,8 @@ We used Cypress to implement E2E testing for this app. To run the tests:
 
 ## Background
 Habit-at is a final group project as students at Turing. The goal was to showcase the technologies we've learned and expand upon our knowledge through implenting new technologies. We used an agile process and gained experience working with both a front-end and back-end team. Our application uses CircleCI for continuous integration and deployment with the front-end being deployed on Heroku.
+
+The application was also deployed on Vercel for its ease of use and increased memory limits. The deployed application can be found [here](https://habit-at-2.vercel.app/).
 
 ## Challenges and Wins
 An initial hurdle was determining how to implement a 3D scene into our app and how to go about dynamically rendering flowers based on user input. We settled on using Three.js and React Three Fiber to load our scene, and we used React Spring to animate our flowers growth. Throughout this project, we implemented multiple libraries to streamline our code and while using them can simplify code, there was a large learning curve for understanding how to access and manipulate elements.
